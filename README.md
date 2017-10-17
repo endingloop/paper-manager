@@ -1,2 +1,9 @@
-# Software Engineering Project -- Paper Manager
-It begins.
+# paper-manager
+软件工程实践项目：论文管理
+## 提示
+
+项目已经搭建起来了，大家试着在自己的机器上跑起来，可以开始干活了！
+
+加油啊，胜利就在前方
+
+
