@@ -9,7 +9,8 @@
 </head>
 <body>
 	<b>Welcome to Paper Manager System!</b>
+	<p><a href="<s:url action='addpaper' />">发表你的论文</a></p>
 	<br />
-	<br /> 你瞅啥呢……
+	<br /> 10月22日 风和日丽
 </body>
 </html>
