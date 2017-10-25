@@ -55,16 +55,12 @@ CREATE TABLE `paper` (
   `Date` date NOT NULL,
   `SortID` varchar(45) NOT NULL,
   `JournalID` varchar(45) DEFAULT NULL,
-  `Status` tinyint(4) NOT NULL,
+  `Status` tinyint(4) NOT NULL DEFAULT 0,
   `KeyWords` varchar(200) NOT NULL,
-  `Description` varchar(2000) NOT NULL,
-  PRIMARY KEY (`PaperID`),
-  KEY `FirstAuthorID_idx` (`FirstAuthorID`,`SecondAuthorID`),
-  KEY `SortID_idx` (`SortID`),
-  KEY `JournalID_idx` (`JournalID`),
-  CONSTRAINT `journalID` FOREIGN KEY (`JournalID`) REFERENCES `journal` (`JournalID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `sortID` FOREIGN KEY (`SortID`) REFERENCES `sort` (`SortID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `Description` varchar(2000),
+  `File` varchar(200),
+  PRIMARY KEY (`PaperID`)
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

@@ -27,5 +27,11 @@
 		<action name="regpaper" class="action.AddPaper" method="execute">
 			<result name="success">/add-paper-result.jsp</result>
 		</action>
+		<action name="fileDownload" class="action.FileDownloadAction">
+            <result name="success" type="stream">
+                <param name="contentDisposition">attachment;filename="paper.doc"</param>
+                <param name="inputName">downloadFile</param>
+            </result>
+        </action>
 	</package>
 </struts>

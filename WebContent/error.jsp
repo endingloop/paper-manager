@@ -4,17 +4,17 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Exception Handling - Error</title>
+	<title>出错啦：程序发生异常</title>
 </head>
 <body>
-	<h4>The application has malfunctioned.</h4>
+	<h4>抱歉，程序运行出错了……</h4>
 
-	<p> Please contact technical support with the following information:</p>
+	<p>请反馈如下错误信息：</p>
 
 	<h4>Exception Name: <s:property value="exception"/></h4>
 	<h4>Exception Details: <s:property value="exceptionStack"/></h4>
 
-	<p><a href="index.jsp">Return to the home page.</a></p>
+	<p><a href="index.jsp">回到主页</a></p>
 </body>
 
 </html>

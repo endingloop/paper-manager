@@ -46,6 +46,6 @@ public class Paper {
 	}
 	@Override
 	public String toString() {
-		return author + "'s paper " + title;
+		return author + "的论文：" + title;
 	}
 }
