@@ -10,13 +10,10 @@
   <body>
     <h3>发表一篇论文</h3>
 	<s:property value="paperBean" /><br/>
-	<s:property value="id"/>
 	<s:url action="fileDownload" var="downloadLink">
-		<s:param name="fileName" value="%{id}"></s:param>
+		<s:param name="paperID" value="%{paperBean.paperID}"></s:param>
 	</s:url>
-	<p>
-		<a href="${downloadLink}">下载</a>
-	</p>
+	<p><a href="${downloadLink}">下载</a></p>
 	<p><a href="<s:url action='index' />" >Return to home page</a>.</p>
 	<hr />
 	<s:text name="contact" />

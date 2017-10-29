@@ -1,6 +1,7 @@
 package model;
 
 public class Paper {
+	private String paperID;
 	private String author;
 	private String title;
 	private String keyword;
@@ -8,6 +9,12 @@ public class Paper {
 	private String publication;
 	private String category;
 	
+	public String getPaperID() {
+		return paperID;
+	}
+	public void setPaperID(String paperID) {
+		this.paperID = paperID;
+	}
 	public String getAuthor() {
 		return author;
 	}

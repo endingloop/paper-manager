@@ -29,7 +29,7 @@
 		</action>
 		<action name="fileDownload" class="action.FileDownloadAction">
             <result name="success" type="stream">
-                <param name="contentDisposition">attachment;filename="paper.doc"</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
                 <param name="inputName">downloadFile</param>
             </result>
         </action>

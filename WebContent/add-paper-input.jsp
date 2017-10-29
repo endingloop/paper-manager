@@ -21,7 +21,7 @@
       <s:textfield key="paperBean.date" />
       <s:textfield key="paperBean.publication" />
       <s:textfield key="paperBean.category" />
-      文件: <input type="file" name="file"><br>
+      选择文件: <input type="file" name="file"><br>
       <s:submit/>
     </s:form>
 </div>
