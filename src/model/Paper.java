@@ -53,6 +53,6 @@ public class Paper {
 	}
 	@Override
 	public String toString() {
-		return author + "鐨勮鏂囷細" + title;
+		return author + "发布的文章：" + title;
 	}
 }

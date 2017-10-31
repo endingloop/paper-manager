@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import com.mysql.jdbc.PreparedStatement;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Paper;
@@ -15,6 +16,41 @@ import service.ConnectSQL;
 import service.Sequence;
 
 public class AddPaper extends ActionSupport {
+	public int first;
+	public String second;
+	public String third;
+	public String dates;
+	public String getDates() {
+		return dates;
+	}
+
+	public void setDates(String dates) {
+		this.dates = dates;
+	}
+
+	public int getFirst() {
+		return first;
+	}
+
+	public void setFirst(int first) {
+		this.first = first;
+	}
+
+	public String getSecond() {
+		return second;
+	}
+
+	public void setSecond(String second) {
+		this.second = second;
+	}
+
+	public String getThird() {
+		return third;
+	}
+
+	public void setThird(String third) {
+		this.third = third;
+	}
 
 	/**
 	 * 初始化版本 增加了文件上传功能
@@ -54,10 +90,38 @@ public class AddPaper extends ActionSupport {
 		insert(paperBean);
 		return SUCCESS;
 	}
-
+	private int findSortID(String sortstr) {
+		String sql ="select * from third where sortname='"+sortstr+"';";
+		Connection conn=ConnectSQL.getConn();
+		PreparedStatement pstmt;
+		int result=-1;
+		try {
+			pstmt= (PreparedStatement)conn.prepareStatement(sql);
+			System.out.println(sql);
+			ResultSet rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				result=rs.getInt(1);
+				System.out.println(rs.getInt(1));
+			}
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
 	private int insert(Paper paper) {
 		Connection conn = ConnectSQL.getConn();
 		int i = 0;
+		System.out.println(getFirst());
+		System.out.println(getSecond());
+		System.out.println(getThird());
+		System.out.println(getDates());
+		int num=findSortID(getThird());
+		
 		String sql = "insert into paper (PaperID,FirstAuthorID,Title,Keywords,Date,JournalID,SortID,FILE) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt;
 		try {
@@ -66,10 +130,11 @@ public class AddPaper extends ActionSupport {
 			pstmt.setString(2, paper.getAuthor());
 			pstmt.setString(3, paper.getTitle());
 			pstmt.setString(4, paper.getKeyword());
-			pstmt.setString(5, paper.getDate());
+			pstmt.setString(5, getDates());
 			pstmt.setString(6, paper.getPublication());
-			pstmt.setString(7, paper.getCategory());
+			pstmt.setLong(7, num);
 			pstmt.setString(8, fileFileName);
+		
 
 			i = pstmt.executeUpdate();
 			pstmt.close();
