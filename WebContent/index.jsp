@@ -15,9 +15,9 @@
 </head>
 <body>
 <header>
-<span>论文管理器</span>
-<a href="#" id="signin">登录</a>
-<a href="#" id="register">注册</a>
+<a href="index.jsp" id="index">论文管理器</a>
+<a href="#" id="right">登录</a>
+<a href="#" id="left">注册</a>
 </header>
 <div id="container" style="background-image:url(img/11.png);">
 <div>
@@ -29,7 +29,7 @@
 </div>
 <div id="SearchMenu">
 <ul class="nav nav-tabs nav-justified "  >
- <li role="presentation"><a href="#">文献主题</a></li>
+ <li role="presentation" class="active"><a href="#">文献主题</a></li>
  <li role="presentation"><a href="#">论文名称</a></li>
  <li role="presentation"><a href="#">作者姓名</a></li>
  <li role="presentation"><a href="#">刊物名称</a></li>
@@ -43,7 +43,7 @@
 </div>
 </div>
 
-<div class="content1" ">
+<div class="content1" >
   <br>
   <span>热点</span><small>  |  HotSpot</small>
   <hr>
@@ -121,3 +121,4 @@
 
 </body>
 </html>
+

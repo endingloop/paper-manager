@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
+encoding//WebContent/search-result.jsp=UTF-8
+=======
 encoding//src/action/AddPaper.java=UTF-8
+>>>>>>> 720b78f87097131a322ec68958e0f065826575b9

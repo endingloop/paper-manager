@@ -10,22 +10,22 @@
    margin-left:6%;
    margin-right:6%;
  }
-header span
+#index
 {
-  float:left;
+   float:left;
    font-size:2em;
    margin-top:-1.1em;
    color:rgba(204, 204, 204, 1);
 }
-header a
+header #right,#left
 {
 	float:right;
 	font-size:1.5em;
 	margin-top:-1.2em;
 }
-#signin
+#right
 {
-	margin-right:3em;
+	margin-right:3.1em;
 }
  #container
  {
@@ -158,6 +158,7 @@ header a
  {
    background-color:rgba(79, 93, 99, 1);
    clear:both;
+   margin-top:1%;
  }
  footer span
  {
@@ -191,14 +192,4 @@ header a
   .thumbnail a
   {
   	float:right;
-  }
-  #sectionA
-  {
-  	width:100%;
-  	background-color:grey;
-  }
-  #sectionB
-  {
-  	width:100%;
-  	background-color:grey;
   }
