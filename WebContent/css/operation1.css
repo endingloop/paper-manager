@@ -1,6 +1,152 @@
 @charset "UTF-8";
+/*Add paper and search result*/ 
 
-#addpaper
+
+/*************Common character**************************/
+body
 {
-	align:center;
+	background-color:rgba(227, 227, 227, 1);
+/*	margin:0 auto;
+	text-align:center;*/
 }
+.container
+{
+  box-shadow: 0px 0px 10px #1b1b1b;
+  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color:white;
+}
+header
+{
+	height:37px;
+	margin-left:8px;
+	margin-right:8px;
+}
+header a
+{
+	margin-top:0.3em;
+}
+#left
+{
+	margin-right:0.2em;
+}
+#index
+{
+   float:left;
+   font-size:2em;
+   color:rgba(204, 204, 204, 1);
+}
+header #right,#left
+{
+	float:right;
+	font-size:1.2em;
+}
+.content1
+{
+	height:160px;
+}
+.content2
+{
+	margin-left:6%;
+	margin-right:6%;
+}
+ footer
+ {
+   background-color:rgba(79, 93, 99, 1);
+   clear:both;
+   margin-top:1%;
+   text-align:center;
+ }
+ footer span
+ {
+ 	font-size:1.5em;
+ }
+ /***********Search Result*****************/
+ 
+ /*Search Menu part*/
+ #SearchMenu
+ {
+   margin-left:20%;
+ }
+#SearchMenu ul
+ {
+ 	border-bottom:none;
+ }
+  #SearchMenu ul li 
+  {
+    background-color: none;
+    border-radius:0;
+  }
+  #SearchMenu ul li a
+  {
+  	 color:rgba(192, 192, 192, 1);
+  	 font-size:1.05em;
+  }  
+  #SearchMenu ul li :hover
+  {
+  	background-color:none;
+  	border-radius:0.35em;
+  	opcity:0.5;
+  }
+  #SearchMenu ul li :active
+  {
+    background-color:none;
+    border-radius:0.35em;
+    opcity:0.8;
+  } 
+  /*show results part*/
+  .searchResult
+  {
+   float:left;
+   margin-top:15px;
+   margin-bottom:15px;
+  }
+  .searchResult .title
+  {
+    float:left;
+    color:rgba(45, 105, 135, 1);
+    font-size:1.5em;
+  }
+    .searchResult .download
+  {
+    float:right;
+    color:rgba(58, 135, 173, 1);
+    font-size:1.2em;
+  }
+  .searchResult .part2 a,time
+  {
+    float:left;
+    color:rgba(82, 168, 236, 0.8);
+    font-size:1.2em;
+    margin-left:5px;
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+   .searchResult .part3
+  {
+    margin-left:5px;
+    margin-right:5px;
+    float:left;
+    color:rgba(128, 128, 128, 1);
+    font-size:1.2em;
+  }
+  .searchResult .part4
+{
+	float:left;
+	color:grey;
+	font-size:1em;
+	margin-left:8px;
+	margin-top:5px;
+}  
+   #SearchInput
+ {
+   margin-top: 1.5%;
+   margin-left:40%;
+ }
+
+  #SearchInput a
+  {
+    color:black;
+    font-size:1.5em;
+    margin-left:0.5em;
+  }
