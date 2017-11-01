@@ -150,3 +150,46 @@ header #right,#left
     font-size:1.5em;
     margin-left:0.5em;
   }
+
+ /********add paper*************/
+ #parta
+ {
+   text-align:center;
+ }
+ #partb
+ {
+   margin-top:2%;
+   text-align:center;
+ }
+ .wwFormTable
+ {
+   margin-left:33%;
+ }
+ #partc
+ { 
+   margin-left:30%;
+ }
+ .select
+ {
+    width:120px;
+    margin-top:1%;
+    float:left;
+ }
+ #partd
+ {
+  margin-top:4%;
+  text-align:center;
+ }
+ #parte
+ {
+  text-align:center;
+  color:red;
+  margin-top:3%;
+  font-size:1.5em;
+ }
+ 
+#parte .btn 
+ {
+     margin-top:2%;
+     margin-right:45%;
+ }
