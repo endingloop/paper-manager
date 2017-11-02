@@ -10,7 +10,7 @@ public class ConnectSQL {
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/paper-manager";
 		String username = "root";
-		String password = "root";
+		String password = "YES";
 		Connection conn = null;
 		try {
 			Class.forName(driver); // classLoader,加载对应驱动

@@ -4,10 +4,10 @@ import java.io.*;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
-
-import com.mysql.jdbc.PreparedStatement;
 import com.opensymphony.xwork2.ActionSupport;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

@@ -5,7 +5,7 @@
 
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.custom.i18n.resources" value="global" />
+	<constant name="struts.i18n.encoding" value="utf-8"/>
 
 	<package name="default" extends="struts-default">
 		<!-- Set the default action and global exception handling. -->
@@ -26,6 +26,15 @@
 		</action>
 		<action name="regpaper" class="action.AddPaper" method="execute">
 			<result name="success">/add-paper-result.jsp</result>
+		</action>
+		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
+			<result name="success">/search-result.jsp</result>
+		</action>
+		<action name="searchTitle" class="action.SearchPaper" method="searchTitle">
+			<result name="success">/search-result.jsp</result>
+		</action>
+		<action name="searchJournal" class="action.SearchPaper" method="searchJournal">
+			<result name="success">/search-result.jsp</result>
 		</action>
 		<action name="fileDownload" class="action.FileDownloadAction">
             <result name="success" type="stream">

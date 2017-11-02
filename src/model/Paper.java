@@ -53,6 +53,6 @@ public class Paper {
 	}
 	@Override
 	public String toString() {
-		return author + "·¢²¼µÄÎÄÕÂ£º" + title;
+		return author + "çš„è®ºæ–‡" + title;
 	}
 }

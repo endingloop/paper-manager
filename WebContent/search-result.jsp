@@ -26,6 +26,7 @@
   </div>
       <div id="SearchMenu">
          <ul class="nav nav-tabs nav-justified "  >
+
             <li role="presentation" class="active"><a href="#">文献主题</a></li>
             <li role="presentation"><a href="#">论文名称</a></li>
             <li role="presentation"><a href="#">作者姓名</a></li>
