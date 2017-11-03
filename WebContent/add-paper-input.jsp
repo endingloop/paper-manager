@@ -22,17 +22,17 @@
  </header>
  <hr>
  <div class="content2">
+     <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data">
+ 
      <div id="parta">
     <h3>请输入论文的相应信息:</h3>
           选择文件: <input type="file" name="file">
     </div>
     <div id="partb">
-    <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data">
       <s:textfield key="paperBean.author" label="论文作者" />
       <s:textfield key="paperBean.title" label="论文标题"/>
       <s:textfield key="paperBean.keyword" label="关键字"/>
       <s:textfield key="paperBean.publication" label="出版社"/>
-    </s:form>
     </div>
      <div id="partc">
      <span>请选择论文分类：</span>
@@ -68,6 +68,8 @@
          <s:submit class="btn btn-default"/>
 	    </div>
 	<hr />
+	    </s:form>
+	
 	</div>
 	<footer>
 <br>

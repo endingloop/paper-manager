@@ -47,7 +47,7 @@ public class SearchPaper extends ActionSupport {
 		return 0;
 	}
 	public String searchTitle() {
-		String sql = "SELECT * FROM paper WHERE Title='" + keyword + "'";
+		String sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
 		querySql(sql);
 		for(Paper t:result) {
 			System.out.println(t);
@@ -56,7 +56,6 @@ public class SearchPaper extends ActionSupport {
 	}
 
 	public String searchAuthor() {
-		System.out.println(keyword);
 		String sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
 		querySql(sql);
 		for(Paper t:result) {
@@ -67,6 +66,18 @@ public class SearchPaper extends ActionSupport {
 
 	public String searchJournal() {
 		String sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
+		querySql(sql);
+		return SUCCESS;
+	}
+	
+	public String searchKeyword() {
+		String sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'";
+		querySql(sql);
+		return SUCCESS;
+	}
+	
+	public String searchDate() {
+		String sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";
 		querySql(sql);
 		return SUCCESS;
 	}

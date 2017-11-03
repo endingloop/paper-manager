@@ -43,159 +43,28 @@
   <div class="content2">
 
    <div class="content2_center" >
+   	<s:iterator value="result">
    <div class="searchResult">
    <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-   <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
+   <a href="#" class="title"><s:property value="title" /></a>
    <a href="#" class="download">下载</a>
    </div>
      <br>
    <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
+   <a href="#"><s:property value="author" /></a>
+   <a href="#"><s:property value="publication"/></a>
+   <time><s:property value="date" /></time>
    </div>
    <div class="part3">
    <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
    </div>
    <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
-   </div>
-   </div>
-   <hr>
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title">基于计算机视觉的小麦长势监控研究 </a>
-   <a href="#" class="download">下载</a>
-   </div>
-     <br>
-   <div class="part2">
-   <a href="#">AuthorName</a>
-   <a href="#">JournalName</a>
-   <time>2017-02-20</time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：计算机视觉</span>
+   <span>关键词：<s:property value="keyword" /></span>
    </div>
    </div> 
    <hr> 
+   	</s:iterator>
+   
    </div>
    </div>   <!--  for  content2 -->
 
