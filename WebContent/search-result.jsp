@@ -24,21 +24,26 @@
 
   <br>
   </div>
-      <div id="SearchMenu">
-         <ul class="nav nav-tabs nav-justified "  >
+    <div  id="SearchInput" style="margin-left:32%;" >
+<s:form name="form2" action="chooseSearch" >
+    <div>
+    <select name="selectchoice"  style="width:6.7em;margin-left: -11%;margin-bottom: -22%;">
+        <option value="1">论文主题</option>
+        <option value="2">论文题目</option>
+        <option value="3">作者姓名</option>
+        <option value="4">发表时间</option>
+        <option value="5">刊物名称</option>
+    </select>
+    </div>
 
-            <li role="presentation" class="active"><a href="#">文献主题</a></li>
-            <li role="presentation"><a href="#">论文名称</a></li>
-            <li role="presentation"><a href="#">作者姓名</a></li>
-            <li role="presentation"><a href="#">刊物名称</a></li>
-            <li role="presentation"><a href="#">发表时间</a></li>
-            <li role="presentation"><a href="#">文献类别</a></li>
-        </ul>
-      </div>
-      <div class="input-group" id="SearchInput"> 
-      <input type="text" class="form-control" id="Search1" aria-describedby="basic-addon1">
-       <span class="input-group-addon " id="basic-addon1"><a href="#">Search</a></span>
-      </div>
+    <s:textfield key="keyword" />   
+
+    <div>
+    <s:submit class="btn btn-default" value="搜索" style="margin-right: -27%;margin-top: -36%;"/>
+    </div>
+
+  </s:form>
+  </div>
   </div>
   <div class="content2">
 

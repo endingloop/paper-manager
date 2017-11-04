@@ -68,6 +68,7 @@
          <s:submit class="btn btn-default"/>
 	    </div>
 	<hr />
+	 
 	    </s:form>
 	
 	</div>

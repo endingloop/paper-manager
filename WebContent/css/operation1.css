@@ -193,3 +193,11 @@ header #right,#left
      margin-top:2%;
      margin-right:45%;
  }
+  #SearchInput
+  { 
+    float:left;
+  }
+ #SearchInput .tdLabel
+{
+	display:none;
+}

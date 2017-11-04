@@ -20,7 +20,7 @@
     <h1>Sorry，运行出错啦</h1>
     </div>
     
-	<h4>Exception Name: <s:property value="exception"/></h4>
+	<h4>Exception Name:<s:property value="exception"/></h4>
 	<h4>Exception Details: <s:property value="exceptionStack"/></h4>
     <div id="Error2">
 	<p><a href="index.jsp">回到主页</a></p>
