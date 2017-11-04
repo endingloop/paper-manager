@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
-<title>论文管理器</title>
+<title>Paper Manager System</title>
 </head>
 <body>
 <div class="container">
@@ -56,7 +56,7 @@
    </div>
      <br>
    <div class="part2">
-   <a href="#"><s:property value="author" /></a>
+   <a href="action/searchAuthor.action?keyword=author"><s:property value="author" /></a>
    <a href="#"><s:property value="publication"/></a>
    <time><s:property value="date" /></time>
    </div>
