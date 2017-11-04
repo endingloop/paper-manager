@@ -27,6 +27,9 @@
 		<action name="regpaper" class="action.AddPaper" method="execute">
 			<result name="success">/add-paper-result.jsp</result>
 		</action>
+		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
+		 <result name="success">/search-result.jsp</result>
+		</action>
 		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
 			<result name="success">/search-result.jsp</result>
 		</action>

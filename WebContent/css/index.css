@@ -34,53 +34,24 @@ header #right,#left
  	background-repeat:no-repeat;
  	margin-top:3em;
  }
- #SearchMenu ul
- {
- 	border-bottom:none;
- 	margin-top:7%;
- 	margin-left:32%;
 
- }
-  #SearchMenu ul li 
-  {
-    background-color: none;
-    border-radius:0;
-  }
-  #SearchMenu ul li a
-  {
-  	 color:rgba(192, 192, 192, 1);
-  	 font-size:1.05em;
-  }  
-  #SearchMenu ul li :hover
-  {
-  	background-color:grey;
-  	border-radius:0.35em;
-  	opcity:0.5;
-  }
-  #SearchMenu ul li :active
-  {
-    background-color:white;
-    border-radius:0.35em;
-    opcity:0.8;
-  }
  #SearchInput
  {
    margin-top: 1.5%;
    margin-left:40%;
  }
-
-  #SearchInput a
-  {
-    color:black;
-    font-size:1.5em;
-    margin-left:0.5em;
-  }
- #Search1
+ #SearchInput .btn
  {
- 	height:2.5em;
- 	width:20em;
- 	line-height:2.2em;
+   margin-left: 15px;
+ } 
+ #SearchInput a
+ {
+   color:rgba(45, 105, 135, 1)
  }
+.tdLabel
+{
+	display:none;
+}
  .basic-addon1
  {
    color:white;
@@ -88,7 +59,7 @@ header #right,#left
  #WebDecription
  {
    margin-left:30.5%;
-   margin-top:7%;
+   margin-top:6%;
  }
   #WebDecription span
  {
@@ -193,3 +164,100 @@ header #right,#left
   {
   	float:right;
   }
+  
+    #SearchMenu
+    {
+       margin-top:6%;
+       margin-bottom:3%; 
+       font-size:1.1em;
+       height:45px;
+    }
+     #SearchMenu  ul{   
+        list-style-type:none; 
+        align:center;  
+    }   
+    #SearchMenu .triangle{   
+    
+        font-size: 1em;   
+        color: white;    
+    }   
+    #SearchMenu  a{   
+        text-decoration:none;   
+        text-align: center;   
+        font-weight: bold;   
+    
+    }   
+    #SearchMenu #search1,#search2,#search3
+    {
+      float:left;
+    }
+    /*一级导航*/  
+     #SearchMenu ul.nav{   
+        float: left;     
+        margin-left: 10%;   
+        margin-top:10px;    
+    }   
+     #SearchMenu ul.nav li{   
+        float: left;   
+        width: 9em;   
+        opcity:0.5;   
+        background-color:rgba(0, 0, 0, 0.3);
+    }   
+     #SearchMenu ul.nav a{   
+        display: block;   
+        color: white;   
+        line-height: 1.5em;     
+        padding: 5px;   
+    }   
+    
+      #SearchMenu ul.nav a:hover,   
+     ul.nav a:focus{   
+        color: black;   
+        background-color:rgba(47, 150, 180, 1);    
+    }   
+     #SearchMenu ul.nav li:first-child a{   
+        border-left: 0;   
+        border-bottom: 0;   
+    }   
+     #SearchMenu ul.nav li:last-child a{   
+        border-right: 0;   
+        border-bottom: 0;   
+    }   
+    /*二级导航*/  
+     #SearchMenu ul.nav li ul{   
+        width: 10em;           
+        position: absolute;   
+        left: -1000em;   
+    }   
+        
+     #SearchMenu ul.nav li:hover ul{   
+        width: 10em;   
+        left:auto;   
+    }   
+        
+     #SearchMenu ul.nav li ul a{   
+ 
+        border-left: 0;   
+        border-right: 0;   
+            
+    }   
+    /*三级导航*/  
+     #SearchMenu ul.nav li:hover ul li ul{   
+        width: 10em;   
+        position: absolute;   
+        left: -1000em;   
+    
+    }   
+        
+     #SearchMenu ul.nav li:hover ul li:hover ul{   
+        left: auto;   
+        margin-left: 9.1em;   
+        margin-top: -2.1em;   
+    }   
+     #SearchMenu ul.nav li:hover ul li:hover ul.nav1{   
+        left: auto;   
+        margin-left: -9.1em;   
+        margin-top: -2.1em;   
+    }   
+
+

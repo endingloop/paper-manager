@@ -9,9 +9,11 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import model.Paper;
 import service.ConnectSQL;
 
+@SuppressWarnings("unused")
 public class SearchPaper extends ActionSupport {
 	/**
 	 * 
@@ -19,6 +21,7 @@ public class SearchPaper extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private String keyword;
 	private List<Paper> result;
+	private int selectchoice;
 
 	public String execute() {
 		return SUCCESS;
@@ -45,6 +48,34 @@ public class SearchPaper extends ActionSupport {
 			return -1;
 		}
 		return 0;
+	}
+	
+	public String chooseSearch()
+	{
+	    System.out.print("At Head !!!!! select"+selectchoice+"  ");
+	    String sql ="SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'" ;
+       switch(selectchoice)
+       {
+
+         case 1:
+                   sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'";
+                   break;
+         case 2: 
+                   sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
+                   break;
+         case 3:
+                   sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
+                   break;
+         case 4:
+                   sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";
+                   break;
+         case 5:
+                   sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
+                   break;
+       }
+       querySql(sql);
+       return SUCCESS;
+	    
 	}
 	public String searchTitle() {
 		String sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
@@ -89,6 +120,13 @@ public class SearchPaper extends ActionSupport {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+	public int getSelectchoice() {
+	    return selectchoice;
+	}
+
+	public void setSelectchoice(int selectchoice) {
+	    this.selectchoice = selectchoice;
+    }
 
 	public List<Paper> getResult() {
 		return result;
