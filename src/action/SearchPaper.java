@@ -87,6 +87,8 @@ public class SearchPaper extends ActionSupport {
 	}
 
 	public String searchAuthor() {
+	    System.out.print("Searching Author!!!");
+	    System.out.print(keyword);
 		String sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
 		querySql(sql);
 		for(Paper t:result) {

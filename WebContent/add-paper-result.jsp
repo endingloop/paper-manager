@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/operation1.css">
-    <title>Result</title>
+    <title>Paper Manager System</title>
     <s:head />
   </head>
 
