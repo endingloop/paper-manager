@@ -201,3 +201,48 @@ header #right,#left
 {
 	display:none;
 }
+.shownum
+{
+	color:rgba(58, 135, 173, 1);
+	font-size:1.2em;
+	margin-top:1%;
+}
+table
+{
+	margin-top:1%;
+}
+#content2_center
+{
+	text-align:center;
+}
+#content2_center h3
+{
+	color:rgba(45, 105, 135, 1);
+}
+
+#content_center .description
+{
+	margin-top:1%;
+	margin-bottom:1%;
+}
+#content2_center a
+{
+	font-size:1.2em;
+}
+#content2_center span
+{
+	font-size:1.1em;
+}
+#content2_center .date
+{
+	float:right;
+}
+#content2_center .keyword
+{
+	float:left;
+}
+#content2_center .download
+{
+	margin-top:5%;
+	margin-bottom:3%;
+}

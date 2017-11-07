@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
@@ -22,12 +27,15 @@ public class SearchPaper extends ActionSupport {
 	private String keyword;
 	private List<Paper> result;
 	private int selectchoice;
+	private int papernum;
 
 	public String execute() {
 		return SUCCESS;
 	}
 	private int querySql(String sql) {
+	    int papernum=0;
 		Connection conn = ConnectSQL.getConn();
+		ActionContext context = ActionContext.getContext();
 		result = new ArrayList<>();
 		PreparedStatement pstmt;
 		try {
@@ -41,8 +49,10 @@ public class SearchPaper extends ActionSupport {
 				temp.setDate(rs.getString(5));
 				temp.setKeyword(rs.getString(9));
 				temp.setPublication(rs.getString(7));
+				papernum++;
 				result.add(temp);
 			}
+			context.put("papernum", papernum);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
@@ -52,7 +62,6 @@ public class SearchPaper extends ActionSupport {
 	
 	public String chooseSearch()
 	{
-	    System.out.print("At Head !!!!! select"+selectchoice+"  ");
 	    String sql ="SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'" ;
        switch(selectchoice)
        {
@@ -77,6 +86,15 @@ public class SearchPaper extends ActionSupport {
        return SUCCESS;
 	    
 	}
+   public String searchPaperID() {
+            System.out.println("Searching PaperID!!");
+	        String sql = "SELECT * FROM paper WHERE PaperID= '" + keyword + "'";
+	        querySql(sql);
+	        for(Paper t:result) {
+	            System.out.println(t);
+	        }
+	        return SUCCESS;
+	        }
 	public String searchTitle() {
 		String sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
 		querySql(sql);
@@ -87,7 +105,6 @@ public class SearchPaper extends ActionSupport {
 	}
 
 	public String searchAuthor() {
-	    System.out.print("Searching Author!!!");
 	    System.out.print(keyword);
 		String sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
 		querySql(sql);
@@ -129,7 +146,12 @@ public class SearchPaper extends ActionSupport {
 	public void setSelectchoice(int selectchoice) {
 	    this.selectchoice = selectchoice;
     }
-
+	   public int getPapernumber() {
+	        return papernum;
+	    }
+    public void setPapernumber(int papernum) {
+        this.papernum = papernum;
+    }
 	public List<Paper> getResult() {
 		return result;
 	}
