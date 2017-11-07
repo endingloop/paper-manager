@@ -45,6 +45,9 @@
 		<action name="searchDate" class="action.SearchPaper" method="searchDate">
 			<result name="success">/search-result.jsp</result>
 		</action>
+		<action name="searchPaperID" class="action.SearchPaper" method="searchPaperID">
+			<result name="success">/paper-detail.jsp</result>
+		</action>
 		<action name="fileDownload" class="action.FileDownloadAction">
             <result name="success" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>

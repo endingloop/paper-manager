@@ -27,7 +27,7 @@
     <div  id="SearchInput" style="margin-left:32%;" >
 <s:form name="form2" action="chooseSearch" >
     <div>
-    <select name="selectchoice"  style="width:6.7em;margin-left: -11%;margin-bottom: -22%;">
+    <select name="selectchoice"  style="width:6.7em;margin-left: -11%;margin-bottom: -24%;">
         <option value="1">论文主题</option>
         <option value="2">论文题目</option>
         <option value="3">作者姓名</option>
@@ -47,29 +47,32 @@
   </div>
   <div class="content2">
 
-   <div class="content2_center" >
-   	<s:iterator value="result">
-   <div class="searchResult">
-   <div class="part1">
-   <a href="#" class="title"><s:property value="title" /></a>
-   <a href="#" class="download">下载</a>
+   <div id="content2_center" >
+      <div class="shownum" >
+   <span>共搜索出<s:property value="papernum" />篇论文</span>
    </div>
-     <br>
-   <div class="part2">
-   <a href="action/searchAuthor.action?keyword=author"><s:property value="author" /></a>
-   <a href="#"><s:property value="publication"/></a>
-   <time><s:property value="date" /></time>
-   </div>
-   <div class="part3">
-   <span>摘要：如何利用有限的耕地生产尽量多的农产品,是现阶段我国农业面临的一个重要问题.对此,人们发展出了智能化和数字化的农业模式,具体表现为各种植物生长柜和监控决策系统.农作物的长势是上述系统进行决策的依据和基础,长势监控的准确性便成为评价这</span>
-   </div>
-   <div class="part4">
-   <span>关键词：<s:property value="keyword" /></span>
-   </div>
-   </div> 
-   <hr> 
+      <table class="table table-hover">
+         <tr>
+   <td>编号</td>
+   <td>标题</td>
+   <td>作者</td>
+   <td>出版社</td>
+   <td>发表日期</td>
+   <td>关键词</td>
+    <td>下载</td>
+   </tr>
+   	<s:iterator value="result" status="index">
+    <tr>
+      <td><s:property value="#index.index+1"/></td>
+      <td><a href="searchPaperID.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a></td>
+      <td><a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a></td>
+      <td><a href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property value="publication"/></a></td>
+      <td><a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a></td>
+      <td><a href="searchKeyword.action?keyword=<s:property value="keyword"/>"><s:property value="keyword"/></a></td>
+      <td><a href="#">下载</a></td>
+    </tr>
    	</s:iterator>
-   
+   </table>
    </div>
    </div>   <!--  for  content2 -->
 
