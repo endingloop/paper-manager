@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -28,7 +31,10 @@ public class SearchPaper extends ActionSupport {
 	private List<Paper> result;
 	private int selectchoice;
 	private int papernum;
-
+	private List<String> secondauthor;
+    public String [] secondauthorid;
+    private List<String> keywords2;
+    public String [] keywords1;
 	public String execute() {
 		return SUCCESS;
 	}
@@ -38,18 +44,63 @@ public class SearchPaper extends ActionSupport {
 		ActionContext context = ActionContext.getContext();
 		result = new ArrayList<>();
 		PreparedStatement pstmt;
+		ServletRequest request = ServletActionContext.getRequest();
+	    HttpServletRequest req = (HttpServletRequest) request;
+	    HttpSession session = req.getSession();
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
+			    secondauthor = new ArrayList<>();
+			    keywords2 = new ArrayList<>();
 				Paper temp = new Paper();
 				temp.setPaperID(rs.getString(1));
 				temp.setTitle(rs.getString(2));
 				temp.setAuthor(rs.getString(3));
 				temp.setDate(rs.getString(5));
-				temp.setKeyword(rs.getString(9));
 				temp.setPublication(rs.getString(7));
 				papernum++;
+                if(rs.getString(4)!=null)
+                {
+                secondauthorid=Translate(rs.getString(4));
+                for(int i=0;i<secondauthorid.length;i++)
+                {
+                    if(secondauthorid[i]!=null)
+                    {
+                        secondauthor.add(secondauthorid[i]);  
+                    }
+                    System.out.println(secondauthorid[i]);
+                }
+               
+                session.setAttribute("secondauthor", secondauthor);
+                }
+                
+                else
+                {
+                    context.put("secondauthor", "");
+                }
+                //second author end
+                if(rs.getString(9)!=null)
+                {
+                keywords1 = Translate(rs.getString(9));
+                for(int i=0;i<keywords1.length;i++)
+                {
+                    if(keywords1[i]!=null)
+                    {
+                        keywords2.add(keywords1[i]);  
+                    }
+                    System.out.println(keywords1[i]);
+                }
+               
+                session.setAttribute("keywords2", keywords2);
+                }
+                
+                else
+                {
+                    context.put("keywords2", "");
+                }
+                //keywords end
+                System.out.println("After Tanslate!!!");
 				result.add(temp);
 			}
 			context.put("papernum", papernum);
@@ -60,7 +111,20 @@ public class SearchPaper extends ActionSupport {
 		return 0;
 	}
 	
-	public String chooseSearch()
+	/**
+     * @param string
+     * @return
+     */
+    private PrintStream println(String string) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    public String[] Translate(String a)
+    {
+        String[]b=a.trim().split(",");
+        return b;
+    }
+    public String chooseSearch()
 	{
 	    String sql ="SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'" ;
        switch(selectchoice)
@@ -152,6 +216,7 @@ public class SearchPaper extends ActionSupport {
     public void setPapernumber(int papernum) {
         this.papernum = papernum;
     }
+   
 	public List<Paper> getResult() {
 		return result;
 	}
@@ -159,4 +224,18 @@ public class SearchPaper extends ActionSupport {
 	public void setResult(List<Paper> result) {
 		this.result = result;
 	}
+	   public List<String> getSecondauthor() {
+	       return  secondauthor;
+	    }
+	   
+	    public void setSecondauthor(List<String> secondauthor) {
+	       this.secondauthor = secondauthor;
+	    }
+	      public List<String> getKeywords2() {
+	           return  keywords2;
+	        }
+	       
+	        public void setKeywords2(List<String> keywords2) {
+	           this.keywords2 = keywords2;
+	        }
 }

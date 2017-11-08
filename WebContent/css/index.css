@@ -246,7 +246,6 @@ header #right,#left
         width: 10em;   
         position: absolute;   
         left: -1000em;   
-    
     }   
         
      #SearchMenu ul.nav li:hover ul li:hover ul{   

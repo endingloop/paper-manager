@@ -23,15 +23,21 @@
  <a href="#" id="left">用户</a>
  </header>
  <hr>
-    <h3>发表一篇论文</h3>
-	<s:property value="paperBean" /><br/>
+    <div class="content_center" style="text-align:center;">
+    <h3>成功发表一篇论文！</h3>
 	<s:url action="fileDownload" var="downloadLink">
 		<s:param name="paperID" value="%{paperBean.paperID}"></s:param>
 	</s:url>
-	<p><a href="${downloadLink}">下载</a></p>
-	<p><a href="<s:url action='index' />" >回到首页</a>.</p>
+	<h4><a href="${downloadLink}">下载</a></h4>
+	<h5><a href="<s:url action='index' />" >回到首页</a></h5>
 	<hr />
-	<s:text name="contact" />
+	<footer>
+<br/>
+<span>Created by Group YST</span>
+<br/>
+<br/>
+</footer>
+</div>
 	</div>
   </body>
 </html>
