@@ -157,15 +157,16 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `userID` varchar(45) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Sex` tinyint(4) DEFAULT NULL,
-  `Email` varchar(45) DEFAULT NULL,
-  `IsManger` tinyint(4) NOT NULL,
-  `Description` varchar(5000) DEFAULT NULL,
-  `IsAuthor` tinyint(4) NOT NULL,
-  `Status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`userID`)
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `papers` varchar(5000) DEFAULT NULL,
+--  `Sex` tinyint(4) DEFAULT NULL,
+--  `Email` varchar(45) DEFAULT NULL,
+--  `IsManger` tinyint(4) DEFAULT NULL,
+--  `Description` varchar(5000) DEFAULT NULL,
+--  `IsAuthor` tinyint(4) DEFAULT NULL,
+--  `Status` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -176,6 +177,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+INSERT INTO `user` VALUES ('user','pass','1509464143010001,1509465947349000,1509697417687001');
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
