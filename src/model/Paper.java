@@ -3,6 +3,7 @@ package model;
 public class Paper {
 	private String paperID;
 	private String author;
+	private String secondauthor;
 	private String title;
 	private String keyword;
 	private String date;
@@ -21,6 +22,12 @@ public class Paper {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+    public String getSecondauthor() {
+        return secondauthor;
+    }
+    public void setSecondauthor(String secondauthor) {
+        this.secondauthor = secondauthor;
+    }
 	public String getTitle() {
 		return title;
 	}

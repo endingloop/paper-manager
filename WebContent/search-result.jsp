@@ -55,7 +55,8 @@
          <tr>
    <td>编号</td>
    <td>标题</td>
-   <td>作者</td>
+   <td>第一作者</td>
+    <td>第二作者</td>
    <td>出版社</td>
    <td>发表日期</td>
    <td>关键词</td>
@@ -66,9 +67,20 @@
       <td><s:property value="#index.index+1"/></td>
       <td><a href="searchPaperID.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a></td>
       <td><a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a></td>
-      <td><a href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property value="publication"/></a></td>
+      <td>
+         <s:iterator value="secondauthor" status="index">
+           <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
+         </s:iterator>
+      </td>
+      <td><a href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property value="publication"/>
+      </a></td>
       <td><a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a></td>
-      <td><a href="searchKeyword.action?keyword=<s:property value="keyword"/>"><s:property value="keyword"/></a></td>
+      <td>
+         <s:iterator value="keywords2" status="index">
+           <a href="searchKeyword.action?keyword=<s:property/>"><s:property/></a>
+         </s:iterator>
+     
+      </td>
       <td><a href="#">下载</a></td>
     </tr>
    	</s:iterator>
