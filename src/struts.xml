@@ -21,6 +21,17 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
+		
+		<action name="Login_*"  method="{1}" class="action.Login">
+            <result name="input">/Login.jsp</result>
+            <result>/MainMenu.jsp</result>
+        </action>
+
+        <action name="Registration_*" method="{1}" class="action.Registration">
+            <result name="input">/Registration.jsp</result>
+            <result type="redirectAction">MainMenu</result>
+        </action>
+        
 		<action name="addpaper" class="action.AddPaper" method="input">
 			<result name="input">/add-paper-input.jsp</result>
 		</action>
@@ -30,23 +41,8 @@
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 		 <result name="success">/search-result.jsp</result>
 		</action>
-		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
+		<action name="search*" class="action.SearchPaper" method="search{1}">
 			<result name="success">/search-result.jsp</result>
-		</action>
-		<action name="searchTitle" class="action.SearchPaper" method="searchTitle">
-			<result name="success">/search-result.jsp</result>
-		</action>
-		<action name="searchJournal" class="action.SearchPaper" method="searchJournal">
-			<result name="success">/search-result.jsp</result>
-		</action>
-		<action name="searchKeyword" class="action.SearchPaper" method="searchKeyword">
-			<result name="success">/search-result.jsp</result>
-		</action>
-		<action name="searchDate" class="action.SearchPaper" method="searchDate">
-			<result name="success">/search-result.jsp</result>
-		</action>
-		<action name="searchPaperID" class="action.SearchPaper" method="searchPaperID">
-			<result name="success">/paper-detail.jsp</result>
 		</action>
 		<action name="fileDownload" class="action.FileDownloadAction">
             <result name="success" type="stream">
@@ -69,4 +65,10 @@
   
        
 	</package>
+	
+    <package name="wildcard" namespace="/" extends="default">
+        <action name="*">
+            <result>/{1}.jsp</result>
+        </action>
+    </package>
 </struts>
