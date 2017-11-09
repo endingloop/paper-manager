@@ -19,8 +19,12 @@ import service.Sequence;
 
 
 public class workloadshow {
+
+
 public String startdate;
 public String enddate;
+
+
 public  List<score> scoreresult;
 public List<score> getScoreresult() {
 	return scoreresult;
@@ -71,6 +75,8 @@ public String workload() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+
+	
 	return "workload";
 }
 public List<score>  sumscore() {
@@ -102,6 +108,7 @@ public List<score>  sumscore() {
  {
 	 System.out.println(t.userID+" "+t.name+" "+t.score);
  }
+ 	
 	return scoreresult;
 }
  public int findFirstAuthor(String str) {

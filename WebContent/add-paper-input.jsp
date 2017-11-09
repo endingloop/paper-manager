@@ -74,12 +74,12 @@
         </div>
          <div id="partd">
          <select name="level" class="select">
-      <OPTION value="200">请选择论文等级 </OPTION> 
-           <OPTION VALUE="600">SCI</OPTION>  
-            <OPTION VALUE="500">EI，CSSCI,SSCI,一级刊物</OPTION>  
-            <OPTION VALUE="400">核心期刊(国际会议)</OPTION>  
-            <OPTION VALUE="300">公开发表</OPTION>
-            <OPTION VALUE="200">普通论文</OPTION>  
+      <OPTION value="10">请选择论文等级 </OPTION> 
+           <OPTION VALUE="60">SCI</OPTION>  
+            <OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>  
+            <OPTION VALUE="30">核心期刊(国际会议)</OPTION>  
+            <OPTION VALUE="15">公开发表</OPTION>
+            <OPTION VALUE="10">普通论文</OPTION>  
       </select>
         </div>
         <div id="parte">

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `paper-manager` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `paper-manager`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: paper-manager
@@ -68,6 +66,31 @@ LOCK TABLES `journal` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `new`
+--
+
+DROP TABLE IF EXISTS `new`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `new` (
+  `userID` varchar(45) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `level` int(11) DEFAULT '5',
+  `SecondAuthorID` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `new`
+--
+
+LOCK TABLES `new` WRITE;
+/*!40000 ALTER TABLE `new` DISABLE KEYS */;
+INSERT INTO `new` VALUES ('1','张晓曼',0,NULL),('2','朱思远',500,'常帆,DZT,YST,张晓曼,朱思远');
+/*!40000 ALTER TABLE `new` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `paper`
 --
 
@@ -86,6 +109,7 @@ CREATE TABLE `paper` (
   `KeyWords` varchar(200) NOT NULL,
   `Description` varchar(2000) DEFAULT NULL,
   `File` varchar(200) DEFAULT NULL,
+  `level` int(11) DEFAULT '5',
   PRIMARY KEY (`PaperID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -96,7 +120,7 @@ CREATE TABLE `paper` (
 
 LOCK TABLES `paper` WRITE;
 /*!40000 ALTER TABLE `paper` DISABLE KEYS */;
-INSERT INTO `paper` VALUES ('1509462798032003','222222222','12',NULL,'2015-04-08',21,'ew',0,'222222222',NULL,'a.txt'),('1509464143010000','加入我是个渣渣','常帆',NULL,'2015-04-08',21,'电子工业出版社',0,'自强不息，努力',NULL,'a.txt'),('1509464143010001','加入我是个渣渣','常帆，常帆3',NULL,'2015-04-08',21,'电子工业出版社',0,'自强不息，努力',NULL,'a.txt'),('1509465556862000','111','25',NULL,'2017-10-04',-1,'15',0,'2',NULL,'a.txt'),('1509465857393000','0000000','00',NULL,'2017-11-16',-1,'00',0,'00',NULL,'a.txt'),('1509465947349000','11111111111','11',NULL,'2017-11-13',179,'1111111111111',0,'11111111',NULL,'a.txt');
+INSERT INTO `paper` VALUES ('1509462798032003','222222222','12',NULL,'2015-04-08',21,'ew',0,'222222222',NULL,'a.txt',0),('1509464143010000','加入我是个渣渣','常帆',NULL,'2015-04-08',21,'电子工业出版社',0,'自强不息，努力',NULL,'a.txt',0),('1509464143010001','加入我是个渣渣','常帆，常帆3',NULL,'2015-04-08',21,'电子工业出版社',0,'自强不息，努力',NULL,'a.txt',0),('1509465556862000','111','25',NULL,'2017-10-04',-1,'15',0,'2',NULL,'a.txt',0),('1509465857393000','0000000','00',NULL,'2017-11-16',-1,'00',0,'00',NULL,'a.txt',0),('1509465947349000','11111111111','11',NULL,'2017-11-13',179,'1111111111111',0,'11111111',NULL,'a.txt',0),('1509467233896000','richu','changfan',NULL,'2017-11-07',160,'ddd',0,'nimenhao',NULL,'a.txt',0),('1509523235062000','分','人',NULL,'2015-10-13',174,'日',0,'3人',NULL,'a.txt',0),('1509524475200000','服务','的方式',NULL,'2017-10-31',175,'丰富',0,'范围',NULL,'a.txt',0),('1509524475200001','加入生命待你不薄','李虎',NULL,'2017-10-31',160,'国家刊物',0,'大气大为，求真求实',NULL,'a.txt',0),('1509524475200002','加入生命待你不薄','李虎,黎明',NULL,'2017-10-31',79,'国家刊物',0,'大气大为，求真求实',NULL,'a.txt',0),('1509524475200003','111','11',NULL,'2017-11-23',122,'1111111111111',0,'11111111',NULL,'a.txt',0),('1509759614617000','wwwwwww','wwwwwwwww',NULL,'2017-11-06',253,'ww',0,'ww',NULL,'offline_FtnInfo.txt',0),('1509846418784000','1111111111111','常帆 加油',NULL,'2017-11-13',153,'222222222222222',0,'222',NULL,'offline_FtnInfo.txt',0),('1509846418784001','d','d',NULL,'2017-11-05',95,'d',0,'d',NULL,'offline_FtnInfo.txt',0),('1509846418784003','e','e',NULL,'2017-11-06',13,'ew',0,'e',NULL,'offline_FtnInfo.txt',0),('1509890370768000','444','1',NULL,'2017-11-06',247,'44',0,'444',NULL,'b.txt',0),('1509901164603000','1','exceldata1',NULL,'2017-11-01',1,'1',0,'1',NULL,'b.txt',0),('1509901164603001','1','exceldata2',NULL,'2017-11-01',1,'1',0,'1',NULL,'b.txt',0),('1509901164603002','1','exceldata3',NULL,'2017-11-01',1,'1',0,'1',NULL,'b.txt',0),('1510108329497000','2222','222',NULL,'2017-11-07',12,'2222 ',0,'222',NULL,'paper-managr.sql',0),('1510108329497001','2222','222',NULL,'2017-11-07',22,'2222 ',0,'222',NULL,'新建文本文档 (2).txt',0),('1510109692385000','33333333','33333',NULL,'2017-11-13',24,'3333',0,'33',NULL,'students.xls',0),('1510109692385001','33333333','33333',NULL,'2017-11-13',24,'3333',0,'33',NULL,'students.xls',0),('1510110361353000','33','25',NULL,'2017-11-05',22,'21 ',0,'33',NULL,'students.xls',0),('1510111511372000','','',NULL,'2017-11-13',147,'',0,'',NULL,'students.xls',0),('1510135277723000','电子科技大学','旦增曲珍',NULL,'2017-11-06',209,'电子工业大学',0,'常帆',NULL,'students.xls',200),('1510135277723001','1111111111111111111','quzhen',NULL,'2017-11-12',181,'222222222',0,'11111111111111',NULL,'offline_FtnInfo.txt',100),('1510146336630000','ee','eee','eeeeeeeeee,eeeeeeeeeeee,eeeeeeeeeeeee,eeeeeee,ee','2017-10-31',1,'ee',0,'ee,ee,ee',NULL,'students.xls',300),('1510146336630002','dd','changfan1','1,2,3,4,5','2017-11-07',141,'d',0,'d,d,dd',NULL,'b.txt',500),('1510146336630003','dd','changfan2','李虎,2,3,4,5','2017-11-30',191,'d',0,'d,d,dd',NULL,'b.txt',200),('1510146336630004','dd','1','李虎,2,3,4,5','2017-11-30',25,'d',0,'d,d,dd',NULL,'b.txt',200),('1510159509845000','','1','朱思远,YST,DZT,,','2017-10-31',146,'d',0,'D,d,dd',NULL,'b.txt',600),('1510159509845001','党的','2','朱思远,YST,DZT,张晓曼,','2017-10-10',12,'d',0,'D,d,dd',NULL,'b.txt',500),('1510232825000000','假如生活欺骗了你','2','常帆,DZT,YST,张晓曼,朱思远','2017-11-21',288,'电子工业出版社',0,'假如,生活,欺骗',NULL,'orsoncharts-1.4-eval-nofx.jar',500);
 /*!40000 ALTER TABLE `paper` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,6 +199,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('1','张晓曼',0,'H150311703',1,'ddddddddddddd',0,2),('2','朱思远',0,'H150311702',1,'ddddddddddddd',0,2),('3','常帆',0,'H150311701',1,'ddddddddddddd',0,2),('4','YST',0,'H150311701',1,'ddddddddddddd',0,2),('5','DZT',0,'H150311701',1,'ddddddddddddd',0,2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -187,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-01  0:10:24
+-- Dump completed on 2017-11-09 21:45:02
