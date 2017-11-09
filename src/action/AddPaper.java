@@ -20,6 +20,7 @@ public class AddPaper extends ActionSupport {
 	public String second;
 	public String third;
 	public String dates;
+
 	public String keyword1;
 	public  String keyword2;
 	public  String keyword3;
@@ -28,6 +29,17 @@ public class AddPaper extends ActionSupport {
 	public String author3;
 	public String author4;
 	public String author5;
+
+	public String level;
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+
 	public String getDates() {
 		return dates;
 	}
@@ -108,6 +120,7 @@ public class AddPaper extends ActionSupport {
 	                              public String author5() {
 	                                   return author5;
 	                               }
+
 	/**
 	 * 初始化版本 增加了文件上传功能
 	 * 优化代码结构
@@ -201,7 +214,9 @@ public class AddPaper extends ActionSupport {
 		System.out.println(getDates());
 		int num=findSortID(getThird());
 		
-		String sql = "insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE) values(?,?,?,?,?,?,?,?,?)";
+
+		String sql = "insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE,level) values(?,?,?,?,?,?,?,?,?,?)";
+
 		PreparedStatement pstmt;
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
@@ -214,7 +229,13 @@ public class AddPaper extends ActionSupport {
 			pstmt.setString(7, paper.getPublication());
 			pstmt.setLong(8,num);
 			pstmt.setString(9, fileFileName);
+			pstmt.setString(10, getLevel());
 			
+
+		
+		
+
+
 			i = pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();

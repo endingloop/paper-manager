@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="css/operation1.css">
-    <title>Paper Manager System</title>  
+    <title>Paper Manager System</title> 
   </head>
   <body>
   <div class="container">
@@ -40,7 +40,9 @@
       <s:textfield key="keyword2" label="关键字2"/>
       <s:textfield key="keyword3" label="关键字3"/>
       <s:textfield key="paperBean.publication" label="出版社"/>
+     
     </div>
+    
      <div id="partc">
      <span>请选择论文分类：</span>
      <br>
@@ -57,7 +59,7 @@
         </SELECT>  
   
 
-        <SELECT NAME="second" onChange="getThird()" class="select">  
+        <SELECT NAME="second" onChange="getThird()" class="select" >  
             <OPTION value="0">第二级目录</OPTION>  
         </SELECT> 
   
@@ -69,6 +71,16 @@
         <div id="partd">
         <span>请选择发表日期：</span>
         <input name="dates" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+        </div>
+         <div id="partd">
+         <select name="level" class="select">
+      <OPTION value="200">请选择论文等级 </OPTION> 
+           <OPTION VALUE="600">SCI</OPTION>  
+            <OPTION VALUE="500">EI，CSSCI,SSCI,一级刊物</OPTION>  
+            <OPTION VALUE="400">核心期刊(国际会议)</OPTION>  
+            <OPTION VALUE="300">公开发表</OPTION>
+            <OPTION VALUE="200">普通论文</OPTION>  
+      </select>
         </div>
         <div id="parte">
         <span>请保证您上传的论文已通过原作者的允许！</span>
