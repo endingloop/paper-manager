@@ -81,7 +81,7 @@
          </s:iterator>
      
       </td>
-      <td><a href="#">下载</a></td>
+      <td><a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
     </tr>
    	</s:iterator>
    </table>
