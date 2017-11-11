@@ -108,7 +108,12 @@
     	 var index=document.form1.first.selectedIndex;
     	var sltSecond=document.form1.second;
     	var  sltThird=document.form1.third;
-		index=tip[index-2];
+    	if(index>=2){
+    		index=tip[index-2];
+    	}else{
+    		index=index-1;
+    	}
+		
     	var ThirdChoice=third[sltSecond.selectedIndex - 1+index];
     	sltThird.length=1;
     	for(var j=0;j<ThirdChoice.length;j++){

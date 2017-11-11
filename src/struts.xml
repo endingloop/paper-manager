@@ -54,12 +54,12 @@
 			<result name="input">/Paper.jsp</result>
 			<result name="success">/MainMenu.jsp</result>
 		</action>
-		
+
 		<action name="addpaper" class="action.AddPaper" method="input">
 			<result name="input">/add-paper-input.jsp</result>
-			<interceptor-ref name="user"/>
+			<interceptor-ref name="user" />
 		</action>
-		
+
 		<action name="regpaper" class="action.AddPaper" method="execute">
 			<result name="success">/add-paper-result.jsp</result>
 		</action>
@@ -74,7 +74,7 @@
 				<param name="contentDisposition">attachment;filename="${fileName}"</param>
 				<param name="inputName">downloadFile</param>
 			</result>
-			<interceptor-ref name="user"/>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="sort3" class="action.sort3th" method="findsort3th">
 			<result name="success">search-result.jsp</result>
@@ -84,6 +84,9 @@
 		</action>
 		<action name="sort1" class="action.sort3th" method="findsort1th">
 			<result name="success">search-result.jsp</result>
+		</action>
+		<action name="workload" class="action.workloadshow" method="workload">
+			<result name="workload">/workload.jsp</result>
 		</action>
 	</package>
 
