@@ -24,22 +24,21 @@
  <div class="content2">
      <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data">
  
-     <div id="parta">
-    <h3>请输入论文的相应信息:</h3>
-          选择文件: <input type="file" name="file">
-    </div>
+    
     <div id="partb">
       <s:textfield key="paper.author" label="第一作者" />
       <s:textfield key="paper.secondauthor" label="第二作者" />
       <s:textfield key="paper.title" label="论文标题"/>
       <s:textfield key="paper.keyword" label="关键字"/>
       <s:textfield key="paper.publication" label="出版社"/>
+    
     </div>
+    
      <div id="partc">
      <span>请选择论文分类：</span>
      <br>
         <SELECT NAME="first" onChange="getSecond()" class="select">  
-         <OPTION value="0">第一级目录 </OPTION> 
+         <OPTION value="0"><s:property  value="firststr"/></OPTION> 
            <OPTION VALUE="1">基础学科 </OPTION>  
             <OPTION VALUE="2">工程科技</OPTION>  
             <OPTION VALUE="3">农业科技</OPTION>  
@@ -52,17 +51,17 @@
   
 
         <SELECT NAME="second" onChange="getThird()" class="select">  
-            <OPTION value="0">第二级目录</OPTION>  
+            <OPTION value="0"><s:property  value="secondstr"/></OPTION>  
         </SELECT> 
   
         <select name="third" class="select">
-        <option value="0">第三级目录</option>
+        <option value="0"><s:property  value="thirdstr"/></option>
         </select> 
         </div>
         <br>
         <div id="partd">
         <span>请选择发表日期：</span>
-        <input name="dates" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+        <input name="datetime" value="<s:property  value="dates"/>" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
         </div>
         <div id="parte">
         <span>请保证您上传的论文已通过原作者的允许！</span>

@@ -12,7 +12,33 @@ public class update {
 	public String paperID;
 	public String dates;
 	private Paper paper;
+	public String firststr;
+	public String secondstr;
+	public String thirdstr;
 
+	public String getFirststr() {
+		return firststr;
+	}
+
+	public void setFirststr(String firststr) {
+		this.firststr = firststr;
+	}
+
+	public String getSecondstr() {
+		return secondstr;
+	}
+
+	public void setSecondstr(String secondstr) {
+		this.secondstr = secondstr;
+	}
+
+	public String getThirdstr() {
+		return thirdstr;
+	}
+
+	public void setThirdstr(String thirdstr) {
+		this.thirdstr = thirdstr;
+	}
 
 	public Paper getPaper() {
 		return paper;
@@ -48,7 +74,14 @@ public class update {
 				paper.setDate(rs.getString(5));
 				paper.setTitle(rs.getString(2));
 				paper.setPublication(rs.getString(7));
+				paper.setCategory(rs.getString(6));
+				dates=rs.getString(5);
+				int num=rs.getInt(6);
+				System.out.println(num);
+				findsort(num);
+				
 			}
+			
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
@@ -58,7 +91,30 @@ public class update {
 
 		return "success";
 	}
-
+ public ResultSet findsort(int str) {
+	 PreparedStatement pstmt;
+		Connection conn = ConnectSQL.getConn();
+		String sql = "select first.sortname ,second.sortname,third.sortname from third, second ,first where thirdID=" + str + " and third.upper=second.secondID and second.upper=first.firstID;";
+		System.out.println(sql);
+		ResultSet rs=null;
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 while(rs.next()) {
+				 System.out.println("success show!");
+				 firststr=rs.getString(1);
+					secondstr=rs.getString(2);
+					thirdstr=rs.getString(3);
+			 }
+			 pstmt.close();
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	 return rs;
+ }
 	public String getPaperID() {
 		return paperID;
 	}

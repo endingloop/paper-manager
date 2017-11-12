@@ -236,7 +236,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `papers` varchar(45) DEFAULT NULL,
+  `papers` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
