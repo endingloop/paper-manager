@@ -71,7 +71,7 @@
         <span>请选择发表日期：</span>
         <input name="dates" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
         </div>
-         <div id="partd">
+         <div id="partc">
          <select name="level" class="select">
       <OPTION value="10">请选择论文等级 </OPTION> 
            <OPTION VALUE="60">SCI</OPTION>  

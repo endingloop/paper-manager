@@ -10,13 +10,12 @@
 <body>
 
 <s:form action="Login" validate="true">
+
     <s:textfield key="username" />
 
     <s:password key="password" showPassword="true"/>
-
-    <s:submit key="button.logon"/>
-
-    <s:reset key="button.reset"/>
+<a href="<s:url action="Login_input" />" id="right">登录</a>
+<a href="<s:url action="Registration_input" />" id="left">注册</a>
 
     <s:submit action="Login_cancel" key="button.cancel"
                 onclick="form.onsubmit=null"/>

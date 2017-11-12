@@ -29,17 +29,11 @@
           选择文件: <input type="file" name="file">
     </div>
     <div id="partb">
-      <s:textfield key="paperBean.author" label="第一作者" />
-      <s:textfield key="author1" label="第二作者1" />
-      <s:textfield key="author2" label="第二作者2" />
-      <s:textfield key="author3" label="第二作者3" />
-      <s:textfield key="author4" label="第二作者4" />
-      <s:textfield key="author5" label="第二作者5" />
-      <s:textfield key="paperBean.title" label="论文标题"/>
-      <s:textfield key="keyword1" label="关键字1"/>
-      <s:textfield key="keyword2" label="关键字2"/>
-      <s:textfield key="keyword3" label="关键字3"/>
-      <s:textfield key="paperBean.publication" label="出版社"/>
+      <s:textfield key="paper.author" label="第一作者" />
+      <s:textfield key="paper.secondauthor" label="第二作者" />
+      <s:textfield key="paper.title" label="论文标题"/>
+      <s:textfield key="paper.keyword" label="关键字"/>
+      <s:textfield key="paper.publication" label="出版社"/>
     </div>
      <div id="partc">
      <span>请选择论文分类：</span>

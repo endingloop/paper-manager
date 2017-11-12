@@ -53,10 +53,9 @@
                         删除
                     </a>
                     &nbsp;
-                    <a href="<s:url action="Paper_edit"><s:param name="paperID" value="paperID"/></s:url>">
-                        编辑
+                     <a href="<s:url action="update"><s:param name="paperID" value="paperID"/></s:url>">
+                        修改
                     </a>
-
                 </td>
             </tr>
         </s:iterator>

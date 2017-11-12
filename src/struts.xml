@@ -37,7 +37,9 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-
+		<action name="addend" method="endadd" class="action.PaperAction">
+			<result name="success">/MainMenu.jsp</result>
+		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
 			<result>/MainMenu.jsp</result>
@@ -50,9 +52,11 @@
 			<result type="redirectAction">MainMenu</result>
 		</action>
 
-		<action name="Paper_*" method="{1}" class="action.PaperAction">
-			<result name="input">/Paper.jsp</result>
+		<action name="Paper_delete" method="delete" class="action.PaperAction">
 			<result name="success">/MainMenu.jsp</result>
+		</action>
+		<action name="update" method="execute" class="action.update">
+		<result name="success">/Paper.jsp</result>
 		</action>
 
 		<action name="addpaper" class="action.AddPaper" method="input">

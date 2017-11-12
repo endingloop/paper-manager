@@ -14,8 +14,9 @@ import java.sql.SQLException;
 import model.Paper;
 import service.ConnectSQL;
 import service.Sequence;
+import support.UserSupport;
 
-public class AddPaper extends ActionSupport {
+public class AddPaper extends UserSupport {
 	public int first;
 	public String second;
 	public String third;
@@ -142,6 +143,8 @@ public class AddPaper extends ActionSupport {
 	public String execute() throws Exception {
 		/* Copy file to a safe location */
 	    System.out.println("Here!!");
+	    System.out.println(getUser().getUsername());
+	    System.out.println(getUser().getPassword());
 		destPath = ServletActionContext.getServletContext().getRealPath("/upload");
 		paperBean.setPaperID(Sequence.nextId());
 		StringBuffer sb1 = new StringBuffer();
@@ -157,6 +160,11 @@ public class AddPaper extends ActionSupport {
 	      System.out.println(author3);
 	      System.out.println(author4);
 	      System.out.println(author5);
+	      collectauthor(author1);
+	      collectauthor(author2);
+	      collectauthor(author3);
+	      collectauthor(author4);
+	      collectauthor(author5);
 	        sb2.append(author1);
 	        sb2.append(",");
 	        sb2.append(author2);
@@ -181,9 +189,53 @@ public class AddPaper extends ActionSupport {
 		}
 		System.out.println(paperBean);
 		insert(paperBean);
+		PreparedStatement pstmt1;
+		Connection conn=ConnectSQL.getConn();
+		String sql="insert into relationtable value('"+paperBean.getPaperID()+"','"+paperBean.getAuthor()+"','"+author1+"','"+author2+"','"+author3+"','"+author4+"','"+author5+"');";
+		System.out.println(sql);
+		try {
+			pstmt1 = (PreparedStatement) conn.prepareStatement(sql);
+			pstmt1.executeUpdate();
+			pstmt1.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		adduser(getUser().getUsername(),getUser().getPassword(),paperBean.getPaperID());
 		return SUCCESS;
 	}
+	public String adduser(String username,String password,String paperID) {
+		String sql ="select * from user where username='"+username+"' and password='"+password+"';";
+		Connection conn=ConnectSQL.getConn();
+		PreparedStatement pstmt;
+		PreparedStatement pstmt2;
+		try {
+			pstmt= (PreparedStatement)conn.prepareStatement(sql);
+			System.out.println(sql);
+			ResultSet rs = pstmt.executeQuery(sql);
+			String temp="";
+			while(rs.next()) {
+				temp=rs.getString(3);
+				temp=temp+paperID+",";
+			}
+			sql="update user set papers='"+temp+"' where username='"+username+"' and password='"+password+"';";
+			System.out.println(sql);
+			pstmt2= (PreparedStatement)conn.prepareStatement(sql);
+			pstmt2.executeUpdate(sql);
+			System.out.println("success link to user!");
+			pstmt2.close();
+			pstmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	private int findSortID(String sortstr) {
+	
 		String sql ="select * from third where sortname='"+sortstr+"';";
 		Connection conn=ConnectSQL.getConn();
 		PreparedStatement pstmt;
@@ -208,16 +260,13 @@ public class AddPaper extends ActionSupport {
 	private int insert(Paper paper) {
 		Connection conn = ConnectSQL.getConn();
 		int i = 0;
-		System.out.println(getFirst());
-		System.out.println(getSecond());
-		System.out.println(getThird());
-		System.out.println(getDates());
 		int num=findSortID(getThird());
 		
 
 		String sql = "insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE,level) values(?,?,?,?,?,?,?,?,?,?)";
-
+		collectauthor(paper.getAuthor());
 		PreparedStatement pstmt;
+		
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			pstmt.setString(1, paper.getPaperID());
@@ -242,7 +291,38 @@ public class AddPaper extends ActionSupport {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return i;
+	}
+	public void collectauthor(String str) {
+		System.out.println("add author "+str);
+		
+		int len=str.length();
+		if(len!=0) {
+			String sql="select * from authorlist where authorname='"+str+"'";
+			Connection conn = ConnectSQL.getConn();
+			PreparedStatement stm1=null;
+			PreparedStatement stm2=null;
+			try {
+				stm1=(PreparedStatement) conn.prepareStatement(sql);
+				ResultSet rs= stm1.executeQuery();
+				if(!rs.next()) {
+					sql="insert into authorlist value('"+str+"');";
+				    stm2=(PreparedStatement) conn.prepareStatement(sql);
+				    stm2.executeUpdate(sql);
+				    stm2.close();
+				    stm1.close();
+					conn.close();
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return;
+		
 	}
 
 	public Paper getPaperBean() {

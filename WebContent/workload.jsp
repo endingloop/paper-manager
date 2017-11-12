@@ -14,10 +14,11 @@
         <span>统计工作量日期区间</span>
         <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />-<input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 </div>
+ 按照姓名查询工作量分数：<input name="author" value="">；
 <button type="submit">提交</button>
 </form>
 <table border="2px">
-
+<s:property  value="author"/><s:property  value="startdate"/>---<s:property  value="enddate"/>的工作量分数如下： 
 <tr><td>姓名</td><td>成绩</td></tr>
 <s:iterator  value="scoreresult">
 <tr>

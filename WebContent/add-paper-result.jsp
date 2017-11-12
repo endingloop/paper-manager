@@ -29,7 +29,7 @@
 		<s:param name="paperID" value="%{paperBean.paperID}"></s:param>
 	</s:url>
 	<h4><a href="${downloadLink}">下载</a></h4>
-	<h5><a href="<s:url action='index' />" >回到首页</a></h5>
+	<h5><a href="<s:url action='addend' />" >回到首页</a></h5>
 	<hr />
 	<footer>
 <br/>

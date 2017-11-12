@@ -15,15 +15,19 @@ import model.score;
 import service.ConnectSQL;
 import service.Sequence;
 
-
-
-
 public class workloadshow {
 
 
 public String startdate;
 public String enddate;
+public String author;
 
+public String getAuthor() {
+	return author;
+}
+public void setAuthor(String author) {
+	this.author = author;
+}
 
 public  List<score> scoreresult;
 public List<score> getScoreresult() {
@@ -63,7 +67,8 @@ public String workload() {
 	cleartablenew();
 	System.out.println(getStartdate());
 	System.out.println(getEnddate());
-	String sql="create table new as select userID,Name,level,SecondAuthorID from paper,user where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and userID=FirstAuthorID;";
+	String sql="create table new as select authorname,level,SecondAuthorID from paper,authorlist where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and authorname=FirstAuthorID;";
+	
 	Connection conn=ConnectSQL.getConn();
 	PreparedStatement pstmt;
 	try {
@@ -80,7 +85,13 @@ public String workload() {
 	return "workload";
 }
 public List<score>  sumscore() {
-	String sql="select userID,Name from user;";
+	String sql=null;
+	if(getAuthor().isEmpty()) {
+		 sql="select authorname from authorlist;";
+	}else {
+		sql="select authorname from authorlist where authorname='"+getAuthor()+"';";
+	}
+	
 	System.out.println(sql);
 	Connection conn=ConnectSQL.getConn();
 	PreparedStatement pstmt;
@@ -91,10 +102,9 @@ public List<score>  sumscore() {
 		ResultSet result = pstmt.executeQuery(sql);
 		while(result.next()) {
 			score tempbean=new score();
-			tempbean.setUserID(result.getString(1));
-			tempbean.setName(result.getString(2));
+			tempbean.setName(result.getString(1));
 			int FirstAuthorScore=findFirstAuthor(result.getString(1));
-			int SecondAuthorScore=findSecondtAuthor(result.getString(2));
+			int SecondAuthorScore=findSecondtAuthor(result.getString(1));
 			grade=FirstAuthorScore+SecondAuthorScore;
 			tempbean.setScore(grade);
 			scoreresult.add(tempbean);
@@ -106,14 +116,14 @@ public List<score>  sumscore() {
 	}
  for(score t:scoreresult)
  {
-	 System.out.println(t.userID+" "+t.name+" "+t.score);
+	 System.out.println(t.name+" "+t.score);
  }
  	
 	return scoreresult;
 }
  public int findFirstAuthor(String str) {
 	 	int num=0;
-	 	String sql="select * from new where userID='"+str+"'";
+	 	String sql="select * from new where authorname='"+str+"'";
 		System.out.println(sql);
 		Connection conn=ConnectSQL.getConn();
 		PreparedStatement pstmt;
@@ -121,11 +131,11 @@ public List<score>  sumscore() {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
-				if(rs.getString(4)!=null) {
-					num=(int) (num+rs.getInt(3)*0.5);
+				if(rs.getString(3)!=null) {
+					num=(int) (num+rs.getInt(2)*0.5);
 					
 				}else {
-					num=num+rs.getInt(3);
+					num=num+rs.getInt(2);
 				}
 					System.out.println(num);
 			}
@@ -147,11 +157,11 @@ public List<score>  sumscore() {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);
 			ResultSet rs= pstmt.executeQuery(sql);
 			while(rs.next()) {
-			String[] b=rs.getString(4).trim().split(",");
+			String[] b=rs.getString(3).trim().split(",");
 			List<String> listA = Arrays.asList(b);
 			if(listA.contains(str)) {
 				int amount=b.length;
-				num=num+(int) (rs.getInt(3)*0.5)/amount;
+				num=num+(int) (rs.getInt(2)*0.5)/amount;
 			}else {
 				num=num+0;
 			}
