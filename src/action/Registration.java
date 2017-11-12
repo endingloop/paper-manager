@@ -3,12 +3,19 @@ package action;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import model.User;
 import service.ConnectSQL;
+import support.UserSupport;
 
-public class Registration extends ActionSupport {
+public class Registration extends UserSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 
 	public String getUsername() {
@@ -39,8 +46,10 @@ public class Registration extends ActionSupport {
 	public String execute() {
 		if(!password.equals(password2))
 			return INPUT;
+		User user = new User(getUsername(),getPassword(),new ArrayList<>());
+		setUser(user);
 		Connection conn = ConnectSQL.getConn();
-		String sql = "insert into user(username,password) values(?,?)";
+		String sql = "insert into user values(?,?, \"\")";
 		PreparedStatement pstmt;
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
