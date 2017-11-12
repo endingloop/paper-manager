@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 import model.Paper;
 import service.ConnectSQL;
@@ -25,6 +27,12 @@ public class update  extends UserSupport {
 	public String thirdstr;
 	public String third;
 	public String datetime;
+	public String author1;
+	public String author2;
+	public String author3;
+	public String author4;
+	public String author5;
+
 
 	public String getThird() {
 		return third;
@@ -180,6 +188,8 @@ public class update  extends UserSupport {
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			 pstmt.executeUpdate();
+			 pstmt.close();
+				conn.close();
 			 System.out.println("update paper table success!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -187,10 +197,104 @@ public class update  extends UserSupport {
 		}
 		
 		getUser().setPapers(findUser(getUser().getUsername(),getUser().getPassword()).getPapers());
-
+		relationtablefix(getPaperID());
+		authortablefix(getPaperID());
 	  return "success";
   }
-  
+  public String relationtablefix(String paperID) {
+	  String[] authors = {"","","","",""};
+	  String sql ="select * from  paper, relationtable where paper.paperID='"+paperID+"' and paper.paperID=relationtable.paperID;";
+		Connection conn=ConnectSQL.getConn();
+		PreparedStatement pstmt;
+		PreparedStatement pstmt1;
+		
+			try {
+				pstmt= (PreparedStatement)conn.prepareStatement(sql);
+				System.out.println(sql);
+				ResultSet rs = pstmt.executeQuery(sql);
+				while(rs.next()) {
+					String[] b=rs.getString(4).trim().split(",");
+					System.out.println(b.length);
+					for(int i=0;i<b.length;i++) {
+						authors[i]=b[i];
+					}
+					
+					
+					sql="update relationtable set author='"+rs.getString(3)+"',author1='"+authors[0]+"',author2='"+authors[1]+"',author3='"+authors[2]+"',author4='"+authors[3]+"',author5='"+authors[4]+"' where paperID='"+getPaperID()+"';";
+					pstmt1= (PreparedStatement)conn.prepareStatement(sql);
+					System.out.println(sql);
+					pstmt1.executeUpdate(sql);
+					
+					
+					
+				}
+				System.out.println("修改relationtable表成功！");
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	  return "ok";
+  }
+  public String authortablefix(String paperID) {
+	 
+	  String sql ="select * from paper where paperID='"+paperID+"';";
+		Connection conn=ConnectSQL.getConn();
+		PreparedStatement pstmt;
+		PreparedStatement pstmt1;
+		
+			try {
+				pstmt= (PreparedStatement)conn.prepareStatement(sql);
+				System.out.println(sql);
+				ResultSet rs = pstmt.executeQuery(sql);
+				while(rs.next()) {
+					String[] b=rs.getString(4).trim().split(",");
+					System.out.println(b.length);
+					for(int i=0;i<b.length;i++) {
+						collectauthor(b[i]);
+					}
+					
+				}
+				System.out.println("修改authortable表成功！");
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	  return "ok";
+  }
+  public void collectauthor(String str) {
+		System.out.println("add author "+str);
+		
+		int len=str.length();
+		if(len!=0) {
+			String sql="select * from authorlist where authorname='"+str+"'";
+			Connection conn = ConnectSQL.getConn();
+			PreparedStatement stm1=null;
+			PreparedStatement stm2=null;
+			try {
+				stm1=(PreparedStatement) conn.prepareStatement(sql);
+				ResultSet rs= stm1.executeQuery();
+				if(!rs.next()) {
+					sql="insert into authorlist value('"+str+"');";
+				    stm2=(PreparedStatement) conn.prepareStatement(sql);
+				    stm2.executeUpdate(sql);
+				    stm2.close();
+				    stm1.close();
+					conn.close();
+
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return;
+		
+	}
 
 	public String getPaperID() {
 		return paperID;
