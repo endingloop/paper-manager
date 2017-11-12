@@ -60,7 +60,6 @@
 		</action>
 		<action name="updatesuccess" method="updateSubmit" class="action.update" >
 			<result name="success">/MainMenu.jsp</result>
-			
 		</action>
 		<action name="addpaper" class="action.AddPaper" method="input">
 			<result name="input">/add-paper-input.jsp</result>

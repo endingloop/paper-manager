@@ -16,6 +16,7 @@ public class update  extends UserSupport {
 	private static final long serialVersionUID = 61L;
 
 	
+
 	public String paperID;
 	public String dates;
 	private Paper paper;
@@ -190,6 +191,7 @@ public class update  extends UserSupport {
 	  return "success";
   }
   
+
 	public String getPaperID() {
 		return paperID;
 	}
