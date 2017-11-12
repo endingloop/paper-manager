@@ -21,8 +21,8 @@
 <body>
 <header>
 <a href="index.jsp" id="index">论文管理器</a>
-<a href="#" id="right">登录</a>
-<a href="#" id="left">注册</a>
+<a href="<s:url action="Login_input" />" id="right">登录</a>
+<a href="<s:url action="Registration_input" />" id="left">注册</a>
 </header>
 <div id="container" style="background-image:url(img/11.png);">
 <div>

@@ -234,7 +234,7 @@ public class AddPaper extends UserSupport {
 		}
 		return null;
 	}
-	private int findSortID(String sortstr) {
+	public int findSortID(String sortstr) {
 	
 		String sql ="select * from third where sortname='"+sortstr+"';";
 		Connection conn=ConnectSQL.getConn();

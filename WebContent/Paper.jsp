@@ -22,8 +22,8 @@
  </header>
  <hr>
  <div class="content2">
-     <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data">
- 
+     <s:form name="form1" action="updatesuccess" method="post" enctype="multipart/form-data">
+ 	<s:hidden name="paperID"/>
     
     <div id="partb">
       <s:textfield key="paper.author" label="第一作者" />
@@ -38,7 +38,7 @@
      <span>请选择论文分类：</span>
      <br>
         <SELECT NAME="first" onChange="getSecond()" class="select">  
-         <OPTION value="0"><s:property  value="firststr"/></OPTION> 
+         <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
            <OPTION VALUE="1">基础学科 </OPTION>  
             <OPTION VALUE="2">工程科技</OPTION>  
             <OPTION VALUE="3">农业科技</OPTION>  
@@ -51,11 +51,11 @@
   
 
         <SELECT NAME="second" onChange="getThird()" class="select">  
-            <OPTION value="0"><s:property  value="secondstr"/></OPTION>  
+            <OPTION value="<s:property  value="secondstr"/>"><s:property  value="secondstr"/></OPTION>  
         </SELECT> 
   
         <select name="third" class="select">
-        <option value="0"><s:property  value="thirdstr"/></option>
+        <option value="<s:property  value="thirdstr"/>"><s:property  value="thirdstr"/></option>
         </select> 
         </div>
         <br>
@@ -63,6 +63,8 @@
         <span>请选择发表日期：</span>
         <input name="datetime" value="<s:property  value="dates"/>" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
         </div>
+     
+       
         <div id="parte">
         <span>请保证您上传的论文已通过原作者的允许！</span>
          <s:submit class="btn btn-default"/>
