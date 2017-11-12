@@ -1,24 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-<head>
- <script  type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>workload-show</title>
-</head>
-<body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script  type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script  type="text/javascript" src="js/ChooseSort.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/operation1.css">
+    <title>Paper Manager System</title> 
+  </head>
+  <body>
+  <div class="container">
+   <header>
+ <a href="index.jsp" id="index">论文管理器</a>
+ <a href="<s:url action="Logout" />" id="right">注销</a>
+ <a href="<s:url action='addend' />" id="left">用户</a>
+ </header>
+ <hr>
+ <div class="content2">
+   <div id="content2_top" >
+  <ul class="nav nav-tabs nav-justified">
+  <li role="presentation"><a href="user-papers.jsp">我的论文</a></li>
+  <li role="presentation" ><a href="add-paper-input.jsp">上传论文</a></li>
+  <li role="presentation"class="active"><a href="workload.jsp">查看工作量</a></li>
+  </ul>
+  </div>
+  <br>
 <form action="workload.action" method="post">
-<div id="partd">
-        <span>统计工作量日期区间</span>
-        <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />-<input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+<div id="part1">
+      <span>请选择日期区间：</span>
+      <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />-<input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 </div>
- 按照姓名查询工作量分数：<input name="author" value="">；
-<button type="submit">提交</button>
+<div id="part2">
+      <span>请输入作者姓名:</span><input name="author" value="">
+</div>
+<button type="submit" class="btn btn-info">提交</button>
 </form>
-<table border="2px">
-<s:property  value="author"/><s:property  value="startdate"/>---<s:property  value="enddate"/>的工作量分数如下： 
+ <table class="table">
 <tr><td>姓名</td><td>成绩</td></tr>
 <s:iterator  value="scoreresult">
 <tr>
@@ -28,6 +50,15 @@
 
 </s:iterator>
 </table>
+	</div>
+	<footer>
+<br>
+<span>Created by Group YST</span>
+<br/>
+<br/>
+</footer>
+	</div>
+
 
 </body>
 </html>
