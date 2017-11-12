@@ -122,8 +122,58 @@ public class update  extends UserSupport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		authortabledelfirst(getPaperID());
 		return "success";
+	}
+	
+	public String authortabledelfirst(String paperID) {
+		 
+		  String sql ="select * from paper where paperID='"+paperID+"';";
+			Connection conn=ConnectSQL.getConn();
+			PreparedStatement pstmt;
+			PreparedStatement pstmt1;
+			
+				try {
+					pstmt= (PreparedStatement)conn.prepareStatement(sql);
+					System.out.println(sql);
+					ResultSet rs = pstmt.executeQuery(sql);
+					while(rs.next()) {
+						String[] b=rs.getString(4).trim().split(",");
+						System.out.println(b.length);
+						for(int i=0;i<b.length;i++) {
+							delfirstauthor(b[i]);
+						}
+						
+					}
+					System.out.println("first删除authortable表成功！");
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		  return "ok";
+	  }
+	public void delfirstauthor(String str) {
+		System.out.println("add author "+str);
+		
+		int len=str.length();
+		if(len!=0) {
+			String sql="delete from authorlist where authorname='"+str+"'";
+			Connection conn = ConnectSQL.getConn();
+			PreparedStatement stm1=null;
+			try {
+				stm1=(PreparedStatement) conn.prepareStatement(sql);
+				stm1.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return;
+		
 	}
  public ResultSet findsort(int str) {
 	 PreparedStatement pstmt;
