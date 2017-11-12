@@ -10,6 +10,19 @@ public class User {
 		this.password = password;
 		this.papers = papers;
 	}
+	
+	public String getPaperIdList() {
+		StringBuffer list = new StringBuffer();
+		if (papers != null && !papers.isEmpty()) {
+			for (Paper temp : papers) {
+				list.append(temp.getPaperID());
+				list.append(",");
+			}
+			list.setLength(list.length() - 1);
+		}
+		return list.toString();
+	}
+	
 	private String username;
 	
 	public String getUsername() {

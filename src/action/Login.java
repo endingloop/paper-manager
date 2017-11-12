@@ -1,11 +1,13 @@
 package action;
 
+import java.sql.SQLException;
+
 import model.User;
 import support.UserSupport;
 
 public class Login extends UserSupport{
 
-	public String execute() {
+	public String execute() throws SQLException {
 		User user = findUser(getUsername(), getPassword());
 		if(user != null) {
 			setUser(user);

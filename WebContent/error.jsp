@@ -19,9 +19,13 @@
     <img src="img/error.jpg"/>
     <h1>Sorry，运行出错啦</h1>
     </div>
-    
-	<h4>Exception Name:<s:property value="exception"/></h4>
-	<h4>Exception Details: <s:property value="exceptionStack"/></h4>
+    <h3>Exception:</h3>
+    <s:property value="exception"/>
+
+    <h3>Stack trace:</h3>
+    <pre>
+        <s:property value="exceptionStack"/>
+    </pre>
     <div id="Error2">
 	<p><a href="index.jsp">回到主页</a></p>
 	</div>

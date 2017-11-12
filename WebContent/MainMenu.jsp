@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<a href="<s:url action="addpaper"/>">添加论文</a>
+<a href="<s:url action="Paper_input"/>">添加论文</a>
 <div align="center">
         <h3>我的论文</h3>
     </div>

@@ -21,7 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
 import model.Paper;
-import service.ConnectSQL;
+import service.Dao;
 import service.Sequence;
 
 public class sort3th {
@@ -63,7 +63,7 @@ public void setResult(List<Paper> result) {
 
 public String findsort3th() {
 	System.out.println(getThirdID());
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	String sql="select * from paper where sortID="+getThirdID();
 	PreparedStatement pst = null;
 	result = new ArrayList<>();
@@ -95,7 +95,7 @@ public String findsort3th() {
 //������ѯ
 public String findsort2th() {
 	System.out.println(getSecondID());
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	String sql="select * from paper,third where third.upper="+getSecondID()+" and paper.sortID=third.thirdID";
 	result = new ArrayList<>();
 	System.out.println(sql);
@@ -132,7 +132,7 @@ public String findsort2th() {
 //һ����ѯ
 public String findsort1th() {
 	System.out.println(getFirstID());
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	String sql="select * from paper,third,second where second.upper="+getFirstID()+" and paper.sortID=third.thirdID and third.upper=second.secondID;";
 	System.out.println(sql);
 	result = new ArrayList<>();

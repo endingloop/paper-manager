@@ -12,7 +12,7 @@ import java.util.List;
 
 import model.Paper;
 import model.score;
-import service.ConnectSQL;
+import service.Dao;
 import service.Sequence;
 
 
@@ -46,7 +46,7 @@ public void setEnddate(String enddate) {
 }
 public String cleartablenew() {
 	String sql="DROP table IF EXISTS new;";
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
 		
@@ -64,7 +64,7 @@ public String workload() {
 	System.out.println(getStartdate());
 	System.out.println(getEnddate());
 	String sql="create table new as select userID,Name,level,SecondAuthorID from paper,user where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and userID=FirstAuthorID;";
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
 		
@@ -82,7 +82,7 @@ public String workload() {
 public List<score>  sumscore() {
 	String sql="select userID,Name from user;";
 	System.out.println(sql);
-	Connection conn=ConnectSQL.getConn();
+	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	scoreresult=new ArrayList<>();
 	int grade=0;
@@ -115,7 +115,7 @@ public List<score>  sumscore() {
 	 	int num=0;
 	 	String sql="select * from new where userID='"+str+"'";
 		System.out.println(sql);
-		Connection conn=ConnectSQL.getConn();
+		Connection conn=Dao.getConn();
 		PreparedStatement pstmt;
 		try {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);
@@ -141,7 +141,7 @@ public List<score>  sumscore() {
 	 int num=0;
 	 String sql="select * from new where SecondAuthorID like '%"+str+"%';";
 		System.out.println(sql);
-		Connection conn=ConnectSQL.getConn();
+		Connection conn=Dao.getConn();
 		PreparedStatement pstmt;
 		try {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);

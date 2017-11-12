@@ -11,7 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import java.sql.Connection;
 import com.opensymphony.xwork2.ActionSupport;
 
-import service.ConnectSQL;
+import service.Dao;
 
 public class FileDownloadAction extends ActionSupport
 {
@@ -34,7 +34,7 @@ public class FileDownloadAction extends ActionSupport
     }
     
     private String queryFileName(String id) {
-		Connection conn = ConnectSQL.getConn();
+		Connection conn = Dao.getConn();
 		String sql = "select paperID, FILE from paper where paperID = " + paperID;
 	    PreparedStatement pstmt;
 	    try {
