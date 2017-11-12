@@ -15,6 +15,7 @@ body
   border-bottom-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color:white;
+  text-align:center;
 }
 header
 {
@@ -180,13 +181,7 @@ header #right,#left
   margin-top:4%;
   text-align:center;
  }
- #parte
- {
-  text-align:center;
-  color:red;
-  margin-top:3%;
-  font-size:1.5em;
- }
+
  
 #parte .btn 
  {
@@ -197,6 +192,11 @@ header #right,#left
   { 
     float:left;
   }
+    #SearchInput select
+    {
+       margin-right:180px;
+       margin-top:-10px;
+    }
  #SearchInput .tdLabel
 {
 	display:none;
@@ -245,4 +245,39 @@ table
 {
 	margin-top:5%;
 	margin-bottom:3%;
+}
+span
+{
+	color:grey;
+	font-size:1.3em;
+}
+#partb div
+{
+	margin-top:2%;
+}
+#secondauthor .input
+{
+	width:80px;
+}
+#keyword .input
+{
+	width:80px;
+}
+#publicaton .input
+{
+	width:100px;
+}
+#partd .select
+{
+	width:200px;
+	margin-left:40%;
+}
+#parte .btn
+{
+	margin-left:47%;
+}
+#part2
+{
+	margin-top:2%;
+	margin-bottom:2%;
 }

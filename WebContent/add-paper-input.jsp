@@ -22,29 +22,48 @@
  </header>
  <hr>
  <div class="content2">
-     <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data">
+   <div id="content2_top" >
+  <ul class="nav nav-tabs nav-justified">
+  <li role="presentation"><a href="user-papers.jsp">我的论文</a></li>
+  <li role="presentation" class="active"><a href="add-paper-input.jsp">上传论文</a></li>
+  <li role="presentation"><a href="workload.jsp">查看工作量</a></li>
+  </ul>
+  </div>
+  <br>
+     <s:form name="form1" action="regpaper" method="post" enctype="multipart/form-data" theme="simple">
  
      <div id="parta">
-    <h3>请输入论文的相应信息:</h3>
-          选择文件: <input type="file" name="file">
+       <span>选择文件:</span> <input type="file" name="file">
     </div>
     <div id="partb">
-      <s:textfield name="paperBean.author" label="第一作者" />
-      <s:textfield name="author1" label="第二作者1" />
-      <s:textfield name="author2" label="第二作者2" />
-      <s:textfield name="author3" label="第二作者3" />
-      <s:textfield name="author4" label="第二作者4" />
-      <s:textfield name="author5" label="第二作者5" />
-      <s:textfield name="paperBean.title" label="论文标题"/>
-      <s:textfield name="keyword1" label="关键字1"/>
-      <s:textfield name="keyword2" label="关键字2"/>
-      <s:textfield name="keyword3" label="关键字3"/>
-      <s:textfield name="paperBean.publication" label="出版社"/>
+      <div id="title">
+          <span>论文标题:</span><s:textfield name="paperBean.title" />
+      </div>
+      <div id="firstauthor"> 
+           <span >作者姓名:</span><s:textfield name="paperBean.author"  />
+       </div>
+      <div id="secondauthor">
+      <span>第二作者:</span>
+      <s:textfield name="author1"  class="input"/>
+      <s:textfield name="author2"  class="input"/>
+      <s:textfield name="author3"  class="input"/>
+      <s:textfield name="author4"  class="input"/>
+      <s:textfield name="author5"  class="input" />
+      </div>
+      <div id="keyword">
+      <span>关键字:</span>
+      <s:textfield name="keyword1" class="input"/>
+      <s:textfield name="keyword2" class="input"/>
+      <s:textfield name="keyword3" class="input"/>
+      </div>
+      <div id="publicaiton">
+      <span>出版社:</span>
+      <s:textfield name="paperBean.publication" class="input"/>
+      </div>
     </div>
-    
+    <br>
      <div id="partc">
-     <span>请选择论文分类：</span>
-     <br>
+     
         <SELECT NAME="first" onChange="getSecond()" class="select">  
          <OPTION value="0">第一级目录 </OPTION> 
            <OPTION VALUE="1">基础学科 </OPTION>  
@@ -71,18 +90,20 @@
         <span>请选择发表日期：</span>
         <input name="dates" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
         </div>
-         <div id="partc">
+         <div id="partd" >
          <select name="level" class="select">
-      <OPTION value="10">请选择论文等级 </OPTION> 
-           <OPTION VALUE="60">SCI</OPTION>  
+            <OPTION value="10">请选择论文等级 </OPTION> 
+            <OPTION VALUE="60">SCI</OPTION>  
             <OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>  
             <OPTION VALUE="30">核心期刊(国际会议)</OPTION>  
             <OPTION VALUE="15">公开发表</OPTION>
             <OPTION VALUE="10">普通论文</OPTION>  
-      </select>
+        </select>
         </div>
+        <br>
+        <br>
+        <br>
         <div id="parte">
-        <span>请保证您上传的论文已通过原作者的允许！</span>
          <s:submit class="btn btn-default"/>
 	    </div>
 	<hr />

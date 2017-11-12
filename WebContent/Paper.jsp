@@ -35,7 +35,6 @@
     </div>
     
      <div id="partc">
-     <span>请选择论文分类：</span>
      <br>
         <SELECT NAME="first" onChange="getSecond()" class="select">  
          <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
@@ -66,10 +65,10 @@
      
        
         <div id="parte">
-        <span>请保证您上传的论文已通过原作者的允许！</span>
+      
          <s:submit class="btn btn-default"/>
 	    </div>
-	<hr />
+	
 	 
 	    </s:form>
 	
