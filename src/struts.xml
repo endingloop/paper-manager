@@ -56,9 +56,12 @@
 			<result name="success">/MainMenu.jsp</result>
 		</action>
 		<action name="update" method="execute" class="action.update">
-		<result name="success">/Paper.jsp</result>
+			<result name="success">/Paper.jsp</result>
 		</action>
-
+		<action name="updatesuccess" method="updateSubmit" class="action.update" >
+			<result name="success">/MainMenu.jsp</result>
+			
+		</action>
 		<action name="addpaper" class="action.AddPaper" method="input">
 			<result name="input">/add-paper-input.jsp</result>
 			<interceptor-ref name="user" />
@@ -92,6 +95,7 @@
 		<action name="workload" class="action.workloadshow" method="workload">
 			<result name="workload">/workload.jsp</result>
 		</action>
+
 	</package>
 
 	<package name="wildcard" namespace="/" extends="default">

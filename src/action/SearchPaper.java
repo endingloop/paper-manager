@@ -20,9 +20,10 @@ import com.opensymphony.xwork2.ActionSupport;
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import model.Paper;
 import service.ConnectSQL;
+import support.UserSupport;
 
 @SuppressWarnings("unused")
-public class SearchPaper extends ActionSupport {
+public class SearchPaper extends UserSupport {
 	/**
 	 * 
 	 */
@@ -146,7 +147,13 @@ public class SearchPaper extends ActionSupport {
                    sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
                    break;
        }
-       querySql(sql);
+       querySql(sql);		
+       try {
+			dd(result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
        return SUCCESS;
 	    
 	}
@@ -165,6 +172,7 @@ public class SearchPaper extends ActionSupport {
 		for(Paper t:result) {
 			System.out.println(t);
 		}
+
 		return SUCCESS;
 	}
 
@@ -175,24 +183,48 @@ public class SearchPaper extends ActionSupport {
 		for(Paper t:result) {
 			System.out.println(t);
 		}
+		try {
+			dd(result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 
 	public String searchJournal() {
 		String sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
 		querySql(sql);
+		try {
+			dd(result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
 	public String searchKeyword() {
 		String sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'";
 		querySql(sql);
+		try {
+			dd(result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
 	public String searchDate() {
 		String sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";
 		querySql(sql);
+		try {
+			dd(result);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 

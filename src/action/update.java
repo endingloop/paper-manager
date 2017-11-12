@@ -7,14 +7,39 @@ import java.sql.SQLException;
 
 import model.Paper;
 import service.ConnectSQL;
+import support.UserSupport;
 
-public class update {
+public class update  extends UserSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 61L;
+
+	
 	public String paperID;
 	public String dates;
 	private Paper paper;
 	public String firststr;
 	public String secondstr;
 	public String thirdstr;
+	public String third;
+	public String datetime;
+
+	public String getThird() {
+		return third;
+	}
+
+	public void setThird(String third) {
+		this.third = third;
+	}
+
+	public String getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(String datetime) {
+		this.datetime = datetime;
+	}
 
 	public String getFirststr() {
 		return firststr;
@@ -115,6 +140,56 @@ public class update {
 		
 	 return rs;
  }
+ public int findSortID(String sortstr) {
+		
+		String sql ="select * from third where sortname='"+sortstr+"';";
+		Connection conn=ConnectSQL.getConn();
+		PreparedStatement pstmt;
+		int result=-1;
+		try {
+			pstmt= (PreparedStatement)conn.prepareStatement(sql);
+			System.out.println(sql);
+			ResultSet rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				result=rs.getInt(1);
+				System.out.println(rs.getInt(1));
+			}
+			
+			pstmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+  public String updateSubmit() {
+	 
+	  Connection conn = ConnectSQL.getConn();
+		System.out.println(getThird());
+		int num=findSortID(getThird());
+		String sql = "update paper set title='"+paper.getTitle()+
+		"',FirstAuthorID='"+paper.getAuthor()+"',SecondAuthorID='"+
+			paper.getSecondauthor()+"',KeyWords='"
+		+paper.getKeyword()+"',JournalID='"+paper.getPublication()+"',SortID="+num+
+		",Date='"+getDatetime()+"' where paperID='"+getPaperID()+"';";
+		System.out.println(sql);
+		PreparedStatement pstmt;
+		
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			 pstmt.executeUpdate();
+			 System.out.println("update paper table success!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		getUser().setPapers(findUser(getUser().getUsername(),getUser().getPassword()).getPapers());
+
+	  return "success";
+  }
+  
 	public String getPaperID() {
 		return paperID;
 	}
