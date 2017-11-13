@@ -24,7 +24,7 @@
  <div class="content2">
    <div id="content2_top" >
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation"><a href="user-papers.jsp">我的论文</a></li>
+  <li role="presentation"> <a href="<s:url action='addend' />">我的论文</a></li>
   <li role="presentation" ><a href="add-paper-input.jsp">上传论文</a></li>
   <li role="presentation"class="active"><a href="workload.jsp">查看工作量</a></li>
   </ul>
@@ -33,19 +33,21 @@
 <form action="workload.action" method="post">
 <div id="part1">
       <span>请选择日期区间：</span>
-      <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />-<input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+      <input name="startdate" value="<s:property  value="startdate"/>"  style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />-<input name="enddate" value="<s:property  value="enddate"/>"  style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 </div>
 <div id="part2">
-      <span>请输入作者姓名:</span><input name="author" value="">
+      <span>请输入作者姓名:</span><input name="author" value="<s:property  value="author"/>">
 </div>
-<button type="submit" class="btn btn-info">提交</button>
+<button type="submit" class="btn btn-info">提交</button> 
 </form>
  <table class="table">
-<tr><td>姓名</td><td>成绩</td></tr>
+<tr><td>姓名</td><td>成绩</td><td>起始日期</td><td>终止日期</td></tr>
 <s:iterator  value="scoreresult">
 <tr>
 <td><s:property  value="Name"/></td>
 <td><s:property value="score"/></td>
+<td><s:property  value="startdate"/></td>
+<td><s:property value="enddate"/></td>
 </tr>
 
 </s:iterator>
