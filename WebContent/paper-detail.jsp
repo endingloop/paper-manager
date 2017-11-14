@@ -29,9 +29,9 @@
       <a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a>
        <br>
       <span>第二作者：</span>
-      <s:iterator value="secondauthor" status="index">
+        <s:iterator value="secondauthorid" status="index">
            <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
-         </s:iterator>
+         </s:iterator> 
        <div class="publication">
       <a href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property value="publication"/></a>
       </div>
@@ -46,9 +46,9 @@
       
        <div class="keyword">
        <span>关键词：</span>
-       <s:iterator value="keywords2" status="index">
+         <s:iterator value="keywords2" status="index">
            <a href="searchKeyword.action?keyword=<s:property/>"><s:property/></a>
-         </s:iterator>
+         </s:iterator> 
       </div>
       <div class="download">
         <a href="#"><button class="btn btn-default" type="submit">下载论文</button></a>
