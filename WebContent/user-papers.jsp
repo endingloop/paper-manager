@@ -49,10 +49,10 @@
                     <s:property value="paperID"/>
                 </td>
                 <td >
-                    <a href="searchPaperID.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a>
+                    <a href="showDetail.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a>
                 </td>
                 <td >
-                    <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
+                    <a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author"/></a>
                 </td>
                 <td >
                     <a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a>

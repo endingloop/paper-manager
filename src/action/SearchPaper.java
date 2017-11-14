@@ -152,7 +152,8 @@ public class SearchPaper extends UserSupport {
 
 	public String searchAuthor() {
 	    System.out.print(keyword);
-		String sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
+		String sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "' "
+           		+ "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]'";
 		querySql(sql);
 		for(Paper t:result) {
 			System.out.println(t);
