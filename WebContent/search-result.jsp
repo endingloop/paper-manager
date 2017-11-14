@@ -67,8 +67,8 @@
       <td><s:property value="#index.index+1"/></td>
       <td><a href="showDetail.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a></td>
       <td><a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a></td>
-      <td>
-        <s:iterator value="secondauthorid" status="index">
+      <td>      
+        <s:iterator value="secondauthor2" status="index">
            <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
          </s:iterator> 
       </td>
@@ -76,7 +76,7 @@
       </a></td>
       <td><a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a></td>
        <td>
-         <s:iterator value="keywords2" status="index">
+         <s:iterator value="keyword2" status="index">
            <a href="searchKeyword.action?keyword=<s:property/>"><s:property/></a>
          </s:iterator>
      

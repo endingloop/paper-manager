@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
@@ -32,10 +33,7 @@ public class SearchPaper extends UserSupport {
 	private List<Paper> result;
 	private int selectchoice;
 	private int papernum;
-	private List<String> secondauthor;
-    public String [] secondauthorid;
-    private List<String> keywords2;
-    public String [] keywords1;
+
 	public String execute() {
 		return SUCCESS;
 	}
@@ -52,9 +50,9 @@ public class SearchPaper extends UserSupport {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-			    secondauthor = new ArrayList<>();
-			    keywords2 = new ArrayList<>();
+
 				Paper temp = new Paper();
+
 				temp.setPaperID(rs.getString(1));
 				temp.setTitle(rs.getString(2));
 				temp.setAuthor(rs.getString(3));
@@ -63,17 +61,7 @@ public class SearchPaper extends UserSupport {
 				papernum++;
                 if(rs.getString(4)!=null)
                 {
-                secondauthorid=Translate(rs.getString(4));
-                for(int i=0;i<secondauthorid.length;i++)
-                {
-                    if(secondauthorid[i]!=null)
-                    {
-                        secondauthor.add(secondauthorid[i]);  
-                    }
-                    System.out.println(secondauthorid[i]);
-                }
-               
-                context.put("secondauthorid", secondauthorid);
+                	temp.setSecondauthor2(Arrays.asList(rs.getString(4).trim().split(",")));
                 }
                 
                 else
@@ -83,25 +71,10 @@ public class SearchPaper extends UserSupport {
                 //second author end
                 if(rs.getString(9)!=null)
                 {
-                keywords1 = Translate(rs.getString(9));
-                for(int i=0;i<keywords1.length;i++)
-                {
-                    if(keywords1[i]!=null)
-                    {
-                        keywords2.add(keywords1[i]);  
-                    }
-                    System.out.println(keywords1[i]);
+                	temp.setKeyword2(Arrays.asList(rs.getString(9).trim().split(",")));
                 }
-               
-                session.setAttribute("keywords2", keywords2);
-                }
-                
-                else
-                {
-                    session.setAttribute("keywords2", "");
-                }
-                //keywords end
-                System.out.println("After Tanslate!!!");
+          
+
 				result.add(temp);
 			}
 			context.put("papernum", papernum);
@@ -249,26 +222,13 @@ public class SearchPaper extends UserSupport {
     public void setPapernumber(int papernum) {
         this.papernum = papernum;
     }
-   
 	public List<Paper> getResult() {
 		return result;
 	}
-
 	public void setResult(List<Paper> result) {
 		this.result = result;
 	}
-	   public List<String> getSecondauthor() {
-	       return  secondauthor;
-	    }
-	   
-	    public void setSecondauthor(List<String> secondauthor) {
-	       this.secondauthor = secondauthor;
-	    }
-	      public List<String> getKeywords2() {
-	           return  keywords2;
-	        }
-	       
-	        public void setKeywords2(List<String> keywords2) {
-	           this.keywords2 = keywords2;
-	        }
+
+   
+
 }

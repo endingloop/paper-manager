@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Paper {
 	private String paperID;
 	private String author;
@@ -62,4 +64,18 @@ public class Paper {
 	public String toString() {
 		return author + "的论文" + title;
 	}
+	public List<String> getSecondauthor2() {
+		return secondauthor2;
+	}
+	public void setSecondauthor2(List<String> secondauthor2) {
+		this.secondauthor2 = secondauthor2;
+	}
+	public List<String> getKeyword2() {
+		return keyword2;
+	}
+	public void setKeyword2(List<String> keyword2) {
+		this.keyword2 = keyword2;
+	}
+	private List<String> secondauthor2;
+	private List<String> keyword2;
 }
