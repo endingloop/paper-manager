@@ -27,7 +27,7 @@ public class SearchPaper extends UserSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1234L;
 	private String keyword;
 	private List<Paper> result;
 	private int selectchoice;
@@ -138,7 +138,8 @@ public class SearchPaper extends UserSupport {
                    sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
                    break;
          case 3:
-                   sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
+                   sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "' "
+                   		+ "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]'";
                    break;
          case 4:
                    sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";

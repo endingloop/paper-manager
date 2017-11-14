@@ -195,7 +195,7 @@ public class AddPaper extends UserSupport {
 	 * 初始化版本 增加了文件上传功能
 	 * 优化代码结构
 	 */
-	private static final long serialVersionUID = 1322L;
+	private static final long serialVersionUID = 122L;
 	private String destPath;
 	private Paper paperBean;
 
@@ -211,7 +211,7 @@ public class AddPaper extends UserSupport {
 	@Override
 	public String execute() throws Exception {
 		/* Copy file to a safe location */
-	    System.out.println("Here!!---------------" + isOriginAuthor);
+	    System.out.println("Here!!---------------" + paperBean.getSecondauthor());
 	    System.out.println(getUser().getUsername());
 	    System.out.println(getUser().getPassword());
 		destPath = ServletActionContext.getServletContext().getRealPath("/upload");

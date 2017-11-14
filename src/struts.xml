@@ -39,6 +39,7 @@
 		</action>
 		<action name="addend" method="endadd" class="action.PaperAction">
 			<result name="success">/user-papers.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
@@ -48,15 +49,19 @@
 
 		<action name="admin" method="execute" class="action.Admin">
 			<result name="success">/admin.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="admin_pass" method="pass" class="action.Admin">
 			<result name="success">/admin.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="admin_notpass" method="delete" class="action.PaperAction">
-			<result name="success" type="redirectAction">admin_manage</result>
+			<result name="success" type="redirectAction">admin</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="Logout" method="execute" class="action.Logout">
 			<result type="redirectAction">index</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="Registration_*" method="{1}" class="action.Registration">
 			<result name="input">/Registration.jsp</result>
@@ -65,12 +70,15 @@
 
 		<action name="Paper_delete" method="delete" class="action.PaperAction">
 			<result name="success">/user-papers.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="update" method="execute" class="action.update">
 			<result name="success">/Paper.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="updatesuccess" method="updateSubmit" class="action.update" >
 			<result name="success">/user-papers.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="addpaper" class="action.AddPaper" method="input">
 			<result name="input">/add-paper-input.jsp</result>
@@ -79,6 +87,7 @@
 
 		<action name="regpaper" class="action.AddPaper" method="execute">
 			<result name="success">/add-paper-result.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
