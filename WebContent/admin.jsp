@@ -25,9 +25,8 @@
   
   <div id="content2_top" >
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="<s:url action='addend' />">我的论文</a></li>
-  <li role="presentation"><a href="add-paper-input.jsp">上传论文</a></li>
-  <li role="presentation"><a href="workload.jsp">查看工作量</a></li>
+  <li role="presentation" class="active"><a href="<s:url action='addend' />">待审核论文</a></li>
+
   </ul>
   </div>
 <br>
@@ -58,12 +57,12 @@
                     <a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a>
                 </td>
                 <td >
-
-                    <a href="<s:url action="Paper_delete"><s:param name="paperID" value="paperID"/></s:url>">删除 </a>
-                    &nbsp;
-                    <a href="<s:url action="update"><s:param name="paperID" value="paperID"/></s:url>">修改</a>
-                     &nbsp;
                      <a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a>
+					&nbsp;
+                    <a href="<s:url action="admin_pass"><s:param name="paperID" value="paperID"/></s:url>">通过 </a>
+                    &nbsp;
+                    <a href="<s:url action="admin_notpass"><s:param name="paperID" value="paperID"/></s:url>">不通过</a>
+                     
                 </td>
             </tr>
         </s:iterator>

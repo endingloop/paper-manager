@@ -9,6 +9,8 @@ public class Login extends UserSupport{
 		User user = findUser(getUsername(), getPassword());
 		if(user != null) {
 			setUser(user);
+			if(getUsername().equals("admin"))
+				return "admin";
 			return SUCCESS;
 		}
 		else {

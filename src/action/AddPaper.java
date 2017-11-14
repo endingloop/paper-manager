@@ -21,6 +21,9 @@ public class AddPaper extends UserSupport {
 	public String second;
 	public String third;
 	public String dates;
+	boolean isOriginAuthor;
+
+
 
 	public String keyword1;
 	public  String keyword2;
@@ -142,7 +145,7 @@ public class AddPaper extends UserSupport {
 	@Override
 	public String execute() throws Exception {
 		/* Copy file to a safe location */
-	    System.out.println("Here!!");
+	    System.out.println("Here!!---------------" + isOriginAuthor);
 	    System.out.println(getUser().getUsername());
 	    System.out.println(getUser().getPassword());
 		destPath = ServletActionContext.getServletContext().getRealPath("/upload");
@@ -263,7 +266,8 @@ public class AddPaper extends UserSupport {
 		int num=findSortID(getThird());
 		
 
-		String sql = "insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE,level) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = isOriginAuthor() ? "insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE,level,Status) values(?,?,?,?,?,?,?,?,?,?,1)"
+				:"insert into paper (PaperID,FirstAuthorID,SecondAuthorID,Title,Keywords,Date,JournalID,SortID,FILE,level) values(?,?,?,?,?,?,?,?,?,?)";
 		collectauthor(paper.getAuthor());
 		PreparedStatement pstmt;
 		
@@ -355,5 +359,12 @@ public class AddPaper extends UserSupport {
 
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
+	}
+	public boolean isOriginAuthor() {
+		return isOriginAuthor;
+	}
+
+	public void setOriginAuthor(boolean isOriginAuthor) {
+		this.isOriginAuthor = isOriginAuthor;
 	}
 }

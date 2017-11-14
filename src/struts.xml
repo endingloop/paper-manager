@@ -42,14 +42,25 @@
 		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
+			<result name="admin" type="redirectAction">admin</result>
 			<result>/user-papers.jsp</result>
+		</action>
+
+		<action name="admin" method="execute" class="action.Admin">
+			<result name="success">/admin.jsp</result>
+		</action>
+		<action name="admin_pass" method="pass" class="action.Admin">
+			<result name="success">/admin.jsp</result>
+		</action>
+		<action name="admin_notpass" method="delete" class="action.PaperAction">
+			<result name="success" type="redirectAction">admin_manage</result>
 		</action>
 		<action name="Logout" method="execute" class="action.Logout">
 			<result type="redirectAction">index</result>
 		</action>
 		<action name="Registration_*" method="{1}" class="action.Registration">
 			<result name="input">/Registration.jsp</result>
-			<result type="redirectAction">user-papers.jsp</result>
+			<result>user-papers.jsp</result>
 		</action>
 
 		<action name="Paper_delete" method="delete" class="action.PaperAction">

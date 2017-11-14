@@ -24,8 +24,8 @@
  <div class="content2">
    <div id="content2_top" >
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation"><a href="user-papers.jsp">我的论文</a></li>
-  <li role="presentation" class="active"><a href="add-paper-input.jsp">上传论文</a></li>
+  <li role="presentation"><a href="<s:url action="addend" />">我的论文</a></li>
+  <li role="presentation" class="active"><a href="<s:url action="addpaper" />">上传论文</a></li>
   <li role="presentation"><a href="workload.jsp">查看工作量</a></li>
   </ul>
   </div>
@@ -99,11 +99,15 @@
             <OPTION VALUE="15">公开发表</OPTION>
             <OPTION VALUE="10">普通论文</OPTION>  
         </select>
-        </div>
-        <br>
-        <br>
-        <br>
         <div id="parte">
+			<span> 论文是否首次发表:  </span><s:checkbox name="originAuthor" />
+		</div>
+        </div>
+
+		<br>
+        <br>
+        <br>
+        <div id="partf">
          <s:submit class="btn btn-default"/>
 	    </div>
 	<hr />
