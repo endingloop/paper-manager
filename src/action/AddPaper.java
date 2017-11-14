@@ -76,56 +76,122 @@ public class AddPaper extends UserSupport {
 	    public void setThird(String third) {
 	        this.third = third;
 	    }
-	    public void keyword1(String keyword1) {
-	        this.keyword1 = keyword1;
-	    }
-	       public String keyword1() {
-	            return keyword1;
-	        }
-	       public void keyword2(String keyword2) {
-	           this.keyword2 = keyword2;
-	       }
-	          public String keyword2() {
-	               return keyword2;
-	           }
-	          public void keyword3(String keyword3) {
-	              this.keyword3 = keyword3;
-	          }
-	             public String keyword3() {
-	                  return keyword3;
-	              }
-	             public void author1(String author1) {
-	                  this.author1 = author1;
-	              }
-	                 public String author1() {
-	                      return author1;
-	                  }
-	                 public void author2(String author2) {
-	                      this.author2 = author2;
-	                  }
-	                     public String author2() {
-	                          return author2;
-	                      }
-	                     public void author3(String author3) {
-	                         this.author3 = author3;
-	                     }
-	                        public String author3() {
-	                             return author3;
-	                         }
-	                        public void author4(String author4) {
-	                            this.author4 = author4;
-	                        }
-	                           public String author4() {
-	                                return author4;
-	                            }
-	                           public void author5(String author5) {
-	                               this.author5 = author5;
-	                           }
-	                              public String author5() {
-	                                   return author5;
-	                               }
+
 
 	/**
+         * @return the keyword1
+         */
+        public String getKeyword1() {
+            return keyword1;
+        }
+
+        /**
+         * @param keyword1 the keyword1 to set
+         */
+        public void setKeyword1(String keyword1) {
+            this.keyword1 = keyword1;
+        }
+
+        /**
+         * @return the keyword2
+         */
+        public String getKeyword2() {
+            return keyword2;
+        }
+
+        /**
+         * @param keyword2 the keyword2 to set
+         */
+        public void setKeyword2(String keyword2) {
+            this.keyword2 = keyword2;
+        }
+
+        /**
+         * @return the keyword3
+         */
+        public String getKeyword3() {
+            return keyword3;
+        }
+
+        /**
+         * @param keyword3 the keyword3 to set
+         */
+        public void setKeyword3(String keyword3) {
+            this.keyword3 = keyword3;
+        }
+
+        /**
+         * @return the author1
+         */
+        public String getAuthor1() {
+            return author1;
+        }
+
+        /**
+         * @param author1 the author1 to set
+         */
+        public void setAuthor1(String author1) {
+            this.author1 = author1;
+        }
+
+        /**
+         * @return the author2
+         */
+        public String getAuthor2() {
+            return author2;
+        }
+
+        /**
+         * @param author2 the author2 to set
+         */
+        public void setAuthor2(String author2) {
+            this.author2 = author2;
+        }
+
+        /**
+         * @return the author3
+         */
+        public String getAuthor3() {
+            return author3;
+        }
+
+        /**
+         * @param author3 the author3 to set
+         */
+        public void setAuthor3(String author3) {
+            this.author3 = author3;
+        }
+
+        /**
+         * @return the author4
+         */
+        public String getAuthor4() {
+            return author4;
+        }
+
+        /**
+         * @param author4 the author4 to set
+         */
+        public void setAuthor4(String author4) {
+            this.author4 = author4;
+        }
+
+        /**
+         * @return the author5
+         */
+        public String getAuthor5() {
+            return author5;
+        }
+
+        /**
+         * @param author5 the author5 to set
+         */
+        public void setAuthor5(String author5) {
+            this.author5 = author5;
+        }
+
+
+    /**
 	 * 初始化版本 增加了文件上传功能
 	 * 优化代码结构
 	 */
@@ -283,12 +349,6 @@ public class AddPaper extends UserSupport {
 			pstmt.setLong(8,num);
 			pstmt.setString(9, fileFileName);
 			pstmt.setString(10, getLevel());
-			
-
-		
-		
-
-
 			i = pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();

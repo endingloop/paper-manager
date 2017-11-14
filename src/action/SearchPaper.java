@@ -73,12 +73,12 @@ public class SearchPaper extends UserSupport {
                     System.out.println(secondauthorid[i]);
                 }
                
-                session.setAttribute("secondauthor", secondauthor);
+                context.put("secondauthorid", secondauthorid);
                 }
                 
                 else
                 {
-                    context.put("secondauthor", "");
+                    context.put("secondauthorid", "");
                 }
                 //second author end
                 if(rs.getString(9)!=null)
@@ -98,7 +98,7 @@ public class SearchPaper extends UserSupport {
                 
                 else
                 {
-                    context.put("keywords2", "");
+                    session.setAttribute("keywords2", "");
                 }
                 //keywords end
                 System.out.println("After Tanslate!!!");
@@ -157,7 +157,7 @@ public class SearchPaper extends UserSupport {
        return SUCCESS;
 	    
 	}
-   public String searchPaperID() {
+   public String showDetail() {
             System.out.println("Searching PaperID!!");
 	        String sql = "SELECT * FROM paper WHERE PaperID= '" + keyword + "'";
 	        querySql(sql);
@@ -166,7 +166,7 @@ public class SearchPaper extends UserSupport {
 	        }
 	        return SUCCESS;
 	        }
-	public String searchTitle() {
+	public String searcTitle() {
 		String sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
 		querySql(sql);
 		for(Paper t:result) {
