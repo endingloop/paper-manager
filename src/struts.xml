@@ -55,8 +55,8 @@
 			<result name="success">/admin.jsp</result>
 			<interceptor-ref name="user" />
 		</action>
-		<action name="admin_notpass" method="delete" class="action.PaperAction">
-			<result name="success" type="redirectAction">admin</result>
+		<action name="admin_notpass" method="notpass" class="action.Admin">
+			<result name="success">/admin.jsp</result>
 			<interceptor-ref name="user" />
 		</action>
 		<action name="Logout" method="execute" class="action.Logout">
@@ -116,6 +116,11 @@
 		</action>
 		<action name="workload" class="action.workloadshow" method="workload">
 			<result name="workload">/workload.jsp</result>
+		</action>
+		<action name="requestchangshi" class="action.changshidongtai" method="execute">
+		<result name="success">/add-paper-result.jsp</result>
+		<interceptor-ref name="user" />
+		
 		</action>
 
 	</package>

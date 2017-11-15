@@ -14,7 +14,7 @@ public class PaperAction extends UserSupport {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 18098L;
 	public String find() {
 
         Paper paper = findPaper();

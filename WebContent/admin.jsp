@@ -21,12 +21,13 @@
  <a href="<s:url action='addend' />" id="left">用户</a>
  </header>
   <hr>
-  <div class="content2" >
+   <div class="content2" >
   
   <div id="content2_top" >
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="<s:url action='addend' />">待审核论文</a></li>
-
+  <li role="presentation" class="active"><a href="#">待审核的文章</a></li>
+  <li role="presentation"><a href="#">已经审核的文章</a></li>
+  <li role="presentation"><a href="#">用户管理</a></li>
   </ul>
   </div>
 <br>
@@ -48,10 +49,10 @@
                     <s:property value="paperID"/>
                 </td>
                 <td >
-                    <a href="searchPaperID.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a>
+                    <a href="showDetail.action?keyword=<s:property value="paperID"/>" ><s:property value="title" /></a>
                 </td>
                 <td >
-                    <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
+                    <a href="searchAuthor.action?keyword=<s:property/>"><s:property value="author"/></a>
                 </td>
                 <td >
                     <a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a>

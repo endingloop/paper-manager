@@ -131,11 +131,17 @@ public List<score>  sumscore() {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
-				if(rs.getString(3)!=null) {
-					num=(int) (num+rs.getInt(2)*0.5);
+				String[] b=rs.getString(3).trim().split(",");
+				List<String> listA = Arrays.asList(b);
+				String tempstrr=listA.toString();
+				
+				if(tempstrr.length()<=2) {
 					
-				}else {
 					num=num+rs.getInt(2);
+				}else {
+					
+					num=num+(int)(rs.getInt(2)*0.5);
+					System.out.println("--------有第二合作者"+tempstrr);
 				}
 					System.out.println(num);
 			}

@@ -23,7 +23,12 @@ import service.ConnectSQL;
 
 public class UserSupport extends ActionSupport implements SessionAware {
 	
-    public String cancel() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 109L;
+
+	public String cancel() {
         return Constants.CANCEL;
     }
     // ---- SessionAware ----
@@ -163,23 +168,26 @@ public class UserSupport extends ActionSupport implements SessionAware {
 		String[] result = null;
 		List<Paper> papers = new ArrayList<>();
 		Connection conn = ConnectSQL.getConn();
-		String sql = "select password, papers from user where username = '" + username + "'";
+		String sql = "select password, papers from user where username = '" + username + "' and password='"+password+"';";
 		PreparedStatement pstmt;
 	    try {
 	        pstmt = (PreparedStatement)conn.prepareStatement(sql);
 	        ResultSet rs = pstmt.executeQuery();
 	        if(rs.next()) {
-	        	if(password.equals(rs.getString(1))) {
+	        	
 	        		result = rs.getString(2).split(",");
-	        	}
-	        	else {
-	        		return null;
-	        	}
+	        	
+	        	
+	        }else {
+	        	
+	        	return null;
 	        }
 	        StringBuffer sql2 = new StringBuffer("SELECT * FROM paper WHERE PaperID IN (");
-	        for(String s: result) {
-	        	sql2.append("'" + s + "',");
-	        }
+	        
+	        	for(String s: result) {
+		        	sql2.append("'" + s + "',");
+		        }
+	        
 	        sql2.setLength(sql2.length()-1);
 	        sql2.append(")");
 	        System.out.println(sql2);

@@ -15,9 +15,9 @@
 <body>
 <div class="container">
  <header>
- <a href="index.jsp" id="index">论文管理器</a>
- <a href="#" id="right">登录</a>
- <a href="#" id="left">注册</a>
+<a href="<s:url action="index" />" id="index">论文管理器</a>
+<a href="<s:url action="Login_input" />" id="right">登录</a>
+<a href="<s:url action="Registration_input" />" id="left">注册</a>
  </header>
   <hr>
   <div class="content2">
@@ -51,7 +51,7 @@
          </s:iterator> 
       </div>
       <div class="download">
-        <a href="#"><button class="btn btn-default" type="submit">下载论文</button></a>
+        <a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>"><button class="btn btn-default" type="submit">下载论文</button></a>
         </div>
       
     

@@ -53,4 +53,24 @@ public class Admin extends UserSupport {
 		}
 		return execute();
 	}
+	public String notpass() throws SQLException {
+		Connection conn=ConnectSQL.getConn();
+		String sql = "update paper set Status=2 where paperID='"+ getPaperID() + "'";
+		PreparedStatement pstmt;
+		
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			 pstmt.executeUpdate();
+			 pstmt.close();
+			conn.close();
+			 System.out.println("update paper table success!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			return execute();
+		
+	}
+	
 }
