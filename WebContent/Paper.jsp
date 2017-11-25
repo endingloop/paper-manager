@@ -17,9 +17,9 @@
 <body>
 	<div class="container">
 		<header>
-			<a href="index.jsp" id="index">论文管理器</a> 
-			<a href="<s:url action="Logout" />" id="right">注销</a> 
-			<a href="#" id="left">用户</a>
+			<a href="index.jsp" id="index">论文管理器</a> <a
+				href="<s:url action="Logout" />" id="right">注销</a> <a href="#"
+				id="left">用户</a>
 		</header>
 		<hr>
 		<div class="content2">
@@ -28,7 +28,13 @@
 				<s:hidden name="task" />
 				<div id="parta">
 					<h3>请输入论文的相应信息:</h3>
-					选择文件: <input type="file" name="file">
+					<s:if test="task == 'Create'"> 
+					选择文件：<input type="file" name="file">
+					</s:if>
+					<s:if test="task == 'Edit'"> 
+					已选择文件：<s:property value="paper.filename" /> <br/>
+					选择新文件：<input type="file" name="file">
+					</s:if>
 				</div>
 				<div id="partb">
 					<s:textfield name="paper.author" label="第一作者" />
@@ -40,8 +46,8 @@
 				</div>
 
 				<div id="partc">
-					<span>请选择论文分类：</span> <br> 
-					<SELECT NAME="first" onChange="getSecond()" class="select">
+					<span>请选择论文分类：</span> <br> <SELECT NAME="first"
+						onChange="getSecond()" class="select">
 						<OPTION value="0">第一级目录</OPTION>
 						<OPTION VALUE="1">基础学科</OPTION>
 						<OPTION VALUE="2">工程科技</OPTION>
@@ -51,18 +57,17 @@
 						<OPTION VALUE="6">社会科学</OPTION>
 						<OPTION VALUE="7">信息科学</OPTION>
 						<OPTION VALUE="8">经济管理科学</OPTION>
-					</SELECT> 
-					<SELECT NAME="second" onChange="getThird()" class="select">
+					</SELECT> <SELECT NAME="second" onChange="getThird()" class="select">
 						<OPTION value="0">第二级目录</OPTION>
-					</SELECT> 
-					<select name="third" class="select">
+					</SELECT> <select name="third" class="select">
 						<option value="0">第三级目录</option>
 					</select>
 				</div>
 				<br>
 				<div id="partd">
-					<span>请选择发表日期：</span>
-					<input name="paper.date" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+					<span>请选择发表日期：</span> <input name="paper.date"
+						value="<s:property  value="paper.date"/>" style="width: 120px;"
+						onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 				</div>
 				<div id="parte">
 					<select name="paper.level" class="select">
