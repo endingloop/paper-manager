@@ -103,12 +103,14 @@ public class PaperSupport extends UserSupport {
 	public void savePaper() throws IOException, SQLException {
 		Paper paper = getPaper();
 		paper.setSort(Dao.findSortID(getThird()));
-		paper.setFilename(fileFileName);
-		// 保存论文文件
-		String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
-		System.out.println(destPath);
-		File destFile = new File(destPath, paper.getPaperID());
-		FileUtils.copyFile(file, destFile);
+		if (file != null) {
+			paper.setFilename(fileFileName);
+			// 保存论文文件
+			String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
+			System.out.println(destPath);
+			File destFile = new File(destPath, paper.getPaperID());
+			FileUtils.copyFile(file, destFile);
+		}
 		// 保存到数据库
 		Dao.insertPaper(paper);
 	}
