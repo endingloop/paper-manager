@@ -96,13 +96,14 @@ public class PaperSupport extends UserSupport {
 	}
 
 	public void CreatePaper() {
-		getPaper().setPaperID(Sequence.nextId()); // 指定ID
+		setPaperID(Sequence.nextId()); // 指定新ID
 		getUser().getPapers().add(getPaper()); // 添加到User
 	}
 
 	public void savePaper() throws IOException, SQLException {
 		Paper paper = getPaper();
 		paper.setSort(Dao.findSortID(getThird()));
+		paper.setPaperID(getPaperID());
 		if (file != null) {
 			paper.setFilename(fileFileName);
 			// 保存论文文件

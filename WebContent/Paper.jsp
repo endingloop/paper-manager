@@ -26,6 +26,7 @@
 			<s:form name="form1" action="Paper_save" method="post"
 				enctype="multipart/form-data">
 				<s:hidden name="task" />
+				<s:hidden name="paperID" />
 				<div id="parta">
 					<h3>请输入论文的相应信息:</h3>
 					<s:if test="task == 'Create'"> 
