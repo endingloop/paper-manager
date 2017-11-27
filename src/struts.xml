@@ -44,15 +44,16 @@
 		</action>
 		<action name="Logout" class="action.Logout">
 			<result type="redirectAction">index</result>
+			<interceptor-ref name="user" />
 		</action>
 		<action name="Registration_*" method="{1}" class="action.Registration">
 			<result name="input">/Registration.jsp</result>
 			<result>/MainMenu.jsp</result>
 		</action>
-
 		<action name="Paper_*" method="{1}" class="action.PaperAction">
 			<result name="input">/Paper.jsp</result>
 			<result type="redirectAction">Login</result>
+			<interceptor-ref name="user" />
 		</action>
 
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
