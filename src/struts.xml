@@ -52,7 +52,7 @@
 
 		<action name="Paper_*" method="{1}" class="action.PaperAction">
 			<result name="input">/Paper.jsp</result>
-			<result>/MainMenu.jsp</result>
+			<result type="redirectAction">Login</result>
 		</action>
 
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
