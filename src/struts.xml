@@ -59,9 +59,7 @@
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
 		</action>
-		<action name="search*" class="action.SearchPaper" method="search{1}">
-			<result name="success">/search-result.jsp</result>
-		</action>
+
 		<action name="fileDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentDisposition">attachment;filename="${fileName}"</param>
