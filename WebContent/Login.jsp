@@ -10,17 +10,19 @@
 <body>
 
 <s:form action="Login" validate="true">
-    <s:textfield key="username" />
+    <s:textfield key="username" label="账号"/>
 
-    <s:password key="password" showPassword="true"/>
+    <s:password key="password" showPassword="true" label="密码"/>
 
-    <s:submit key="button.logon"/>
+    <s:submit key="button.logon" label="登陆"/>
 
-    <s:reset key="button.reset"/>
+    <s:reset key="button.reset" label="重置"/>
 
     <s:submit action="Login_cancel" key="button.cancel"
                 onclick="form.onsubmit=null"/>
 </s:form>
+<span>Already have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
 
+<span style="color:red;"><s:actionerror/></span>
 </body>
 </html>

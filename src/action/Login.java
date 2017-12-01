@@ -20,6 +20,7 @@ public class Login extends UserSupport {
 			setUser(user);
 			return SUCCESS;
 		} else {
+			addActionError("用户不存在不存在，或者密码不正确!请重新输入");//添加actionerror 
 			return INPUT;
 		}
 	}

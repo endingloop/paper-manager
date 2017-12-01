@@ -40,9 +40,11 @@ public class Dao {
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
+		
 		if (rs.next()) {
 			password = rs.getString(1);
 			result = rs.getString(2);
+			System.out.println("find user"+username);
 			if (result != null  && !result.isEmpty()) {
 				for (String s : result.split(",")) {
 					papers.add(findPaper(s));
@@ -62,6 +64,7 @@ public class Dao {
 		pstmt.setString(2, user.getPassword());
 		pstmt.setString(3, user.getPaperIdList());
 		pstmt.executeUpdate();
+		System.out.println("register successful");
 		pstmt.close();
 		conn.close();
 	}
@@ -88,6 +91,7 @@ public class Dao {
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
 		}
+		System.out.println("find papr by paperid successful --Dao");
 		return temp;
 	}
 
@@ -109,6 +113,7 @@ public class Dao {
 		pstmt.setString(11, paper.getFilename());
 		pstmt.setInt(12, paper.getLevel());
 		int result = pstmt.executeUpdate();
+		System.out.print("add paper successfully!");
 		pstmt.close();
 		conn.close();
 		return result;
@@ -120,6 +125,7 @@ public class Dao {
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		int result = pstmt.executeUpdate();
+		System.out.println("remove paper successfully！");
 		pstmt.close();
 		conn.close();
 		return result;
