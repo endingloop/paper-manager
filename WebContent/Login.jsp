@@ -9,10 +9,10 @@
 
 <body>
 
-<s:form action="Login" validate="true">
-    <s:textfield key="username" label="账号"/>
+<s:form action="Login" validate="true" onsubmit="return formCheck();" name="login" >
+    <s:textfield key="username" label="账号" name="username" type="text" />
 
-    <s:password key="password" showPassword="true" label="密码"/>
+    <s:password key="password" showPassword="true" label="密码" name="password" type="password"/>
 
     <s:submit key="button.logon" label="登陆"/>
 
@@ -21,8 +21,31 @@
     <s:submit action="Login_cancel" key="button.cancel"
                 onclick="form.onsubmit=null"/>
 </s:form>
+<span id="form" style="color:red;"></span>
+<br></br>
 <span>Already have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
+ <span style="color:red;"><s:actionerror/></span>
+<script language="javascript">
+function isEmpty(str) {
+    return str === null || str === '';
+}
+function formCheck() {
+    var userId = document.forms['login']['username'].value;
+    var password = document.forms['login']['password'].value;
+    if (isEmpty(userId)) {
+        document.getElementById('form').setAttribute('class', 'list-group-item list-group-item-danger');
+        document.getElementById('form').innerHTML = '*请填写账号';
+        return false;
+    }
+    if (isEmpty(password)) {
+        document.getElementById('form').setAttribute('class', 'list-group-item list-group-item-danger');
+        document.getElementById('form').innerHTML = '*请填写密码';
+        return false;
+    }
+}
+ 
+</script>
 
-<span style="color:red;"><s:actionerror/></span>
+
 </body>
 </html>

@@ -14,7 +14,16 @@ public class Login extends UserSupport {
 			setUser(Dao.findUser(getUser().getUsername())); //不加这一句，页面不刷新 :(
 			return SUCCESS;
 		}
-
+	/**	if(Isemptyuser(getUsername())==null) {
+			addActionError("账号不能为空!请重新输入");//添加actionerror
+			System.out.println("用户名为空");
+    		return INPUT;
+		}
+		if(Isemptypwd(getPassword())==null) {
+			addActionError("密码不能为空!请重新输入");//添加actionerror
+			System.out.println("pwd为空");
+    		return INPUT;
+		}*/
 		User user = findUser(getUsername(), getPassword());
 		if (user != null) {
 			setUser(user);

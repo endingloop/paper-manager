@@ -37,7 +37,9 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-
+		<action name="shuaxin">
+		<result>/Login.jsp</result>
+		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
 			<result>/MainMenu.jsp</result>

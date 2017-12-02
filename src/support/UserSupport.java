@@ -75,8 +75,33 @@ public class UserSupport extends ActionSupport implements SessionAware {
     public void saveUser() throws SQLException {
     	Dao.inputUser(getUser());
     }
-    
+  /**  public String Isemptyuser(String username) {
+    	if(username!=null) {
+			return SUCCESS;
+    	}else {
+    		addActionError("账号不能为空!请重新输入");//添加actionerror 
+    		return null;
+    	}
+    	
+    }
+    public String Isemptypwd(String password) {
+    	if(password!=null) {
+			return SUCCESS;
+    	}else {
+    		addActionError("密码不能为空!请重新输入");//添加actionerror 
+    		return null;
+    	}
+    	
+    }*/
     public User findUser(String username, String password) throws SQLException {
+    	if(username==null) {
+    		addActionError("账号不能为空!请重新输入");//添加actionerror 
+			return null;
+    	}
+    	if(password==null) {
+    		addActionError("密码不能为空！请重新输入");//添加actionerror 
+			return null;
+    	}
 		User user = Dao.findUser(username);
 		if(user != null && user.getPassword().equals(password)) {
 			return user;
