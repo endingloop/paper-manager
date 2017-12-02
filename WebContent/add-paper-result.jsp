@@ -18,7 +18,7 @@
   <body>
   <div class="container">
    <header>
- <a href="index.jsp" id="index">论文管理器</a>
+ <a href="<s:url action='index' />">论文管理器</a>
  <a href="#" id="right">注销</a>
  <a href="#" id="left">用户</a>
  </header>
