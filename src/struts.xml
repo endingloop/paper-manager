@@ -34,7 +34,7 @@
 				result="error" />
 		</global-exception-mappings>
 
-		<action name="index">
+		<action name="index"  method="execute" class="action.index">
 			<result>/index.jsp</result>
 		</action>
 		<action name="shuaxin">

@@ -34,7 +34,7 @@
 				<h3>
 					<i class="fa fa-lightbulb-o fa-5x"></i>
 				</h3>
-				<a href="index.jsp" class="btn btn-primary">GO TO HOME PAGE</a> <br />
+				<a href="<s:url action='index'/>"  class="btn btn-primary">GO TO HOME PAGE</a> <br />
 			</div>
 		</div>
 

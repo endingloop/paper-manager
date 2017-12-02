@@ -22,7 +22,7 @@ public class SearchPaper extends ActionSupport {
 	private String keyword;
 	private List<Paper> result;
 	private int papernum;
-
+	
 	public String execute() {
 		return SUCCESS;
 	}
