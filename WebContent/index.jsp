@@ -49,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <div class="container">
 		 <div class="header">	 
 			 <div class="logo wow fadeInLeft" data-wow-delay="0.5s">
-			 <a href="index.html" style="font-size:2em; color:grey;">论文管理器</a>
+			 <a href="<s:url action="index" />" style="font-size:2em; color:grey;">论文管理器</a>
 			 </div>	
 			 <div class="top-menu">
 				 <span class="menu"></span> 
