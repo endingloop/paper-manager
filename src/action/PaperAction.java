@@ -30,6 +30,8 @@ public class PaperAction extends PaperSupport {
 			savePaper();
 		}
 		saveUser();
+		
+
 		return SUCCESS;
 	}
 	

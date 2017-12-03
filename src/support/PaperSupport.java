@@ -13,7 +13,7 @@ import service.Dao;
 import service.Sequence;
 
 public class PaperSupport extends UserSupport {
-	static private Logger logger = Logger.getLogger(UserSupport.class);
+	static private Logger logger = Logger.getLogger(PaperSupport.class);
 
 	// -----------前端传过来的论文信息----------
 	//分类信息
@@ -101,6 +101,8 @@ public class PaperSupport extends UserSupport {
 	public void CreatePaper() {
 		setPaperID(Sequence.nextId()); // 指定新ID
 		getUser().getPapers().add(getPaper()); // 添加到User
+		logger.info(getPaperID());
+		
 	}
 
 	public void savePaper() throws IOException, SQLException {
@@ -117,5 +119,7 @@ public class PaperSupport extends UserSupport {
 		}
 		// 保存到数据库
 		Dao.insertPaper(paper);
+		
 	}
+	
 }

@@ -11,13 +11,16 @@ import service.Dao;
 import support.UserSupport;
 
 public class Registration extends UserSupport {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public String save() throws SQLException {
 		return execute();
 	}
 	
 	public String execute() throws SQLException {
-		
 		if(Dao.findUser(getUsername()) != null) {
 			addActionError("用户名已存在！");
 			return INPUT;

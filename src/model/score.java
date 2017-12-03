@@ -1,7 +1,23 @@
 package model;
 
 public class score {
-public String userID;
+public int fauthornum;
+public int sauthornum;
+
+
+public int getSauthornum() {
+	return sauthornum;
+}
+public void setSauthornum(int sauthornum) {
+	this.sauthornum = sauthornum;
+}
+public int getFauthornum() {
+	return fauthornum;
+}
+public void setFauthornum(int fauthornum) {
+	this.fauthornum = fauthornum;
+}
+
 public String name;
 public String getName() {
 	return name;
@@ -9,25 +25,20 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-public int score;
-public String getUserID() {
-	return userID;
-}
-public void setUserID(String userID) {
-	this.userID = userID;
-}
-
-public int getScore() {
+public float score;
+public float getScore() {
 	return score;
 }
-public void setScore(int score) {
+public void setScore(float score) {
 	this.score = score;
 }
 public score() {
 }
-public score(String name,String userID,int score) {
-	this.userID = userID;
+public score(String name,float score,int fauthornum,int sauthornum ) {
+	
 	this.score = score;
 	this.name = name;
+	this.sauthornum=sauthornum;
+	this.fauthornum=fauthornum;
 }
 }
