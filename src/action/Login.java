@@ -10,7 +10,8 @@ import support.UserSupport;
 
 public class Login extends UserSupport {
 	static private Logger logger = Logger.getLogger(Dao.class);
-
+	
+	@org.apache.struts2.interceptor.validation.SkipValidation //关闭输入校验，因为我们已经启用了客户端校验
 	public String execute() throws SQLException {
 		if (getUser() != null) {
 			setUser(Dao.findUser(getUser().getUsername())); //不加这一句，页面不刷新 :(

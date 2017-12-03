@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import model.Paper;
@@ -12,6 +13,8 @@ import service.Dao;
 import service.Sequence;
 
 public class PaperSupport extends UserSupport {
+	static private Logger logger = Logger.getLogger(UserSupport.class);
+
 	// -----------前端传过来的论文信息----------
 	//分类信息
 	public String third;
@@ -108,7 +111,7 @@ public class PaperSupport extends UserSupport {
 			paper.setFilename(fileFileName);
 			// 保存论文文件
 			String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
-			System.out.println(destPath);
+			logger.info(destPath + fileFileName);
 			File destFile = new File(destPath, paper.getPaperID());
 			FileUtils.copyFile(file, destFile);
 		}

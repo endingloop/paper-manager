@@ -23,7 +23,7 @@
 </s:form>
 <span id="form" style="color:red;"></span>
 <br></br>
-<span>Already have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
+<span>Don't have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
 
 </body>
 </html>

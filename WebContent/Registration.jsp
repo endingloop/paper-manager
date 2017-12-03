@@ -4,21 +4,20 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-        <title><s:text name="registration.title.create"/></title>
+	<title>用户注册</title>
 </head>
 
-<body onLoad="self.focus();document.Registration_save_username.focus()">
-
+<body>
 	<s:form action="Registration_save" validate="false">
-		<s:textfield key="username" />
-		<s:password key="password" showPassword="true" />
-		<s:password key="password2" />
-
-		<s:submit key="button.save" action="Registration_save" />
-		<s:reset key="button.reset" />
-		<s:submit action="Welcome" key="button.cancel"
-			onclick="form.onsubmit=null" />
+    	<s:textfield name="username" label="账号" type="text" />
+    	<s:password name="password" showPassword="true" label="密码" type="password"/>
+		<s:password name="password2" showPassword="true" label="重复密码" type="password"/>
+		<span style="color:red;"><s:actionerror/></span>
+   		<s:submit value="点击注册"/>
+    	<s:reset value="重置"/>
 	</s:form>
-
+	
+	<br></br>
+	<span>Already have <a href="<s:url action="Login_input" />" id="left">an account?</a> </span>
 </body>
 </html>

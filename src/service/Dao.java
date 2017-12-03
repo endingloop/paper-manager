@@ -68,7 +68,7 @@ public class Dao {
 		pstmt.setString(2, user.getPassword());
 		pstmt.setString(3, user.getPaperIdList());
 		pstmt.executeUpdate();
-		logger.info("register successful");
+		//logger.info("register successful");
 		pstmt.close();
 		conn.close();
 	}
@@ -117,7 +117,7 @@ public class Dao {
 		pstmt.setString(11, paper.getFilename());
 		pstmt.setInt(12, paper.getLevel());
 		int result = pstmt.executeUpdate();
-		System.out.print("add paper successfully!");
+		//logger.info("add paper successfully!");
 		pstmt.close();
 		conn.close();
 		return result;
