@@ -11,8 +11,7 @@
 <link href="css/index-style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Typ" content="text/html;url=action/index.action;charset=utf-8" />
-<!-- <META HTTP-EQUIV="Refresh" CONTENT="0;URL=action/index.action;charset=utf-8 ">-->
+<meta http-equiv="Content-Type" content="text/html;url=action/index.action;charset=utf-8" />
 <meta name="keywords" content="Pixelx  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -44,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <title>Paper Manager System</title>
 </head>
 <body>
+<s:action name="action/index.action" namespace="/"></s:action>
 	<!---->
 <div class="banner">
 	 <div class="container">
