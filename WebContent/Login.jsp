@@ -3,16 +3,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>用户登录</title>
+<head> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 
 <body>
+<div class="page-container">
+ <h1>Sign in</h1>
+<s:form action="Login" validate="true" name="login" theme="simple" >
+    <s:textfield name="username" placeholder="账号" type="text" />
 
-<s:form action="Login" validate="true" name="login" >
-    <s:textfield name="username" label="账号" type="text" />
-
-    <s:password name="password" showPassword="true" label="密码" type="password"/>
+    <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
     
 	<span style="color:red;"><s:actionerror/></span>
 
@@ -24,6 +26,7 @@
 <span id="form" style="color:red;"></span>
 <br></br>
 <span>Don't have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
-
+</div>
+ 
 </body>
 </html>
