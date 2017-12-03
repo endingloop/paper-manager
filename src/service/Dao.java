@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import action.SearchPaper;
 import model.Paper;
 import model.User;
 import model.gradeinfo;
 import support.UserSupport;
 
 public class Dao {
+
 public static List<gradeinfo> inforesult;
 	public List<gradeinfo> getInforesult() {
 	return inforesult;
@@ -23,6 +27,10 @@ public static List<gradeinfo> inforesult;
 public void setInforesult(List<gradeinfo> inforesult) {
 	this.inforesult = inforesult;
 }
+
+
+	
+	static private Logger logger = Logger.getLogger(Dao.class);
 
 	public static Connection getConn() {
 		String driver = "com.mysql.jdbc.Driver";
@@ -55,7 +63,7 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		if (rs.next()) {
 			password = rs.getString(1);
 			result = rs.getString(2);
-			System.out.println("find user"+username);
+			logger.info("find user "+username);
 			if (result != null  && !result.isEmpty()) {
 				for (String s : result.split(",")) {
 					papers.add(findPaper(s));
@@ -75,6 +83,9 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		pstmt.setString(2, user.getPassword());
 		pstmt.setString(3, user.getPaperIdList());
 		pstmt.executeUpdate();
+
+		logger.info("register successful");
+
 		pstmt.close();
 		conn.close();
 	}
@@ -101,7 +112,9 @@ public void setInforesult(List<gradeinfo> inforesult) {
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
 		}
-		
+
+		logger.info("find papr by paperid successful --Dao");
+
 		return temp;
 	}
 
@@ -140,6 +153,9 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		int result = pstmt.executeUpdate();
+
+		logger.info("remove paper successfully！");
+
 		pstmt.close();
 		conn.close();
 		return result;

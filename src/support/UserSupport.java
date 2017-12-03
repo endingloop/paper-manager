@@ -75,9 +75,10 @@ public class UserSupport extends ActionSupport implements SessionAware {
     public void saveUser() throws SQLException {
     	Dao.inputUser(getUser());
     }
-  
+
+
     public User findUser(String username, String password) throws SQLException {
-    	
+
 		User user = Dao.findUser(username);
 		if(user != null && user.getPassword().equals(password)) {
 			return user;

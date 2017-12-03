@@ -37,9 +37,6 @@
 		<action name="index"  method="execute" class="action.index">
 			<result>/index.jsp</result>
 		</action>
-		<action name="shuaxin">
-		<result>/Login.jsp</result>
-		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
 			<result>/MainMenu.jsp</result>
@@ -60,11 +57,9 @@
 			<result type="redirectAction">Login</result>
 			<interceptor-ref name="user" />
 		</action>
-
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
 		</action>
-
 		<action name="fileDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentDisposition">attachment;filename="${fileName}"</param>
