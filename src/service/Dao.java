@@ -8,11 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import action.SearchPaper;
 import model.Paper;
 import model.User;
 
 public class Dao {
-
+	
+	static private Logger logger = Logger.getLogger(Dao.class);
 	public static Connection getConn() {
 		String driver = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://localhost:3306/paper-manager";
@@ -44,7 +48,7 @@ public class Dao {
 		if (rs.next()) {
 			password = rs.getString(1);
 			result = rs.getString(2);
-			System.out.println("find user"+username);
+			logger.info("find user "+username);
 			if (result != null  && !result.isEmpty()) {
 				for (String s : result.split(",")) {
 					papers.add(findPaper(s));
@@ -64,7 +68,7 @@ public class Dao {
 		pstmt.setString(2, user.getPassword());
 		pstmt.setString(3, user.getPaperIdList());
 		pstmt.executeUpdate();
-		System.out.println("register successful");
+		logger.info("register successful");
 		pstmt.close();
 		conn.close();
 	}
@@ -91,7 +95,7 @@ public class Dao {
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
 		}
-		System.out.println("find papr by paperid successful --Dao");
+		logger.info("find papr by paperid successful --Dao");
 		return temp;
 	}
 
@@ -125,7 +129,7 @@ public class Dao {
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		int result = pstmt.executeUpdate();
-		System.out.println("remove paper successfully！");
+		logger.info("remove paper successfully！");
 		pstmt.close();
 		conn.close();
 		return result;
