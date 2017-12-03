@@ -98,6 +98,9 @@ public class PaperSupport extends UserSupport {
 	public void CreatePaper() {
 		setPaperID(Sequence.nextId()); // 指定新ID
 		getUser().getPapers().add(getPaper()); // 添加到User
+		System.out.println("tongbuuser1");
+		System.out.println(getPaperID());
+		
 	}
 
 	public void savePaper() throws IOException, SQLException {
@@ -114,5 +117,7 @@ public class PaperSupport extends UserSupport {
 		}
 		// 保存到数据库
 		Dao.insertPaper(paper);
+		
 	}
+	
 }

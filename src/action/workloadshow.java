@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import model.Paper;
+import model.gradeinfo;
 import model.score;
 import service.Dao;
 import service.Sequence;
@@ -20,6 +21,14 @@ import service.Sequence;
 
 public class workloadshow {
 
+public String author;
+
+public String getAuthor() {
+	return author;
+}
+public void setAuthor(String author) {
+	this.author = author;
+}
 
 public String startdate;
 public String enddate;
@@ -44,6 +53,8 @@ public String getEnddate() {
 public void setEnddate(String enddate) {
 	this.enddate = enddate;
 }
+public List<gradeinfo> list;
+public List<gradeinfo> list1;
 public String cleartablenew() {
 	String sql="DROP table IF EXISTS new;";
 	Connection conn=Dao.getConn();
@@ -63,7 +74,7 @@ public String workload() {
 	cleartablenew();
 	System.out.println(getStartdate());
 	System.out.println(getEnddate());
-	String sql="create table new as select userID,Name,level,SecondAuthorID from paper,user where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and userID=FirstAuthorID;";
+	String sql="create table new as select PaperID, authorname,level,SecondAuthorID from paper,authorlist  where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and authorname =FirstAuthorID;";
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
@@ -75,26 +86,62 @@ public String workload() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-
 	
+
 	return "workload";
 }
+public String authorname;
+public float scoretemp;
+public float getScoretemp() {
+	return scoretemp;
+}
+public void setScoretemp(float scoretemp) {
+	this.scoretemp = scoretemp;
+}
+public String getAuthorname() {
+	return authorname;
+}
+public void setAuthorname(String authorname) {
+	this.authorname = authorname;
+}
+public String showdetail() {
+	System.out.println(getAuthorname());
+	String str=getAuthorname();
+	 list= new ArrayList<>();
+	 list=Dao.findFirstAuthor(str);
+	 list1 =new ArrayList<>();
+	 list1=Dao.findSecondtAuthor(str);
+	 list1.addAll(list);
+	 for(gradeinfo items:list1) {
+		 System.out.println(items.getLevelname()+" "+items.getAuthor()+items.getGotscore()+items.getSecondAuthor());
+	 }
+	 sumscore();
+	return "yes";
+}
 public List<score>  sumscore() {
-	String sql="select userID,Name from user;";
+	String sql=null;
+	if(getAuthor().isEmpty()) {
+		 sql="select authorname from authorlist;";
+	}else {
+		sql="select authorname from authorlist where authorname='"+getAuthor()+"';";
+	}
 	System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	scoreresult=new ArrayList<>();
-	int grade=0;
+	float grade=0;
 	try {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 		ResultSet result = pstmt.executeQuery(sql);
 		while(result.next()) {
 			score tempbean=new score();
-			tempbean.setUserID(result.getString(1));
-			tempbean.setName(result.getString(2));
-			int FirstAuthorScore=findFirstAuthor(result.getString(1));
-			int SecondAuthorScore=findSecondtAuthor(result.getString(2));
+			tempbean.setName(result.getString(1));
+			float FirstAuthorScore=findFirstAuthor(result.getString(1));
+			float SecondAuthorScore=findSecondtAuthor(result.getString(1));
+			int Fnumber=findFAuthor(result.getString(1));
+			int Snumber=findSAuthor(result.getString(1));
+			tempbean.setFauthornum(Fnumber);
+			tempbean.setSauthornum(Snumber);
 			grade=FirstAuthorScore+SecondAuthorScore;
 			tempbean.setScore(grade);
 			scoreresult.add(tempbean);
@@ -106,61 +153,127 @@ public List<score>  sumscore() {
 	}
  for(score t:scoreresult)
  {
-	 System.out.println(t.userID+" "+t.name+" "+t.score);
+	 System.out.println(t.name+" "+t.score);
  }
  	
 	return scoreresult;
 }
- public int findFirstAuthor(String str) {
-	 	int num=0;
-	 	String sql="select * from new where userID='"+str+"'";
-		System.out.println(sql);
-		Connection conn=Dao.getConn();
-		PreparedStatement pstmt;
-		try {
-			pstmt= (PreparedStatement)conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery(sql);
-			while(rs.next()) {
-				if(rs.getString(4)!=null) {
-					num=(int) (num+rs.getInt(3)*0.5);
-					
-				}else {
-					num=num+rs.getInt(3);
-				}
-					System.out.println(num);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+public String workloaddetail(String str) {
+	String sql="SELECT * FROM  paper  WHERE FirstAuthorID='" + str + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'"; 
+	Connection conn=Dao.getConn();
+	PreparedStatement pstmt;
+	try {
+		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery(sql);
+		while(rs.next()) {
+			System.out.println(rs.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return "emmm";
+}
+
+public int findFAuthor(String str) {
+ 	int num=0;
+ 	String sql="select count(*) from new where authorname='"+str+"'";
+	System.out.println(sql);
+	Connection conn=Dao.getConn();
+	PreparedStatement pstmt;
+	try {
+		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery(sql);
+		while(rs.next()) {
+			num=rs.getInt(1);
 		}
 		
-	 return num;
- }
- 
- public int findSecondtAuthor(String str) {
-	 int num=0;
-	 String sql="select * from new where SecondAuthorID like '%"+str+"%';";
-		System.out.println(sql);
-		Connection conn=Dao.getConn();
-		PreparedStatement pstmt;
-		try {
-			pstmt= (PreparedStatement)conn.prepareStatement(sql);
-			ResultSet rs= pstmt.executeQuery(sql);
-			while(rs.next()) {
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println(num+"---------firstauthornum");
+ return num;
+}
+
+public int findSAuthor(String str) {
+int num=0;
+ String sql="select count(*) from new where SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'";
+ System.out.println(sql);
+	Connection conn=Dao.getConn();
+	PreparedStatement pstmt;
+	try {
+		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery(sql);
+		while(rs.next()) {
+			num=rs.getInt(1);
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	System.out.println(num+"---------secondauthornum");
+return num;
+}
+public float findFirstAuthor(String str) {
+ 	float num=0;
+ 	String sql="select * from new where authorname='"+str+"'";
+	System.out.println(sql);
+	Connection conn=Dao.getConn();
+	PreparedStatement pstmt;
+	try {
+		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery(sql);
+		while(rs.next()) {
 			String[] b=rs.getString(4).trim().split(",");
 			List<String> listA = Arrays.asList(b);
-			if(listA.contains(str)) {
-				int amount=b.length;
-				num=num+(int) (rs.getInt(3)*0.5)/amount;
+			String tempstrr=listA.toString();
+			
+			if(tempstrr.length()<=2) {
+				
+				num=num+rs.getFloat(3);
 			}else {
-				num=num+0;
+				
+				num=num+(int)(rs.getFloat(3)*0.5);
+				System.out.println("--------有第二合作者"+tempstrr);
 			}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				System.out.println(num);
 		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
-	 return num;
- }
+ return num;
+}
+
+public float findSecondtAuthor(String str) {
+ float num=0;
+ String sql="select * from new where SecondAuthorID like '%"+str+"%';";
+	System.out.println(sql);
+	Connection conn=Dao.getConn();
+	PreparedStatement pstmt;
+	try {
+		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		ResultSet rs= pstmt.executeQuery(sql);
+		while(rs.next()) {
+		String[] b=rs.getString(4).trim().split(",");
+		List<String> listA = Arrays.asList(b);
+		if(listA.contains(str)) {
+			int amount=b.length;
+			num=num+(float) (rs.getFloat(3)*0.5)/amount;
+		}else {
+			num=num+0;
+		}
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+ return num;
+}
 }

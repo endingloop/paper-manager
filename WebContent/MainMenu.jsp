@@ -9,6 +9,7 @@
 
 <body>
 <a href="<s:url action="Paper_input"/>">添加论文</a>
+<span>welcome to <s:property  value="getUsername()"/></span>
 <div align="center">
         <h3>我的论文</h3>
     </div>
