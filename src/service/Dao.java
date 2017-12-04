@@ -175,8 +175,6 @@ public void setInforesult(List<gradeinfo> inforesult) {
 	}
 	//获取作者表
 	public static void collectauthor(String str) {
-		System.out.println("add author "+str);
-		
 		int len=str.length();
 		if(len!=0) {
 			String sql="replace into authorlist values('"+str+"');";
@@ -188,7 +186,6 @@ public void setInforesult(List<gradeinfo> inforesult) {
 				ResultSet rs= stm.executeQuery();
 				stm.close();
 				conn.close();
-				System.out.println("add second author"+str);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -241,7 +238,6 @@ public void setInforesult(List<gradeinfo> inforesult) {
 	public static List<gradeinfo> findFirstAuthor(String str) {
 	 	
 	 	String sql="select * from paper,new where paper.FirstAuthorID='"+str+"' and new.PaperID=paper.PaperID";
-		System.out.println(sql);
 		Connection conn=Dao.getConn();
 		PreparedStatement pstmt;
 		inforesult = new ArrayList<>();
@@ -271,6 +267,7 @@ public void setInforesult(List<gradeinfo> inforesult) {
 				grainfobean.setSort(rs.getInt(6));
 				grainfobean.setLevelname(matchlevel(rs.getInt(12)));
 				grainfobean.setSortname(findsortname(rs.getInt(6)));
+				grainfobean.setKeywords(rs.getString(9));
 				grainfobean.setGotscore(num);
 				inforesult.add(grainfobean);
 			}
@@ -287,7 +284,6 @@ public void setInforesult(List<gradeinfo> inforesult) {
 	public static List<gradeinfo> findSecondtAuthor(String str) {
 		inforesult = new ArrayList<>();
 	 String sql="select * from paper,new where paper.SecondAuthorID like '%"+str+"%' AND new.PaperID=paper.PaperID;";
-		System.out.println(sql);
 		Connection conn=Dao.getConn();
 		PreparedStatement pstmt;
 		try {

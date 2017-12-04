@@ -56,6 +56,7 @@
 <td><s:property value="sauthornum"/></td>
 </tr>
 
+
 <br>
 </s:iterator>
 </table>
@@ -68,6 +69,7 @@
 <s:iterator  value="list1">
 <tr>
 
+
 <td><s:property value="author"/></td>
 <td><s:property value="secondAuthor"/></td>
 <td><s:property value="date"/></td>
@@ -79,12 +81,14 @@
 
 </s:iterator>
 </table>
+
 <a href="fileDownloads.action?tip=1"><button class="btn btn-default">下载个人工作量明细表</button></a>
 </div>
 	<footer>
 		<br /> <span>Created by Group YST</span> <br /> <br />
 	</footer>
 	</div>
+
 
 </body>
 </html>
