@@ -85,11 +85,12 @@
 							<td><a
 								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
 						</tr>
+						
 					</s:iterator>
 
 				</table>
-
-				<a href="js/students.xls" download="students">导出为Excel表格</a>
+					
+				<a href="js/QueryRseult.xls" download="查询结果">导出为Excel表格</a>
 
 
 			</div>

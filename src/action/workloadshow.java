@@ -14,12 +14,18 @@ import model.Paper;
 import model.gradeinfo;
 import model.score;
 import service.Dao;
+import service.ExcelGenerate;
 import service.Sequence;
+import support.UserSupport;
 
 
 
 
-public class workloadshow {
+public class workloadshow extends UserSupport {
+
+/**
+	 * 
+	 */
 
 public String author;
 
@@ -32,7 +38,20 @@ public void setAuthor(String author) {
 
 public String startdate;
 public String enddate;
-
+public String authorname;
+public float scoretemp;
+public float getScoretemp() {
+	return scoretemp;
+}
+public void setScoretemp(float scoretemp) {
+	this.scoretemp = scoretemp;
+}
+public String getAuthorname() {
+	return authorname;
+}
+public void setAuthorname(String authorname) {
+	this.authorname = authorname;
+}
 
 public  List<score> scoreresult;
 public List<score> getScoreresult() {
@@ -55,6 +74,7 @@ public void setEnddate(String enddate) {
 }
 public List<gradeinfo> list;
 public List<gradeinfo> list1;
+//清空new数据存储表
 public String cleartablenew() {
 	String sql="DROP table IF EXISTS new;";
 	Connection conn=Dao.getConn();
@@ -63,7 +83,8 @@ public String cleartablenew() {
 		
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 	    pstmt.executeUpdate(sql);
-		
+	    pstmt.close();
+		conn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -72,8 +93,6 @@ public String cleartablenew() {
 }
 public String workload() {
 	cleartablenew();
-	System.out.println(getStartdate());
-	System.out.println(getEnddate());
 	String sql="create table new as select PaperID, authorname,level,SecondAuthorID from paper,authorlist  where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and authorname =FirstAuthorID;";
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
@@ -81,7 +100,9 @@ public String workload() {
 		
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 	    pstmt.executeUpdate(sql);
-		sumscore();
+		sumscore();//计算分数
+		pstmt.close();
+		conn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -90,34 +111,20 @@ public String workload() {
 
 	return "workload";
 }
-public String authorname;
-public float scoretemp;
-public float getScoretemp() {
-	return scoretemp;
-}
-public void setScoretemp(float scoretemp) {
-	this.scoretemp = scoretemp;
-}
-public String getAuthorname() {
-	return authorname;
-}
-public void setAuthorname(String authorname) {
-	this.authorname = authorname;
-}
+//查询个人工作量明细
 public String showdetail() {
-	System.out.println(getAuthorname());
 	String str=getAuthorname();
 	 list= new ArrayList<>();
 	 list=Dao.findFirstAuthor(str);
 	 list1 =new ArrayList<>();
 	 list1=Dao.findSecondtAuthor(str);
 	 list1.addAll(list);
-	 for(gradeinfo items:list1) {
-		 System.out.println(items.getLevelname()+" "+items.getAuthor()+items.getGotscore()+items.getSecondAuthor());
-	 }
 	 sumscore();
+	 //if(getUser().getUsername())
+	 ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate());
 	return "yes";
 }
+//计算总分得出总表
 public List<score>  sumscore() {
 	String sql=null;
 	if(getAuthor().isEmpty()) {
@@ -125,7 +132,6 @@ public List<score>  sumscore() {
 	}else {
 		sql="select authorname from authorlist where authorname='"+getAuthor()+"';";
 	}
-	System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	scoreresult=new ArrayList<>();
@@ -142,40 +148,26 @@ public List<score>  sumscore() {
 			int Snumber=findSAuthor(result.getString(1));
 			tempbean.setFauthornum(Fnumber);
 			tempbean.setSauthornum(Snumber);
-			grade=FirstAuthorScore+SecondAuthorScore;
+			grade=FirstAuthorScore+SecondAuthorScore;//第一作者应该加的分数+第二作者应该加的分数
 			tempbean.setScore(grade);
 			scoreresult.add(tempbean);
 		}
+		pstmt.close();
+		conn.close();
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
- for(score t:scoreresult)
- {
-	 System.out.println(t.name+" "+t.score);
- }
+	
+    	 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate());
+   
  	
 	return scoreresult;
 }
-public String workloaddetail(String str) {
-	String sql="SELECT * FROM  paper  WHERE FirstAuthorID='" + str + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'"; 
-	Connection conn=Dao.getConn();
-	PreparedStatement pstmt;
-	try {
-		pstmt= (PreparedStatement)conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery(sql);
-		while(rs.next()) {
-			System.out.println(rs.getString(1));
-		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	return "emmm";
-}
 
+
+//以第一作者身份发布论文个数
 public int findFAuthor(String str) {
  	int num=0;
  	String sql="select count(*) from new where authorname='"+str+"'";
@@ -188,16 +180,17 @@ public int findFAuthor(String str) {
 		while(rs.next()) {
 			num=rs.getInt(1);
 		}
-		
+		pstmt.close();
+		conn.close();
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	System.out.println(num+"---------firstauthornum");
+	
  return num;
 }
-
+//以第二作者身份发布论文个数
 public int findSAuthor(String str) {
 int num=0;
  String sql="select count(*) from new where SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'";
@@ -210,14 +203,16 @@ int num=0;
 		while(rs.next()) {
 			num=rs.getInt(1);
 		}
-		
+		pstmt.close();
+		conn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	System.out.println(num+"---------secondauthornum");
+	
 return num;
 }
+//以第一作者身份发布论文获得的分数1
 public float findFirstAuthor(String str) {
  	float num=0;
  	String sql="select * from new where authorname='"+str+"'";
@@ -238,9 +233,10 @@ public float findFirstAuthor(String str) {
 			}else {
 				
 				num=num+(int)(rs.getFloat(3)*0.5);
-				System.out.println("--------有第二合作者"+tempstrr);
+				
 			}
-				System.out.println(num);
+			
+				
 		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -249,7 +245,7 @@ public float findFirstAuthor(String str) {
 	
  return num;
 }
-
+//以第二作者身份发布论文所得分数2
 public float findSecondtAuthor(String str) {
  float num=0;
  String sql="select * from new where SecondAuthorID like '%"+str+"%';";
@@ -269,6 +265,8 @@ public float findSecondtAuthor(String str) {
 			num=num+0;
 		}
 		}
+		pstmt.close();
+		conn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

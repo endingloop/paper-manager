@@ -11,10 +11,17 @@ public class gradeinfo {
 	private String sortname;
 	private String levelname;
 	private  float gotscore;
+	private String keywords;
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
 	public gradeinfo() {
 		
 	}
-	public gradeinfo(String paperID,String title,String author,String secondAuthor,String date,int sort,int level,String sortname,String levelname,float gotscore)
+	public gradeinfo(String paperID,String title,String author,String keywords,String secondAuthor,String date,int sort,int level,String sortname,String levelname,float gotscore)
 	{
 		this.paperID = paperID;
 		this.title = title;
@@ -26,6 +33,7 @@ public class gradeinfo {
 		this.sortname=sortname;
 		this.levelname=levelname;
 		this.gotscore=gotscore;
+		this.keywords=keywords;
 	}
 	public String getPaperID() {
 		return paperID;

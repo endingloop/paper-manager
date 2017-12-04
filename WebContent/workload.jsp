@@ -27,19 +27,19 @@
 <td><s:property value="fauthornum"/></td>
 <td><s:property value="sauthornum"/></td>
 </tr>
-
 </s:iterator>
 </table>
+<a href="#">下载工作量总表</a>
 <table border="2px">
 <s:property  value="authorname"/>（总分<s:property value="scoretemp"/>分） <s:property  value="startdate"/>------------<s:property  value="enddate"/>的具体得分细化如下表： 
 <tr><td>论文题目</td><td>第一作者</td><td>第二作者</td><td>发布时间</td><td>论文类型</td><td>论文等级</td><td>分值</td><td>所获分值</td></tr>
 <s:iterator  value="list1">
 <tr>
-<td><s:property  value="title"/></a></td>
+<td><s:property  value="title"/></td>
 <td><s:property value="author"/></td>
 <td><s:property value="secondAuthor"/></td>
 <td><s:property value="date"/></td>
-<td><s:property  value="sortname"/></a></td>
+<td><s:property  value="sortname"/></td>
 <td><s:property value="levelname"/></td>
 <td><s:property value="level"/></td>
 <td><s:property value="gotscore"/></td>
