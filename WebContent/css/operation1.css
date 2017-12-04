@@ -152,47 +152,19 @@ header #right,#left
   }
 
  /********add paper*************/
- #parta
- {
-   text-align:center;
- }
- #partb
- {
-   margin-top:2%;
-   text-align:center;
- }
+
  .wwFormTable
  {
    margin-left:33%;
  }
- #partc
- { 
-   margin-left:30%;
- }
+
  .select
  {
     width:120px;
     margin-top:1%;
     float:left;
  }
- #partd
- {
-  margin-top:4%;
-  text-align:center;
- }
- #parte
- {
-  text-align:center;
-  color:red;
-  margin-top:3%;
-  font-size:1.5em;
- }
- 
-#parte .btn 
- {
-     margin-top:2%;
-     margin-right:45%;
- }
+
   #SearchInput
   { 
     float:left;
@@ -245,4 +217,48 @@ table
 {
 	margin-top:5%;
 	margin-bottom:3%;
+}
+#part2 span
+{
+	margin-top:1%;
+	display:block;
+}
+#part2
+{
+	margin-top:3%;
+	display:block;
+}
+#part3
+{
+	margin-top:3%;
+	display:block;
+}
+#part4
+{
+	margin-top:3%;
+	display:block;
+}
+#part5
+{
+	margin-top:3%;
+	display:block;
+}
+#part6
+{
+	margin-top:2%;
+	display:block;
+	color:red;
+}
+#part6 .btn
+{
+	margin-top:2%;
+	margin-left:21%;
+}
+#part5 a
+{
+	margin-left:10%;
+}
+#part5 .popover-content
+{
+	font-size:0.6em;
 }

@@ -23,6 +23,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--animated-css-->
 <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
 <script src="js/wow.min.js"></script>
+<script src="js/ChooseSort.js"></script>
+<link href="css/owl.carousel.css" rel="stylesheet">
 <script>
  new WOW().init();
 </script>
@@ -39,6 +41,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
 				});
 			});
+		 
+			$(document).ready(function(){  
+			    $("#nav li").hover(  
+			    function(){  
+			        $(this).children('ul').hide();  
+			        $(this).children('ul').slideDown('fast');  
+			    },  
+			    function () {  
+			        $('ul', this).slideUp('fast');              
+			    });  
+			});  
+		
 </script>
 <title>Paper Manager System</title>
 </head>
@@ -70,11 +84,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 </div>
 		 <div class="banner-text wow fadeInUp" data-wow-delay="0.5s">
 		      <h1>服务于大学校园的<label>论文管理</label>平台</h1>
-			  <h2></h2>
-		 </div>
+		 </div> 
 		 <div class="banner-form">
 			 <s:form name="form2" action="chooseSearch" method="post" enctype="multipart/form-data" theme="simple">
-					<select name="selectchoice"  class="wow fadeInLeft " data-wow-delay="0.5s" theme="simple">
+
+					<select name="selectchoice"  class="wow fadeInLeft " data-wow-delay="0.5s" >
 						<option value="1">论文主题</option>
 						<option value="2">论文题目</option>
 						<option value="3">作者姓名</option>
@@ -139,8 +153,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="screen-text text-center">
 			 <h3>ScreenShots</h3>
 		 </div>
-		 <!-- requried-jsfiles-for owl -->
-				<link href="css/owl.carousel.css" rel="stylesheet">
 							    <script src="js/owl.carousel.js"></script>
 							        <script>
 							    $(document).ready(function() {
@@ -213,19 +225,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 </div>
 </div>
 <!---->
-<script type="text/javascript">
-		$(document).ready(function() {
-				/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-				*/
-		$().UItoTop({ easingType: 'easeOutQuart' });
-});
-</script>
 <a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 <!----> 
 </body>
