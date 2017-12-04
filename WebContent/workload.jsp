@@ -56,11 +56,9 @@
 <td><s:property value="sauthornum"/></td>
 </tr>
 
-
-<br>
 </s:iterator>
 </table>
-  <a href="fileDownloads.action?tip=0&&authorname=null"><button class="btn btn-default">下载工作量总表</button>></a>
+  <a href="fileDownloads.action?tip=0&&authorname=null" style="float:right;"><button class="btn btn-default">下载工作量总表</button></a>
   <br>
   <br>
 <h4><s:property  value="authorname"/>总分<s:property value="scoretemp"/>分）   <s:property  value="startdate"/><s:property  value="enddate"/>的具体得分细化如下表：</h4>
@@ -82,8 +80,9 @@
 </s:iterator>
 </table>
 
-<a href="fileDownloads.action?tip=1"><button class="btn btn-default">下载个人工作量明细表</button></a>
+<a href="fileDownloads.action?tip=1" style="float:right; margin-bottom:5%;"><button class="btn btn-default">下载个人工作量明细表</button></a>
 </div>
+
 	<footer>
 		<br /> <span>Created by Group YST</span> <br /> <br />
 	</footer>
