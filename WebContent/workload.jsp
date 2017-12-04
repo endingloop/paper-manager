@@ -59,11 +59,15 @@
 <br>
 </s:iterator>
 </table>
+  <a href="fileDownloads.action?tip=0&&authorname=null"><button class="btn btn-default">下载工作量总表</button>></a>
+  <br>
+  <br>
 <h4><s:property  value="authorname"/>总分<s:property value="scoretemp"/>分）   <s:property  value="startdate"/><s:property  value="enddate"/>的具体得分细化如下表：</h4>
 <table class="table table-hover">
 <tr><th>论文题目</th><th>第一作者</th><th>第二作者</th><th>发布时间</th><th>论文类型</th><th>论文等级</th><th>分值</th><th>所获分值</th></tr>
 <s:iterator  value="list1">
 <tr>
+
 <td><s:property value="author"/></td>
 <td><s:property value="secondAuthor"/></td>
 <td><s:property value="date"/></td>
@@ -75,10 +79,12 @@
 
 </s:iterator>
 </table>
+<a href="fileDownloads.action?tip=1"><button class="btn btn-default">下载个人工作量明细表</button></a>
 </div>
 	<footer>
 		<br /> <span>Created by Group YST</span> <br /> <br />
 	</footer>
 	</div>
+
 </body>
 </html>
