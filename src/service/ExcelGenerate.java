@@ -101,17 +101,11 @@ public class ExcelGenerate {
 		return ;
 	}
 	
-	public static void TaskQueryExcel(List<score> result,String startdate,String enddate ) {
-		// 第一步，创建一个webbook，对应一个Excel文件  
+	public static void TaskQueryExcel(List<score> result,String startdate,String enddate,String username ) {
 	    HSSFWorkbook wb = new HSSFWorkbook();  
-	    // 第二步，在webbook中添加一个sheet,对应Excel文件中的sheet  
 	    HSSFSheet sheet = wb.createSheet(startdate+"-"+enddate+"工作量查询总表");  
-	    // 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short  
-	    HSSFRow row = sheet.createRow((int) 0);  
-	    // 第四步，创建单元格，并设置值表头 设置表头居中  
+	    HSSFRow row = sheet.createRow((int) 0); 
 	    HSSFCellStyle style = wb.createCellStyle();  
-	    
-
 	    HSSFCell cell = row.createCell((short) 0);  
 	    cell.setCellValue("作者");  
 	    cell.setCellStyle(style);  
@@ -124,17 +118,11 @@ public class ExcelGenerate {
 	    cell = row.createCell((short) 3);  
 	    cell.setCellValue("以第二作者身份发布论文总数");  
 	    cell.setCellStyle(style);  
-
-	    // 第五步，写入实体数据 实际应用中这些数据从数据库得到，
-	    
 	    List list = result; 
-	   
-
 	    for (int i = 0; i < list.size(); i++)  
 	    {  
 	        row = sheet.createRow((int) i + 1);  
 	        score scorebean = (score) list.get(i);  
-	        // 第四步，创建单元格，并设置值  
 	        row.createCell((short) 0).setCellValue(scorebean.getName());
 	        row.createCell((short) 1).setCellValue(scorebean.getScore());  
 	        row.createCell((short) 2).setCellValue(scorebean.getFauthornum());  
@@ -142,16 +130,11 @@ public class ExcelGenerate {
 	        cell = row.createCell((short) 4);  
 	       
 	    }  
-	  
-	    // 第六步，将文件存到指定位置  
-	   
 	    	String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
-		try {  
-		       
-			   FileOutputStream fout = new FileOutputStream(destPath+"\\WorkloadListQueryResult.xls");
+		try {    
+			   FileOutputStream fout = new FileOutputStream(destPath+"\\"+username+"WorkListQueryResult.xls");
 		       wb.write(fout);  
-		        fout.close();  
-	        
+		        fout.close();       
 	    }  
 	    catch (Exception e)  
 	    {  
@@ -160,7 +143,7 @@ public class ExcelGenerate {
 
 		return ;
 	}
-	public static void PersonalWorkloadQuery(List<gradeinfo> result,String str,String startdate,String enddate) {
+	public static void PersonalWorkloadQuery(List<gradeinfo> result,String str,String startdate,String enddate,String username) {
 	    HSSFWorkbook wb = new HSSFWorkbook(); 
 	    HSSFSheet sheet = wb.createSheet(str+"在"+startdate+"-"+enddate+"工作量细化");    
 	    HSSFRow row = sheet.createRow((int) 0);    
@@ -215,7 +198,7 @@ public class ExcelGenerate {
 	String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
 	    try  
 	    {  
-	    	FileOutputStream fout = new FileOutputStream(destPath+"\\"+str+"PersonalworkloadQueryResult.xls");
+	    	FileOutputStream fout = new FileOutputStream(destPath+"\\"+username+"PersonalworkloadQueryResult.xls");
 	        wb.write(fout);  
 	        fout.close();        
 	    }  

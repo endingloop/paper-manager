@@ -186,7 +186,6 @@ public void setInforesult(List<gradeinfo> inforesult) {
 				ResultSet rs= stm.executeQuery();
 				stm.close();
 				conn.close();
-				System.out.println("add second author"+str);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

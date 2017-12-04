@@ -29,7 +29,9 @@
 </tr>
 </s:iterator>
 </table>
-<a href="#">下载工作量总表</a>
+<br>
+<a href="fileDownloads.action?tip=0&&authorname=null">下载工作量总表</a>
+<br>
 <table border="2px">
 <s:property  value="authorname"/>（总分<s:property value="scoretemp"/>分） <s:property  value="startdate"/>------------<s:property  value="enddate"/>的具体得分细化如下表： 
 <tr><td>论文题目</td><td>第一作者</td><td>第二作者</td><td>发布时间</td><td>论文类型</td><td>论文等级</td><td>分值</td><td>所获分值</td></tr>
@@ -47,5 +49,9 @@
 
 </s:iterator>
 </table>
+<br>
+<a href="fileDownloads.action?tip=1">下载个人工作量明细表</a>
+<br>
+<a href="index.jsp">返回首页</a>
 </body>
 </html>

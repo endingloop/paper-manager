@@ -90,8 +90,8 @@
 
 				</table>
 					
-				<a href="js/QueryRseult.xls" download="查询结果">导出为Excel表格</a>
-
+				
+				<a href="fileDownloads.action?tip=2">导出为excel表格</a>
 
 			</div>
 		</div>

@@ -26,6 +26,10 @@ public class workloadshow extends UserSupport {
 /**
 	 * 
 	 */
+	private static final long serialVersionUID = 1L;
+/**
+	 * 
+	 */
 
 public String author;
 
@@ -94,21 +98,25 @@ public String cleartablenew() {
 public String workload() {
 	cleartablenew();
 	String sql="create table new as select PaperID, authorname,level,SecondAuthorID from paper,authorlist  where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and authorname =FirstAuthorID;";
+	List<score> temp=null;
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
 		
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
+		System.out.println(sql);
 	    pstmt.executeUpdate(sql);
-		sumscore();//计算分数
+	    temp=sumscore();//计算分数
 		pstmt.close();
 		conn.close();
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
-
+	if(temp==null) {
+		return "input";
+	}
+     
 	return "workload";
 }
 //查询个人工作量明细
@@ -120,8 +128,14 @@ public String showdetail() {
 	 list1=Dao.findSecondtAuthor(str);
 	 list1.addAll(list);
 	 sumscore();
-	 //if(getUser().getUsername())
-	 ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate());
+	 if(getUser().getUsername()!=null) {
+		 ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getUsername());
+	 }else {
+		 return "input";
+	 }
+		 
+	 
+	 
 	return "yes";
 }
 //计算总分得出总表
@@ -135,6 +149,11 @@ public List<score>  sumscore() {
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	scoreresult=new ArrayList<>();
+	if(getUser().getUsername()!=null) {
+		System.out.println(getUser().getUsername());
+	}else {
+		System.out.println("no user is online");
+	}
 	float grade=0;
 	try {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
@@ -159,8 +178,12 @@ public List<score>  sumscore() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	
-    	 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate());
+		 if(getUser().getUsername()!=null) {
+			 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
+		 }else {
+			 return null;
+		 }
+    	 
    
  	
 	return scoreresult;
@@ -171,7 +194,6 @@ public List<score>  sumscore() {
 public int findFAuthor(String str) {
  	int num=0;
  	String sql="select count(*) from new where authorname='"+str+"'";
-	System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
@@ -194,7 +216,6 @@ public int findFAuthor(String str) {
 public int findSAuthor(String str) {
 int num=0;
  String sql="select count(*) from new where SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'";
- System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
@@ -216,7 +237,6 @@ return num;
 public float findFirstAuthor(String str) {
  	float num=0;
  	String sql="select * from new where authorname='"+str+"'";
-	System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
@@ -249,7 +269,6 @@ public float findFirstAuthor(String str) {
 public float findSecondtAuthor(String str) {
  float num=0;
  String sql="select * from new where SecondAuthorID like '%"+str+"%';";
-	System.out.println(sql);
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
