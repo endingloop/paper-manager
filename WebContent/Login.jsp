@@ -28,7 +28,7 @@
 
 </s:form>
 <span id="form" style="color:red;"></span>
-<br></br>
+<br/>
 <span>Don't have <a href="<s:url action="Registration_input" />" id="left">an account?</a> </span>
 </div>
         <!-- Javascript -->

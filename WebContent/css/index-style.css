@@ -125,10 +125,28 @@ border: 1px solid #308ab7;
 border-left:8px solid #308ab7;
 border-right:8px solid #308ab7;
 }
+#searchsort
+{
+width: 18%;
+padding: 12px 14px;
+border: 1px solid #308ab7;
+font-size: 1.2em;
+color: #fff;
+outline: none;
+font-weight: 600;
+background:#308ab7;
+border-radius:3px;
+border-left:5px solid #308ab7;
+border-right:5px solid #308ab7;
+transition:0.5s all;
+-webkit-transition:0.5s all;
+-moz-transition:0.5s all;
+-o-transition:0.5s all;
+-ms-transition:0.5s all;
+}
 .banner-form form select
 {
-	
-margin-left:13%;
+margin-left:12%;
 width:20%;
 border:solid 1px #000;
 /*appearance:none;*/
@@ -1366,5 +1384,9 @@ width:34%;
 .copy-right {
 margin-top: 0.5em;
 }
-}
-}
+
+        #nav {       
+   margin: 100px auto;   
+   text-align: center;  
+}  
+   

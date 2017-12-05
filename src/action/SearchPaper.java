@@ -13,8 +13,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import model.Paper;
 import service.Dao;
+import service.ExcelGenerate;
+import support.UserSupport;
 
-public class SearchPaper extends ActionSupport {
+public class SearchPaper extends UserSupport {
 	
 	private static final long serialVersionUID = 2323L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
@@ -22,7 +24,8 @@ public class SearchPaper extends ActionSupport {
 	private String keyword;
 	private List<Paper> result;
 	private int papernum;
-	
+
+
 	public String execute() {
 		return SUCCESS;
 	}
@@ -51,11 +54,23 @@ public class SearchPaper extends ActionSupport {
 			result.add(temp);
 			count++;
 		}
+			
+			try {
+				ExcelGenerate.GeneralQueryExcel(result);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+		
 		return count;
 	}
 
 
 	public String chooseSearch() {
+	
+	
 		String sql = null;
 		switch (selectchoice) {
 		case 1:
