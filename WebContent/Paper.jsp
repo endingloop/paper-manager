@@ -13,6 +13,42 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
+    <script language="javascript" type="text/javascript">
+
+var count=0 ;
+function additem(id)
+{
+    var row,cell,str;
+    row = document.getElementById(id).insertRow();
+  
+    	if(row != null )
+        {
+    cell = row.insertCell();
+    cell.innerHTML="<input  class=\"dongtai\" id=\"St"+count+"\" type=\"text\" name=\"St"+count+"\"><input type=\"button\" value=\"删除\" onclick=\'deleteitem(this);\'>";
+    count ++;
+        }
+    
+    
+    
+    
+}
+function deleteitem(obj)
+{
+    var curRow = obj.parentNode.parentNode;
+    tb.deleteRow(curRow.rowIndex);
+
+}
+
+function getsub()
+{
+var re="";
+
+re +=document.getElementsByName("St"+i)[0].value+",";
+document.getElementById("Hidden1").value=re;
+}
+
+
+</script>
 </head>
 <body>
 	<div class="container">
@@ -48,11 +84,21 @@
 				<div id="part2">
 				    <span>论文标题：<s:textfield name="paper.title"/></span>
 					<span>第一作者：<s:textfield name="paper.author"/></span>
-					<span>第二作者：<s:textfield name="paper.secondAuthor"/></span>
+					<s:if test="task == 'Create'"> 
+				   <div id="secondAuthor">
+      				<table id="tb"></table>
+					<input name="button" type="button" onclick='additem("tb")' value="添加第二作者"/>
+     				 <input id="Hidden1" name="Hidden1" type="hidden" value="" />
+  						</div></s:if>
+  				<s:if test="task == 'Edit'"> 
+				   <span>第二作者：<s:textfield name="paper.secondAuthor"/></span>
+				   </s:if>
+					
 					<span>关键字词：<s:textfield name="paper.keyword"/></span>
 					<span>内容简介：<s:textarea name="paper.description"/></span>
 					<span>出版机构：<s:textfield name="paper.publication"/></span>
 				</div>
+				
 			    <div id="part3" >
 					<span>请选择论文分类：</span> <br> <SELECT NAME="first"
 						onChange="getSecond()" class="select">

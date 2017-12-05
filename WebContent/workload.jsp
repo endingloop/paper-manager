@@ -67,7 +67,7 @@
 <s:iterator  value="list1">
 <tr>
 
-
+<td><s:property value="title"/></td>
 <td><s:property value="author"/></td>
 <td><s:property value="secondAuthor"/></td>
 <td><s:property value="date"/></td>

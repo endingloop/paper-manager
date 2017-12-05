@@ -113,10 +113,7 @@ public String workload() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	if(temp==null) {
-		return "input";
-	}
-     
+	    
 	return "workload";
 }
 //查询个人工作量明细
@@ -128,11 +125,9 @@ public String showdetail() {
 	 list1=Dao.findSecondtAuthor(str);
 	 list1.addAll(list);
 	 sumscore();
-	 if(getUser().getUsername()!=null) {
+	
 		 ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getUsername());
-	 }else {
-		 return "input";
-	 }
+	
 		 
 	 
 	 
@@ -178,11 +173,9 @@ public List<score>  sumscore() {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		 if(getUser().getUsername()!=null) {
+		
 			 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
-		 }else {
-			 return null;
-		 }
+		
     	 
    
  	

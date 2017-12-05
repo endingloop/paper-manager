@@ -27,7 +27,7 @@
 			<ul class="nav nav-tabs nav-justified">
 				<li role="presentation" class="active"><a href="MainMenu.jsp">我的论文</a></li>
 				<li role="presentation"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
-				<li role="presentation"><a href="<s:url action="workload"/>">查看工作量</a></li>
+				<li role="presentation"><a href="workload.jsp">查看工作量</a></li>
 			</ul>
 		</div>
 		<br />

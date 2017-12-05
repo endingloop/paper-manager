@@ -18,10 +18,23 @@ public class PaperSupport extends UserSupport {
 	// -----------前端传过来的论文信息----------
 	//分类信息
 	public String third;
+	public String Hidden1;
+
+	public String getHidden1() {
+		return Hidden1;
+	}
+
+
+	public void setHidden1(String hidden1) {
+		Hidden1 = hidden1;
+	}
+
+
 	public String getThird() {
 		return third;
 	}
 	
+
 	public void setThird(String third) {
 		this.third = third;
 	}
@@ -107,6 +120,7 @@ public class PaperSupport extends UserSupport {
 
 	public void savePaper() throws IOException, SQLException {
 		Paper paper = getPaper();
+		System.out.println(getHidden1()+"ddddddddddddddddddddddddddddddd");
 		paper.setSort(Dao.findSortID(getThird()));
 		paper.setPaperID(getPaperID());
 		if (file != null) {

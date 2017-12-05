@@ -87,7 +87,7 @@
 		</action>
 		<action name="workload" class="action.workloadshow" method="workload">
 			<result name="workload">/workload.jsp</result>
-			<result name="input">/Login.jsp</result>
+			<interceptor-ref name="user" />
 		</action>
 	</package>
 
