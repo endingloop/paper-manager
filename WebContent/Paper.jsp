@@ -25,9 +25,9 @@
 		<div class="content2"  >
 			<div id="content2_top">
 				<ul class="nav nav-tabs nav-justified">
-					<li role="presentation"><a href="MainMenu.jsp">我的论文</a></li>
+					<li role="presentation"><a href="<s:url action="Login"/>">我的论文</a></li>
 					<li role="presentation"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
-					<li role="presentation"><a href="<s:url action="workload"/>">查看工作量</a></li>
+					<li role="presentation"><a href="workload.jsp">查看工作量</a></li>
 				</ul>
 	        <div id="content2_middle" style="margin-left:33%; font-size:1.2em;" >
 			<s:form name="form1" action="Paper_save" method="post" enctype="multipart/form-data" theme="simple"  >
@@ -44,6 +44,9 @@
 				   <br />
 				   <span>选择新文件：</span><input type="file" name="file">
 				   </s:if>
+				   <s:if test="task == 'Delete'"> 
+				   <h3 >请确认文献信息：</h3>
+				 </s:if>
 				</div>
 				<div id="part2">
 				    <span>论文标题：<s:textfield name="paper.title"/></span>
