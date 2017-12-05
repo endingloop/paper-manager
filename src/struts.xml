@@ -51,7 +51,7 @@
 			<result type="redirectAction">Login</result>
 		</action>
 		<action name="workdetail" class="action.workloadshow" method="showdetail" >
-		<result name="yes">/workload.jsp</result>
+			<result name="yes">/workload.jsp</result>
 		</action>
 		<action name="Paper_*" method="{1}" class="action.PaperAction">
 			<result name="input">/Paper.jsp</result>

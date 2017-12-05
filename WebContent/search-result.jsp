@@ -33,6 +33,7 @@
 							<option value="3">作者姓名</option>
 							<option value="4">发表时间</option>
 							<option value="5">刊物名称</option>
+							<option value="6">论文分类</option>						
 						</select>
 					</div>
 					<s:textfield key="keyword" />

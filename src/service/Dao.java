@@ -158,9 +158,32 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		conn.close();
 		return result;
 	}
+	public static int findSortLevel(String sortstr) throws SQLException {
+		Connection conn = Dao.getConn();
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement("select * from first where sortname='" + sortstr +"'");
+		ResultSet rs = pstmt.executeQuery("select * from first where sortname='" + sortstr +"'");
+		if (rs.next()) {
+			return 1;
+		}
+		pstmt = (PreparedStatement) conn.prepareStatement("select * from second where sortname='" + sortstr +"'");
+		rs = pstmt.executeQuery("select * from second where sortname='" + sortstr +"'");
+		if (rs.next()) {
+			return 2;
+		}
+		pstmt = (PreparedStatement) conn.prepareStatement("select * from third where sortname='" + sortstr +"'");
+		rs = pstmt.executeQuery("select * from third where sortname='" + sortstr +"'");
+		if (rs.next()) {
+			return 3;
+		}
+		return -1;
+	}
+	
 
 	public static int findSortID(String sortstr) throws SQLException {
-		String sql = "select * from third where sortname='" + sortstr + "'";
+		String sql = "select * from first where sortname='" + sortstr 
+				+ "' union select * from second where sortname='"
+				+ sortstr + "' union select * from third where sortname='" + sortstr +"'";
 		Connection conn = Dao.getConn();
 		PreparedStatement pstmt;
 		int result = -1;
@@ -188,7 +211,7 @@ public void setInforesult(List<gradeinfo> inforesult) {
 				ResultSet rs= stm.executeQuery();
 				stm.close();
 				conn.close();
-				System.out.println("add second author"+str);
+				logger.info("add second author"+str);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
