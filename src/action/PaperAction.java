@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import model.Paper;
@@ -16,6 +17,11 @@ import support.PaperSupport;
 import support.UserSupport;
 
 public class PaperAction extends PaperSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static private Logger logger = Logger.getLogger(PaperAction.class);
 
 	public String save() throws Exception {
 		// 初始化重要数据

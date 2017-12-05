@@ -94,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<option value="3">作者姓名</option>
 						<option value="4">发表时间</option>
 						<option value="5">刊物名称</option>
+						<option value="6">论文分类</option>						
 					</select>
 				<s:textfield class="wow fadeInRight" id="searchtext" data-wow-delay="0.5s" key="keyword" style="margin-top: -30%;margin-left: 2%;" theme="simple"/>
 			   <s:submit class="wow fadeInRight" id="searchsubmit" data-wow-delay="0.5s" value="搜索" style="margin-top: -54%;margin-right: -72%;" theme="simple" />

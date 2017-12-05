@@ -18,7 +18,7 @@ import support.UserSupport;
 
 public class SearchPaper extends UserSupport {
 	
-	private static final long serialVersionUID = 2213L;
+	private static final long serialVersionUID = 2323L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private String keyword;
@@ -88,9 +88,34 @@ public class SearchPaper extends UserSupport {
 		case 5:
 			sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
 			break;
+		case 6:
+			try {
+				int id = Dao.findSortID(keyword);
+				switch(Dao.findSortLevel(keyword)) {
+				case 1:
+					sql = "select * from paper,third,second where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID;";
+					break;
+				case 2:
+					sql = "select * from paper,third where third.upper="+ id +" and paper.sortID=third.thirdID";
+					break;
+				case 3:
+					sql = "select * from paper where sortID="+ id ;
+					break;
+				default:
+					logger.error("No this sort: " + keyword);
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
 		}
 		try {
-			papernum = querySql(sql);
+			if (sql == null) {
+				result = new ArrayList<>();
+			} else {
+				papernum = querySql(sql);
+			}
 			logger.info(sql + " NUMBER: " + papernum);
 		} catch (SQLException e) {
 			e.printStackTrace();
