@@ -23,8 +23,10 @@ public class PaperAction extends PaperSupport {
 	private static final long serialVersionUID = 1L;
 	static private Logger logger = Logger.getLogger(PaperAction.class);
 
+
 	public String save() throws Exception {
 		// 初始化重要数据
+	
 		if (Constants.DELETE.equals(getTask())) {
 			removePaper();
 		}

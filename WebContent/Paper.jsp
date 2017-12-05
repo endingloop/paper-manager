@@ -13,42 +13,67 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
-    <script language="javascript" type="text/javascript">
+<script language="javascript" type="text/javascript">
+ 
 
-var count=0 ;
-function additem(id)
-{
-    var row,cell,str;
-    row = document.getElementById(id).insertRow();
-  
-    	if(row != null )
-        {
-    cell = row.insertCell();
-    cell.innerHTML="<input  class=\"dongtai\" id=\"St"+count+"\" type=\"text\" name=\"St"+count+"\"><input type=\"button\" value=\"删除\" onclick=\'deleteitem(this);\'>";
-    count ++;
-        }
+    var count=0 ;
+    var count1=0;
+    function additem(id)
+    {
+        var row,cell,str;
+        row = document.getElementById(id).insertRow();
+     
+        	if(row != null )
+            {
+        cell = row.insertCell();
+        cell.innerHTML="<input  class=\"dongtai\" id=\"St"+count+"\" type=\"text\" name=\"St"+count+"\"><input type=\"button\" value=\"删除\" onclick=\'deleteitem(this);\'>";
+        count ++;
+            }      
+    }
     
+   
+    function deleteitem(obj)
+    {
+        var curRow = obj.parentNode.parentNode;
+        tb.deleteRow(curRow.rowIndex);
+    }
+    function additem1(id)
+    {
+        var row,cell,str;
+        row = document.getElementById(id).insertRow();
+     
+        	if(row != null )
+            {
+        cell = row.insertCell();
+        cell.innerHTML="<input  id=\"SS"+count1+"\" type=\"text\" name=\"SS"+count1+"\"><input type=\"button\" value=\"删除\" onclick=\'deleteitem1(this);\'>";
+        count1 ++;
+            }      
+    }
+    function deleteitem1(obj)
+    {
+        var curRow = obj.parentNode.parentNode;
+        tb1.deleteRow(curRow.rowIndex);
+    }
+    function getsub()
+    {
+    	var re="";
+    	for (var  i = 0 ;i<count;i++)
+    	{
+    		if(document.getElementById("St"+i)){
+    			re += document.getElementsByName("St"+i)[0].value+",";
+    		}
+    	}
+    	re+="@";
+    	for(var i=0;i<count1;i++){
+    		if(document.getElementById("SS"+i)){
+    			re += document.getElementsByName("SS"+i)[0].value+",";
+    		}
+    	}
+    	document.getElementById("Hidden1").value=re;
+    	}
     
-    
-    
-}
-function deleteitem(obj)
-{
-    var curRow = obj.parentNode.parentNode;
-    tb.deleteRow(curRow.rowIndex);
+    </script>
 
-}
-
-function getsub()
-{
-var re="";
-
-re +=document.getElementsByName("St"+i)[0].value+",";
-document.getElementById("Hidden1").value=re;
-}
-
-
-</script>
 </head>
 <body>
 	<div class="container">
@@ -87,17 +112,24 @@ document.getElementById("Hidden1").value=re;
 				<div id="part2">
 				    <span>论文标题：<s:textfield name="paper.title"/></span>
 					<span>第一作者：<s:textfield name="paper.author"/></span>
-					<s:if test="task == 'Create'"> 
-				   <div id="secondAuthor">
+					<s:if test="task == 'Create'"> 	 
       				<table id="tb"></table>
 					<input name="button" type="button" onclick='additem("tb")' value="添加第二作者"/>
-     				 <input id="Hidden1" name="Hidden1" type="hidden" value="" />
-  						</div></s:if>
+					<input id="Hidden1" name="Hidden1" type="hidden"  />
+  					</s:if>
   				<s:if test="task == 'Edit'"> 
 				   <span>第二作者：<s:textfield name="paper.secondAuthor"/></span>
 				   </s:if>
+				   
+				   <s:if test="task == 'Create'"> 	 
+      				<table id="tb1"></table>
+					<input name="button" type="button" onclick='additem1("tb1")' value="添加关键字"/>
+					<input id="Hidden2" name="Hidden2" type="hidden" />
+  					</s:if>
+					<s:if test="task == 'Edit'"> 
+				  <span>关键字词：<s:textfield name="paper.keyword"/></span>
+				   </s:if>
 					
-					<span>关键字词：<s:textfield name="paper.keyword"/></span>
 					<span>内容简介：<s:textarea name="paper.description"/></span>
 					<span>出版机构：<s:textfield name="paper.publication"/></span>
 				</div>
@@ -162,7 +194,7 @@ document.getElementById("Hidden1").value=re;
                        <span>请保证您上传的论文已通过原作者的允许！<br></span>
 				   </s:if>	
 				
-				<s:submit class="btn btn-default" />
+				<input type="submit" onclick="getsub()"  value="提交"/>
 				</div>
 			</s:form>
 			</div>

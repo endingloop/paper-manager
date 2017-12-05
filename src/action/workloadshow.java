@@ -235,8 +235,11 @@ public float findFirstAuthor(String str) {
 	try {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery(sql);
+		String[] b=null;
 		while(rs.next()) {
-			String[] b=rs.getString(4).trim().split(",");
+			
+			b=rs.getString(4).trim().split(",");
+			
 			List<String> listA = Arrays.asList(b);
 			String tempstrr=listA.toString();
 			

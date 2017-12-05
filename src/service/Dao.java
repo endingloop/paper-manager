@@ -270,17 +270,20 @@ public void setInforesult(List<gradeinfo> inforesult) {
 			ResultSet rs = pstmt.executeQuery(sql);
 			while(rs.next()) {
 				float num=0;
-				String[] b=rs.getString(4).trim().split(",");
-				List<String> listA = Arrays.asList(b);
-				String tempstrr=listA.toString();
-				
-				if(tempstrr.length()<=2) {
+				if(rs.getString(4)!=null) {
+					String[] b=rs.getString(4).trim().split(",");
+					List<String> listA = Arrays.asList(b);
+					String tempstrr=listA.toString();
 					
-					num=num+rs.getFloat(12);//只有一个作者
-				}else {
-					
-					num=num+(int)(rs.getFloat(12)*0.5);//有合作者
+					if(tempstrr.length()<=2) {
+						
+						num=num+rs.getFloat(12);//只有一个作者
+					}else {
+						
+						num=num+(int)(rs.getFloat(12)*0.5);//有合作者
+					}
 				}
+				
 				gradeinfo  grainfobean=new gradeinfo();
 				grainfobean.setAuthor(rs.getString(3));
 				grainfobean.setTitle(rs.getString(2));
@@ -313,9 +316,12 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		try {
 			pstmt= (PreparedStatement)conn.prepareStatement(sql);
 			ResultSet rs= pstmt.executeQuery(sql);
+			String[] b=null;
 			while(rs.next()) {
-			String[] b=rs.getString(4).trim().split(",");
-			List<String> listA = Arrays.asList(b);
+				if(rs.getString(4)!=null) {
+				 b=rs.getString(4).trim().split(",");
+				}
+				List<String> listA = Arrays.asList(b);
 			float num=0;
 			if(listA.contains(str)) {
 				int amount=b.length;

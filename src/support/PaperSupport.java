@@ -18,23 +18,9 @@ public class PaperSupport extends UserSupport {
 	// -----------前端传过来的论文信息----------
 	//分类信息
 	public String third;
-	public String Hidden1;
-
-	public String getHidden1() {
-		return Hidden1;
-	}
-
-
-	public void setHidden1(String hidden1) {
-		Hidden1 = hidden1;
-	}
-
-
 	public String getThird() {
 		return third;
 	}
-	
-
 	public void setThird(String third) {
 		this.third = third;
 	}
@@ -42,7 +28,20 @@ public class PaperSupport extends UserSupport {
 	private File file;
 	private String fileFileName;
 	private String fileContentType;
-	
+	public String Hidden1;
+	public String Hidden2;
+	public String getHidden2() {
+		return Hidden2;
+	}
+	public void setHidden2(String hidden2) {
+		Hidden2 = hidden2;
+	}
+	public String getHidden1() {
+		return Hidden1;
+	}
+	public void setHidden1(String hidden1) {
+		Hidden1 = hidden1;
+	}
 	public File getFile() {
 		return file;
 	}
@@ -117,10 +116,40 @@ public class PaperSupport extends UserSupport {
 		logger.info(getPaperID());
 		
 	}
+public String[] authorANDkeywords(String str) {
+	String tempSecondAuthor="";
+	String tempKeywords="";
+	char[] wordArray=str.toCharArray();
+	int len=wordArray.length;
+	int tip=0;
+	for(int i=0;i<len;i++) {
+		
+		if(wordArray[i]=='@') 
+		{
+			tip=i;
+			break;
+		}
+		tempSecondAuthor+=wordArray[i];	
+		
+	}
+		for(int j=tip+1;j<len;j++) {
+			tempKeywords+=wordArray[j];
+	}
+		String[] temp= {tempSecondAuthor,tempKeywords};
+	return temp;
+}
+public void savePaper() throws IOException, SQLException {
 
-	public void savePaper() throws IOException, SQLException {
+	
+	  
 		Paper paper = getPaper();
-		System.out.println(getHidden1()+"ddddddddddddddddddddddddddddddd");
+		String[] b=authorANDkeywords(getHidden1());
+		System.out.println(getHidden1());
+		for(String item:b) {
+			System.out.println(item);
+		}
+		paper.setSecondAuthor(b[0]);
+		paper.setKeyword(b[1]);
 		paper.setSort(Dao.findSortID(getThird()));
 		paper.setPaperID(getPaperID());
 		if (file != null) {

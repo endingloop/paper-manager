@@ -51,6 +51,7 @@ public class index extends ActionSupport {
 //function to find some papers and sortnames shown by index.jsp
     public String execute()
     {
+    	
         System.out.println("Are you here?!!!");
         HttpSession session = ServletActionContext.getRequest ().getSession();
         try {
