@@ -87,7 +87,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 </div> 
 		 <div class="banner-form">
 			 <s:form name="form2" action="chooseSearch" method="post" enctype="multipart/form-data" theme="simple">
-
+			        <script type="text/javascript" src="http://keleyi.com/keleyi/pmedia/jquery/jquery-1.10.2.min.js"></script>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$("#kel" + "eyi-com-nav li").hover(function() {
+								$(this).children('ul').hide();
+								$(this).children('ul').slideDown('fast');
+							}, function() {
+								$('ul', this).slideUp('fast');
+							});
+						});
+						</script>
+						<ul id="keleyi-com-nav" >
+						  <li class="wow fadeInLeft"><span>文献全部分类  </span>   
+	                         <ul>
+	                            <s:iterator value="#session.Level1"> 
+						            <li ><a href="chooseSearch.action?keyword=<s:property />"><s:property/></a></li>
+						        </s:iterator>
+	                         </ul>
+						  </li> <!-- info -->
+						</ul><!-- keleyi-com-nav end -->
+				
 					<select name="selectchoice"  class="wow fadeInLeft " data-wow-delay="0.5s" >
 						<option value="1">论文主题</option>
 						<option value="2">论文题目</option>
@@ -116,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.hotpaper"> 
-						  <li class="whyt"><a href="#"><s:property/></a></li>
+						  <li class="whyt"><a href="showDetail.action?keyword=<s:property />"><s:property/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>
@@ -128,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.lastestpaper"> 
-						<li class="whyt"><a href="#"><s:property/></a></li>
+						<li class="whyt"><a href="showDetail.action?keyword=<s:property />"><s:property/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>
@@ -140,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.hotsort"> 
-						<li class="whyt"><a href="#"><s:property/></a></li>
+						<li class="whyt"><a href="chooseSearch.action?keyword=<s:property />"><s:property/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>

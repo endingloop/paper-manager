@@ -1,13 +1,17 @@
 package action;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,15 +20,15 @@ import service.Dao;
 import service.ExcelGenerate;
 import support.UserSupport;
 
+
 public class SearchPaper extends UserSupport {
 	
 	private static final long serialVersionUID = 2323L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
-	private int selectchoice;
+	private int selectchoice=6;
 	private String keyword;
 	private List<Paper> result;
 	private int papernum;
-
 
 	public String execute() {
 		return SUCCESS;
@@ -66,11 +70,48 @@ public class SearchPaper extends UserSupport {
 		
 		return count;
 	}
+    
+    public String showDetail()
+    {
+        String sql = null;
+        sql = "SELECT * FROM paper WHERE Title='" + keyword + "'";
+        try {
+            papernum = querySql(sql);
+            logger.info(sql + " NUMBER: " + papernum);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    //由第一层分类名称查第二分类由第二层分类名称查第三类分类
+	public List<String> querySort(String sql) throws SQLException
+	{
+	        
+            List<String> list1;
+            list1=new ArrayList<>();
+            Connection conn = Dao.getConn();
+            PreparedStatement pstmt;
+            pstmt = (PreparedStatement) conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            try {
+                rs = pstmt.executeQuery();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            while (rs.next()) {
+                list1.add(rs.getString(2));
+            }
+            selectchoice=6;
+            chooseSearch();
+            return list1;           
+	}
+    
 
-
+	
 	public String chooseSearch() {
-	
-	
 		String sql = null;
 		switch (selectchoice) {
 		case 1:
