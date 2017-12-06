@@ -135,7 +135,8 @@
 				</div>
 				
 			    <div id="part3" >
-					<span>请选择论文分类：</span> <br> <SELECT NAME="first"
+			    <s:if test="task == 'Create'"> 	 
+      				<span>请选择论文分类：</span> <br> <SELECT NAME="first"
 						onChange="getSecond()" class="select">
 						<OPTION value="0">第一级目录</OPTION>
 						<OPTION VALUE="1">基础学科</OPTION>
@@ -151,16 +152,67 @@
 					</SELECT> <select name="third" class="select">
 						<option value="0">第三级目录</option>
 					</select>
+  					</s:if>
+					<s:if test="task == 'Delete'"> 
+				 <SELECT NAME="first" onChange="getSecond()" class="select">  
+         <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
+           <OPTION VALUE="1">基础学科 </OPTION>  
+            <OPTION VALUE="2">工程科技</OPTION>  
+            <OPTION VALUE="3">农业科技</OPTION>  
+            <OPTION VALUE="4">医学卫生科技</OPTION>  
+            <OPTION VALUE="5">哲学与人文科学</OPTION>
+ 			 <OPTION VALUE="6">社会科学</OPTION>  
+            <OPTION VALUE="7">信息科学</OPTION>  
+            <OPTION VALUE="8">经济管理科学</OPTION>  
+        </SELECT>  
+  
+
+        <SELECT NAME="second" onChange="getThird()" class="select">  
+            <OPTION value="<s:property  value="secondstr"/>"><s:property  value="secondstr"/></OPTION>  
+        </SELECT> 
+  
+        <select name="third" class="select">
+        <option value="<s:property  value="thirdstr"/>"><s:property  value="thirdstr"/></option>
+        </select> 
+				   </s:if>
+					<s:if test="task == 'Edit'"> 
+				 <SELECT NAME="first" onChange="getSecond()" class="select">  
+         <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
+           <OPTION VALUE="1">基础学科 </OPTION>  
+            <OPTION VALUE="2">工程科技</OPTION>  
+            <OPTION VALUE="3">农业科技</OPTION>  
+            <OPTION VALUE="4">医学卫生科技</OPTION>  
+            <OPTION VALUE="5">哲学与人文科学</OPTION>
+ 			 <OPTION VALUE="6">社会科学</OPTION>  
+            <OPTION VALUE="7">信息科学</OPTION>  
+            <OPTION VALUE="8">经济管理科学</OPTION>  
+        </SELECT>  
+  
+
+        <SELECT NAME="second" onChange="getThird()" class="select">  
+            <OPTION value="<s:property  value="secondstr"/>"><s:property  value="secondstr"/></OPTION>  
+        </SELECT> 
+  
+        <select name="third" class="select">
+        <option value="<s:property  value="thirdstr"/>"><s:property  value="thirdstr"/></option>
+        </select> 
+				   </s:if>
+					
 				</div>
 				<div class="clearfix">
 				</div>
 				<div id="part4" >
-					<span>请选择发表日期：</span> <input name="paper.date"
+				
+      				<span>请选择发表日期：</span> <input name="paper.date"
 						value="<s:property  value="paper.date"/>" style="width: 120px;"
 						onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
+  					
+					
 				</div>
+				
 				<div id="part5" >
-					<select name="paper.level" class="select"  style="width:26%;">
+				<s:if test="task == 'Create'"> 	 
+      			<select name="paper.level" class="select"  style="width:26%;">
 						<OPTION value="10">请选择论文等级</OPTION>
 						<OPTION VALUE="60">SCI</OPTION>
 						<OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>
@@ -168,6 +220,28 @@
 						<OPTION VALUE="15">公开发表</OPTION>
 						<OPTION VALUE="10">普通论文</OPTION>
 					</select>
+  					</s:if>
+  				<s:if test="task == 'Edit'"> 
+				   <select name="paper.level" class="select"  style="width:26%;">
+						<OPTION  value="<s:property  value="paper.level"/>"><s:property  value="levelname"/></OPTION>
+						<OPTION VALUE="60">SCI</OPTION>
+						<OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>
+						<OPTION VALUE="30">核心期刊(国际会议)</OPTION>
+						<OPTION VALUE="15">公开发表</OPTION>
+						<OPTION VALUE="10">普通论文</OPTION>
+					</select>
+				 </s:if>
+				 <s:if test="task == 'Delete'"> 
+				   <select name="paper.level" class="select"  style="width:26%;">
+						<OPTION  value="<s:property  value="paper.level"/>"><s:property  value="levelname"/></OPTION>
+						<OPTION VALUE="60">SCI</OPTION>
+						<OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>
+						<OPTION VALUE="30">核心期刊(国际会议)</OPTION>
+						<OPTION VALUE="15">公开发表</OPTION>
+						<OPTION VALUE="10">普通论文</OPTION>
+					</select>
+				 </s:if>
+					
 		             <a id="example" class="btn btn-info" rel="popover" data-html="true"
 		             data-content="
 		                                                                                                ⭐SCI（科学引文索引）是美国科学信息研究所编辑出版的引文索引类刊物

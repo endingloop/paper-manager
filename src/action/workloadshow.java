@@ -237,7 +237,7 @@ public float findFirstAuthor(String str) {
 		ResultSet rs = pstmt.executeQuery(sql);
 		String[] b=null;
 		while(rs.next()) {
-			
+			if(rs.getString(4)!=null)
 			b=rs.getString(4).trim().split(",");
 			
 			List<String> listA = Arrays.asList(b);
@@ -271,7 +271,9 @@ public float findSecondtAuthor(String str) {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 		ResultSet rs= pstmt.executeQuery(sql);
 		while(rs.next()) {
-		String[] b=rs.getString(4).trim().split(",");
+			String[] b=null;
+			if(rs.getString(4)!=null)
+				b=rs.getString(4).trim().split(",");
 		List<String> listA = Arrays.asList(b);
 		if(listA.contains(str)) {
 			int amount=b.length;

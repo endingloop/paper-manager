@@ -2,6 +2,9 @@ package support;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.commons.io.FileUtils;
@@ -30,6 +33,34 @@ public class PaperSupport extends UserSupport {
 	private String fileContentType;
 	public String Hidden1;
 	public String Hidden2;
+	public String firststr;
+	public String secondstr;
+	public String thirdstr;
+	public String levelname;
+	public String getLevelname() {
+		return levelname;
+	}
+	public void setLevelname(String levelname) {
+		this.levelname = levelname;
+	}
+	public String getFirststr() {
+		return firststr;
+	}
+	public void setFirststr(String firststr) {
+		this.firststr = firststr;
+	}
+	public String getSecondstr() {
+		return secondstr;
+	}
+	public void setSecondstr(String secondstr) {
+		this.secondstr = secondstr;
+	}
+	public String getThirdstr() {
+		return thirdstr;
+	}
+	public void setThirdstr(String thirdstr) {
+		this.thirdstr = thirdstr;
+	}
 	public String getHidden2() {
 		return Hidden2;
 	}
@@ -164,5 +195,22 @@ public void savePaper() throws IOException, SQLException {
 		Dao.insertPaper(paper);
 		
 	}
+public void savePapers() throws IOException, SQLException {
+	Paper paper = getPaper();
+	paper.setSort(Dao.findSortID(getThird()));
+	paper.setPaperID(getPaperID());
+	if (file != null) {
+		paper.setFilename(fileFileName);
+		// 保存论文文件
+		String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
+		logger.info(destPath + fileFileName);
+		File destFile = new File(destPath, paper.getPaperID());
+		FileUtils.copyFile(file, destFile);
+	}
+	// 保存到数据库
+	Dao.insertPaper(paper);
 	
+}
+
+
 }
