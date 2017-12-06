@@ -51,8 +51,7 @@ public class index extends ActionSupport {
 //function to find some papers and sortnames shown by index.jsp
     public String execute()
     {
-    	
-        System.out.println("Are you here?!!!");
+        
         HttpSession session = ServletActionContext.getRequest ().getSession();
         try {
             String sql="select * from paper order by Date desc";//挑选出来最新的论文
@@ -67,7 +66,12 @@ public class index extends ActionSupport {
             List<String> list3 = query(sql);
             logger.info(sql);
             session.setAttribute("hotsort",list3);
+            sql="select * from first";
+            List<String> list4 = query(sql);
+            session.setAttribute("Level1",list4);
+            logger.info(sql);
             return SUCCESS;
+            
         } catch (SQLException e) {
             e.printStackTrace();
             return ERROR;

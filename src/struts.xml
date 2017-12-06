@@ -62,6 +62,9 @@
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
 		</action>
+	   <action name="showDetail" class="action.SearchPaper" method="showDetail">
+			<result name="success">/paper-detail.jsp</result>
+		</action>
 		<action name="fileDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentDisposition">attachment;filename="${fileName}"</param>
