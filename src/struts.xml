@@ -89,6 +89,9 @@
 			<result name="workload">/workload.jsp</result>
 			<interceptor-ref name="user" />
 		</action>
+		<action name="WorkGraph" class="action.WorkGraph" method="draw">
+			<result name="success">/chart.jsp</result>
+		</action>
 	</package>
 
 	<package name="wildcard" namespace="/" extends="default">
