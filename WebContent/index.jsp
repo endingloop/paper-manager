@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 						</script>
 						<ul id="keleyi-com-nav" >
-						  <li class="wow fadeInLeft"><span>文献全部分类  </span>   
+						  <li class="wow fadeInLeft" id="firstli">文献全部分类  
 	                         <ul>
 	                            <s:iterator value="#session.Level1"> 
 						            <li ><a href="querySort.action?selectchoice=0&keyword=<s:property/>"><s:property/></a></li>
