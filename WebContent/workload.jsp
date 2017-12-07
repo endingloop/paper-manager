@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="css/operation1.css">
 <script  type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>workload-show</title>
+<title>Paper-Manager</title>
 </head>
 <body>
 <div class="container">
@@ -25,13 +25,14 @@
  <a href="<s:url action='addend' />" id="left">用户</a>
  </header>
  <hr>
-   <div id="content2_top" >
-  <ul class="nav nav-tabs nav-justified">
-  <li role="presentation"> <a href="<s:url action="Login"/>">我的论文</a></li>
-  <li role="presentation" ><a href="<s:url action="Paper_input"/>">上传论文</a></li>
-  <li role="presentation"><a href="workload.jsp">查看工作量</a></li>
-  </ul>
-  </div>
+		<div  style="align: center; margin-left: 5%; margin-right: 5%;">
+		<div id="content2_top">
+			<ul class="nav nav-tabs nav-justified">
+				<li role="presentation" ><a href="<s:url action="Login"/>">我的论文</a></li>
+				<li role="presentation"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
+				<li role="presentation" class="active"><a href="workload.jsp">查看工作量</a></li>
+			</ul>
+		</div>
   <br>
 <div  style="text-align:center;">
 <form action="workload.action" method="post">
@@ -82,7 +83,7 @@
 
 <a href="fileDownloads.action?tip=1" style="float:right; margin-bottom:5%;"><button class="btn btn-default">下载个人工作量明细表</button></a>
 </div>
-
+</div>
 	<footer>
 		<br /> <span>Created by Group YST</span> <br /> <br />
 	</footer>
