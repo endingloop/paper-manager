@@ -150,7 +150,6 @@ font: 12px Geneva, Arial, Helvetica, sans-serif;
 
 #keleyi-com-nav li{
 width:18%;
-height:50px;
 border: 1px solid #308ab7;
 list-style: none;
 display: block;
@@ -166,12 +165,13 @@ color: #fff;
 outline: none;
 border-radius:3px;
 }
-#keleyi-com-nav li span
+#firstli
 {
 	font-size: 1.4em;
 	font-weight:600;
 	padding: 12px 32px;
 }
+
 #keleyi-com-nav li a{
 padding: 0px 10px 0px 30px;
 margin: 0px 0;
@@ -213,19 +213,15 @@ border-bottom:1px solid #FFFFFF;
 display: none;
 visibility:hidden;
 position: absolute;
-top: 40px;
+top: 102%;
+left:0px;
 }
-#keleyi-com-nav ul ul{
-top: 0px;
-left:170px;
-display: none;
-visibility:hidden;
-border: 1px solid #DDDDDD;
-}
+
 /* Fourth-level menus */
 #keleyi-com-nav ul li{
 display: block;
 visibility:visible;
+weight:400;
 }
 #keleyi-com-nav li:hover > ul{
 display: block;
