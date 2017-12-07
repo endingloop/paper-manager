@@ -43,7 +43,7 @@ header #right,#left
 }
 .content1
 {
-	height:160px;
+	height:150px;
 }
 .content2
 {
@@ -186,7 +186,7 @@ table
 #content2_center
 {
 	text-align:center;
-}
+	}
 #content2_center h3
 {
 	color:rgba(45, 105, 135, 1);
@@ -261,4 +261,28 @@ table
 #part5 .popover-content
 {
 	font-size:0.6em;
+}
+#findmore
+{
+	
+	margin-bottom:3%;
+	padding-bottom:2%;
+	padding-top:2%;
+	width:100%;
+	border:1px solid rgba(221, 221, 221, 1);
+	border-radius:3px;
+}
+#sort
+{
+	width:100%;
+	float:left;
+	display:block;
+	list-style-type:none;
+	
+}
+#sort li
+{
+	float:left;
+	font-size:1.2em;
+	margin-left:1em;
 }

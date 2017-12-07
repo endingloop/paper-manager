@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jquery-3.2.1.min.js"></script>
-<script src="bootsrap/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="boostrap/css/bootstrap.min.css">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
@@ -19,7 +19,7 @@
 			<a href="<s:url action="Login_input" />" id="right">登录</a>
 			<a href="<s:url action="Registration_input" />" id="left">注册</a>
 		</header>
-		<div class="content1" style="background-image: url(img/11.png);">
+		<div class="content1" style="background-image: url(images/11.jpg);">
 			<div>
 
 				<br>
@@ -46,7 +46,6 @@
 			</div>
 		</div>
 		<div class="content2">
-
 			<div id="content2_center">
 				<div class="shownum">
 					<span>共搜索出<s:property value="papernum" />篇论文
