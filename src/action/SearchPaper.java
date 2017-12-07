@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.Paper;
 import service.Dao;
 import service.ExcelGenerate;
+import support.Constants;
 import support.UserSupport;
 
 
@@ -25,22 +26,25 @@ public class SearchPaper extends UserSupport {
 	
 	private static final long serialVersionUID = 2323L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
-	private int selectchoice=6;
+	private int selectchoice;
 	private String keyword;
 	private List<Paper> result;
 	private int papernum;
+	
+	HttpSession session = ServletActionContext.getRequest ().getSession();
+    
 
-	public String execute() {
-		return SUCCESS;
-	}
+    public String execute() {
+        return SUCCESS;
+    }
 
-	private int querySql(String sql) throws SQLException {
-		Connection conn = Dao.getConn();
-		result = new ArrayList<>();
-		PreparedStatement pstmt;
-		pstmt = (PreparedStatement) conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		int count = 0;
+    private int querySql(String sql) throws SQLException {
+        Connection conn = Dao.getConn();
+        result = new ArrayList<>();
+        PreparedStatement pstmt;
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        int count = 0;
 		while (rs.next()) {
 			Paper temp = new Paper();
 			temp.setPaperID(rs.getString(1));
@@ -85,29 +89,85 @@ public class SearchPaper extends UserSupport {
         }
         return SUCCESS;
     }
+    
+    public String findsortIDbysortname(int level) throws SQLException
+    {   
+        Connection conn = Dao.getConn();
+        PreparedStatement pstmt;
+        String sql=null;
+        String sortID=null;
+        if(level==1)
+        {
+            sql="SELECT * FROM first WHERE sortname='" + keyword + "'";
+        }
+        else if(level==2)
+        {
+            sql="SELECT * FROM second WHERE sortname='" + keyword + "'";
+        }
+        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+        ResultSet rs ;
+        try {
+            rs = pstmt.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ERROR;
+        }
+        while (rs.next()) {
+            sortID=rs.getString(1);
+        }
+        return sortID;
+    }
+    
     //由第一层分类名称查第二分类由第二层分类名称查第三类分类
-	public List<String> querySort(String sql) throws SQLException
+	public String querySort() throws SQLException
 	{
-	        
+            if(selectchoice==2)
+            {
+                selectchoice=6;
+                chooseSearch();
+                return SUCCESS;
+            }
             List<String> list1;
             list1=new ArrayList<>();
             Connection conn = Dao.getConn();
             PreparedStatement pstmt;
+            String sql=null;
+            String sortid;
+            logger.info(selectchoice);
+            logger.info(keyword);
+            if(selectchoice==0)//由一级分类进行查询
+            {
+                 sortid=findsortIDbysortname(1);
+                 sql="SELECT * FROM second WHERE upper='" + sortid + "'";
+                 session.setAttribute("searchLevel",1);
+            }
+            if(selectchoice==1)
+            {
+                sortid=findsortIDbysortname(2);
+                sql="SELECT * FROM third WHERE upper='" + sortid + "'";
+                session.setAttribute("searchLevel",2);
+            }
+            
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rs ;
             try {
                 rs = pstmt.executeQuery();
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                return ERROR;
             }
             while (rs.next()) {
                 list1.add(rs.getString(2));
             }
+            session.setAttribute("sortlist",list1);
+            
             selectchoice=6;
             chooseSearch();
-            return list1;           
+            return SUCCESS;           
 	}
+
     
 
 	

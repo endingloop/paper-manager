@@ -102,7 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  <li class="wow fadeInLeft"><span>文献全部分类  </span>   
 	                         <ul>
 	                            <s:iterator value="#session.Level1"> 
-						            <li ><a href="chooseSearch.action?keyword=<s:property />"><s:property/></a></li>
+						            <li ><a href="querySort.action?selectchoice=0&keyword=<s:property/>"><s:property/></a></li>
 						        </s:iterator>
 	                         </ul>
 						  </li> <!-- info -->
@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.hotsort"> 
-						<li class="whyt"><a href="chooseSearch.action?keyword=<s:property />"><s:property/></a></li>
+						<li class="whyt"><a href="chooseSearch.action?selectchoice=6&keyword=<s:property />"><s:property/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>

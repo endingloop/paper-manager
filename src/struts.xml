@@ -62,6 +62,9 @@
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
 		</action>
+		<action name="querySort" class="action.SearchPaper" method="querySort">
+			<result name="success">/search-sort-result.jsp</result>
+		</action>
 	   <action name="showDetail" class="action.SearchPaper" method="showDetail">
 			<result name="success">/paper-detail.jsp</result>
 		</action>
