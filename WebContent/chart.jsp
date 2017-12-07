@@ -6,7 +6,7 @@
 
 <head>
 
-<title>HTML5制作动态人物关系结构图</title>
+<title>Paper-manager</title>
 
 <script src="js/esl.js"></script>
 
@@ -42,17 +42,7 @@
 
 		var option = {
 
-			title : {
 
-				text : '人物关系：乔布斯',
-
-				subtext : '数据来自人立方',
-
-				x : 'right',
-
-				y : 'bottom'
-
-			},
 
 			tooltip : {
 
@@ -62,18 +52,7 @@
 
 			},
 
-			legend : {
 
-				x : 'left',
-
-				selected : {
-					'朋友' : true,
-					'家人' : true
-				},
-
-				data : [ '家人', '朋友' ]
-
-			},
 
 			isShowScrollBar : false,
 

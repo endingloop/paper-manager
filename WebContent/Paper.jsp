@@ -12,7 +12,9 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
-<title>Paper Manager System</title>
+<script  type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Paper Manager</title>
 <script language="javascript" type="text/javascript">
  
 
@@ -114,7 +116,7 @@
 					<span>第一作者：<s:textfield name="paper.author"/></span>
 					<s:if test="task == 'Create'"> 	 
       				<table id="tb"></table>
-					<input name="button" type="button" onclick='additem("tb")' value="添加第二作者"/>
+					<input name="button" type="button" class="btn btn-default" onclick='additem("tb")' value="点击添加第二作者"/>
 					<input id="Hidden1" name="Hidden1" type="hidden"  />
   					</s:if>
   				<s:if test="task == 'Edit'"> 
@@ -123,7 +125,7 @@
 				   
 				   <s:if test="task == 'Create'"> 	 
       				<table id="tb1"></table>
-					<input name="button" type="button" onclick='additem1("tb1")' value="添加关键字"/>
+					<input name="button" class="btn btn-default" style="margin-top:1%;margin-bottom:1%;" type="button" onclick='additem1("tb1")' value="点击添加关键字"/>
 					<input id="Hidden2" name="Hidden2" type="hidden" />
   					</s:if>
 					<s:if test="task == 'Edit'"> 
@@ -268,7 +270,7 @@
                        <span>请保证您上传的论文已通过原作者的允许！<br></span>
 				   </s:if>	
 				
-				<input type="submit" onclick="getsub()"  value="提交"/>
+				<input class="btn btn-default" type="submit" onclick="getsub()"  value="提交"/>
 				</div>
 			</s:form>
 			</div>
