@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,16 +21,15 @@ import support.UserSupport;
 
 public class Dao {
 
-public static List<gradeinfo> inforesult;
+	public static List<gradeinfo> inforesult;
+
 	public List<gradeinfo> getInforesult() {
-	return inforesult;
-}
+		return inforesult;
+	}
 
-public void setInforesult(List<gradeinfo> inforesult) {
-	this.inforesult = inforesult;
-}
-
-
+	public void setInforesult(List<gradeinfo> inforesult) {
+		this.inforesult = inforesult;
+	}
 	
 	static private Logger logger = Logger.getLogger(Dao.class);
 
@@ -51,37 +52,34 @@ public void setInforesult(List<gradeinfo> inforesult) {
 
 	public static User findUser(String username) throws SQLException {
 		User user = null;
-		String password = null;
-		String result = null;
-		List<Paper> papers = new ArrayList<>();
 		Connection conn = Dao.getConn();
-		String sql = "select password, papers from user where username = '" + username + "'";
+		String sql = "select password, email, realName, authority from user where username = '" + username + "'";
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
-		
 		if (rs.next()) {
-			password = rs.getString(1);
-			result = rs.getString(2);
-			logger.info("find user "+username);
-			if (result != null  && !result.isEmpty()) {
-				for (String s : result.split(",")) {
-					papers.add(findPaper(s));
-				}
-			}
-			user = new User(username, password, papers);
+			user = new User();
+			user.setUsername(username);
+			user.setPassword(rs.getString(1));
+			user.setEmail(rs.getString(2));
+			user.setRealName(rs.getString(3));
+			user.setAuthority(rs.getInt(4));
 		}
 		return user;
 	}
 	
 	public static void inputUser(User user) throws SQLException {
 		Connection conn = Dao.getConn();
-		String sql = "replace into user values(?,?,?)";
+		String sql = "insert into user values(?,?,?,?,?,?)";
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		pstmt.setString(1, user.getUsername());
 		pstmt.setString(2, user.getPassword());
-		pstmt.setString(3, user.getPaperIdList());
+		pstmt.setString(3, user.getEmail());
+		pstmt.setString(4, user.getRealName());
+		//当前日期
+		pstmt.setString(5, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		pstmt.setInt(6, user.getAuthority());
 		pstmt.executeUpdate();
 		//logger.info("register successful");
 		pstmt.close();
@@ -151,13 +149,38 @@ public void setInforesult(List<gradeinfo> inforesult) {
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		int result = pstmt.executeUpdate();
-
 		logger.info("remove paper successfully！");
-
 		pstmt.close();
 		conn.close();
 		return result;
 	}
+	public static int addUpload(String username, String paperID) throws SQLException {
+		Connection conn = Dao.getConn();
+		String sql = "insert into upload values(?,?,?,?)";
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		pstmt.setString(1, username);
+		pstmt.setString(2, paperID);
+		pstmt.setString(3, new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		pstmt.setInt(4, 0);
+		int result = pstmt.executeUpdate();
+		//logger.info("register successful");
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+
+	public static int removeUpload(String paperID) throws SQLException {
+		Connection conn = Dao.getConn();
+		String sql = "DELETE FROM upload WHERE PaperID = " + paperID;
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		return result;
+	}
+	
 	public static int findSortLevel(String sortstr) throws SQLException {
 		Connection conn = Dao.getConn();
 		PreparedStatement pstmt;

@@ -108,7 +108,7 @@
 				   <span>选择新文件：</span><input type="file" name="file">
 				   </s:if>
 				   <s:if test="task == 'Delete'"> 
-				   <h3 >请确认文献信息：</h3>
+				   <h3 >请确认要删除的文献信息：</h3>
 				 </s:if>
 				</div>
 				<div id="part2">
@@ -155,7 +155,7 @@
 						<option value="0">第三级目录</option>
 					</select>
   					</s:if>
-					<s:if test="task == 'Delete'"> 
+					<s:else> 
 				 <SELECT NAME="first" onChange="getSecond()" class="select">  
          <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
            <OPTION VALUE="1">基础学科 </OPTION>  
@@ -176,29 +176,8 @@
         <select name="third" class="select">
         <option value="<s:property  value="thirdstr"/>"><s:property  value="thirdstr"/></option>
         </select> 
-				   </s:if>
-					<s:if test="task == 'Edit'"> 
-				 <SELECT NAME="first" onChange="getSecond()" class="select">  
-         <OPTION value="<s:property  value="firststr"/>"><s:property  value="firststr"/></OPTION> 
-           <OPTION VALUE="1">基础学科 </OPTION>  
-            <OPTION VALUE="2">工程科技</OPTION>  
-            <OPTION VALUE="3">农业科技</OPTION>  
-            <OPTION VALUE="4">医学卫生科技</OPTION>  
-            <OPTION VALUE="5">哲学与人文科学</OPTION>
- 			 <OPTION VALUE="6">社会科学</OPTION>  
-            <OPTION VALUE="7">信息科学</OPTION>  
-            <OPTION VALUE="8">经济管理科学</OPTION>  
-        </SELECT>  
-  
-
-        <SELECT NAME="second" onChange="getThird()" class="select">  
-            <OPTION value="<s:property  value="secondstr"/>"><s:property  value="secondstr"/></OPTION>  
-        </SELECT> 
-  
-        <select name="third" class="select">
-        <option value="<s:property  value="thirdstr"/>"><s:property  value="thirdstr"/></option>
-        </select> 
-				   </s:if>
+				   </s:else>
+	
 					
 				</div>
 				<div class="clearfix">

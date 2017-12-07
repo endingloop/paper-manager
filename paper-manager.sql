@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `paper-manager` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `paper-manager`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.38, for Linux (x86_64)
 --
 -- Host: localhost    Database: paper-manager
 -- ------------------------------------------------------
--- Server version	5.7.17-log
+-- Server version	5.6.38
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +34,6 @@ CREATE TABLE `authorlist` (
 
 LOCK TABLES `authorlist` WRITE;
 /*!40000 ALTER TABLE `authorlist` DISABLE KEYS */;
-INSERT INTO `authorlist` VALUES ('changfan'),('changfan1'),('DZT'),('lihu'),('meili'),('wangyue'),('YST'),('zhangxiaoman'),('zhusiyuan');
 /*!40000 ALTER TABLE `authorlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,31 +63,6 @@ INSERT INTO `first` VALUES (1,'基础学科','0'),(2,'工程科技','0'),(3,'农
 UNLOCK TABLES;
 
 --
--- Table structure for table `journal`
---
-
-DROP TABLE IF EXISTS `journal`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `journal` (
-  `JournalID` varchar(45) NOT NULL,
-  `JournalName` varchar(300) NOT NULL,
-  `Description` varchar(2000) DEFAULT NULL,
-  `Level` varchar(5) NOT NULL,
-  PRIMARY KEY (`JournalID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `journal`
---
-
-LOCK TABLES `journal` WRITE;
-/*!40000 ALTER TABLE `journal` DISABLE KEYS */;
-/*!40000 ALTER TABLE `journal` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `new`
 --
 
@@ -111,7 +83,6 @@ CREATE TABLE `new` (
 
 LOCK TABLES `new` WRITE;
 /*!40000 ALTER TABLE `new` DISABLE KEYS */;
-INSERT INTO `new` VALUES ('1512305620279001','changfan1',30,'changfan1,changfan2,changfan3,changfan4'),('1512376294464000','changfan',10,'zhangxiaoman,zhusiyuan,changfan1');
 /*!40000 ALTER TABLE `new` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +116,6 @@ CREATE TABLE `paper` (
 
 LOCK TABLES `paper` WRITE;
 /*!40000 ALTER TABLE `paper` DISABLE KEYS */;
-INSERT INTO `paper` VALUES ('1512305620279001','eeeeee','changfan1','changfan1,changfan2,changfan3,changfan4','2017-11-28',22,'dddddddddd',0,'33','ee','Amaze UI 手机wap登录页html模板_Amaze UI 手机 登录 login 注册 wap.jpg',30),('1512375147549002','三个傻蛋闯工大','zhangxiaoman','changfan,DZT,zhusiyuan','2017-12-24',200,'电子工业出版社',0,'自强不息,交流','东北大学，电子科技大学','Amaze UI Admin后台管理系统模板_后台 管理系统 系统 后台ui oa cms系统 login 登录 全屏 适应 左栏 后台界面 后台管理系统 Amaze ui 图表 ui管理界面.jpg',15),('1512376294464000','dddddddddddd','changfan','zhangxiaoman,zhusiyuan,changfan1','2017-12-12',-1,'            顶顶顶顶顶顶顶顶顶顶顶顶顶',0,'的','顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶','9.1.0.322.manifest',10),('1512402904128000','相识即是缘分','zhangxiaoman','lihu,wangyue,meili','2017-12-20',13,'顶顶顶顶顶顶顶顶顶',0,'作死','顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶','360base.dll',45);
 /*!40000 ALTER TABLE `paper` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,6 +169,30 @@ INSERT INTO `third` VALUES (1,'岩石学',1),(2,'矿物学',1),(3,'古生物学'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `upload`
+--
+
+DROP TABLE IF EXISTS `upload`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `upload` (
+  `username` varchar(45) NOT NULL,
+  `paperID` varchar(50) NOT NULL,
+  `uploadDate` date NOT NULL,
+  `clickTime` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `upload`
+--
+
+LOCK TABLES `upload` WRITE;
+/*!40000 ALTER TABLE `upload` DISABLE KEYS */;
+/*!40000 ALTER TABLE `upload` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -208,7 +202,10 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `papers` varchar(5000) DEFAULT NULL,
+  `email` varchar(40) NOT NULL,
+  `realName` varchar(40) DEFAULT NULL,
+  `registrationDate` date NOT NULL DEFAULT '2017-01-01',
+  `authority` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -219,7 +216,6 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('changfan','123','1512375147549002,1512376294464000,1512402904128000'),('changfan3','233',''),('wangxiao','123',''),('银杏黄2','1232','1512305620279001');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -232,4 +228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-05  1:41:24
+-- Dump completed on 2017-12-07 22:58:32

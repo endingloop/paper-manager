@@ -14,7 +14,7 @@ public class Registration extends UserSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1234L;
 	
 	public String save() throws SQLException {
 		return execute();
@@ -29,7 +29,7 @@ public class Registration extends UserSupport {
 			addActionError("密码不一致！");
 			return INPUT;
 		}
-		setUser(new User(getUsername(), getPassword(), null));
+		setUser(new User(getUsername(), getPassword(), getEmail(), getRealName(), 0));
 		saveUser();
 		return SUCCESS;
 	}

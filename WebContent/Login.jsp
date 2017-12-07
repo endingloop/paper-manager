@@ -15,7 +15,7 @@
 <body>
 <div class="page-container">
  <h1>Sign in</h1>
-<s:form action="Login" validate="true" name="login" theme="simple" >
+<s:form action="Login" validate="true" name="login" >
     <s:textfield name="username" placeholder="账号" type="text" />
 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>

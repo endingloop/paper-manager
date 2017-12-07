@@ -63,6 +63,24 @@ public class UserSupport extends ActionSupport implements SessionAware {
     public void setPassword2(String value) {
         password2 = value;
     }
+    
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	private String realName;
+
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
     public User getUser() {
         return (User) getSession().get(Constants.USER_KEY);
@@ -81,6 +99,7 @@ public class UserSupport extends ActionSupport implements SessionAware {
 
 		User user = Dao.findUser(username);
 		if(user != null && user.getPassword().equals(password)) {
+			user.findPapers();
 			return user;
 		} else {
 			return null;

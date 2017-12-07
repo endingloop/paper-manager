@@ -32,16 +32,12 @@ public class PaperAction extends PaperSupport {
 			removePaper();
 		}
 		if (Constants.CREATE.equals(getTask())) {
-			CreatePaper();
-			savePaper();
-		}
-		if (Constants.EDIT.equals(getTask())) {
-			
+			setupPaper();
 			savePapers();
 		}
-		saveUser();
-		
-
+		if (Constants.EDIT.equals(getTask())) {
+			savePapers();
+		}
 		return SUCCESS;
 	}
 	
@@ -63,8 +59,7 @@ public class PaperAction extends PaperSupport {
         return INPUT;
     }
 	
-	public String edit() throws SQLException {
-		
+	public String edit() throws SQLException {		
 		setTask(Constants.EDIT);
 		return find();
 	}
@@ -72,38 +67,6 @@ public class PaperAction extends PaperSupport {
 	public String delete() throws SQLException {
 		setTask(Constants.DELETE);
   		return find();
-	}
-	public ResultSet findsort() {
-		Paper paper = getPaper();
-		 PreparedStatement pstmt;
-			Connection conn = Dao.getConn();
-			String sql = "select first.sortname ,second.sortname,third.sortname from third, second ,first where thirdID=" + paper.getSort() + " and third.upper=second.secondID and second.upper=first.firstID;";
-			System.out.println(sql);
-			ResultSet rs=null;
-			try {
-				pstmt = (PreparedStatement) conn.prepareStatement(sql);
-				 rs = pstmt.executeQuery();
-				 if(rs.next()) {
-					 System.out.println("success show!");
-					 firststr=rs.getString(1);
-						secondstr=rs.getString(2);
-						thirdstr=rs.getString(3);
-						System.out.println(firststr+" "+secondstr+" "+thirdstr);
-				 }else {
-					 firststr="请重新选择一级分类";
-						secondstr="请重新选择二级分类";
-						thirdstr="请重新选择三级分类";
-				 }
-				
-				 
-				 pstmt.close();
-					conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	return rs;
 	}
 	
 }
