@@ -299,7 +299,7 @@ public class SearchPaper extends UserSupport {
 			
          StringBuffer s=new StringBuffer();  
 
-        for(int i=1;i<=Math.ceil((double)pages/25);i++){  
+        for(int i=1;i<=Math.ceil((double)pages/10);i++){  
             session.setAttribute("selectchoice",selectchoice); 
             session.setAttribute("keyword",keyword);
             session.setAttribute("pagenum",current_page);
