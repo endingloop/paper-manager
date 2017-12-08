@@ -30,7 +30,7 @@
 				<s:form name="form2" action="chooseSearch">
 					<div>
 						<select name="selectchoice"
-							style="width: 6.7em; margin-left: -2%; margin-bottom: -47%;">
+							style="width: 7em; margin-left: 0px; margin-bottom: -4.5em;">
 							<option value="1">论文主题</option>
 							<option value="2">论文题目</option>
 							<option value="3">作者姓名</option>
@@ -39,10 +39,10 @@
 							<option value="6">论文分类</option>						
 						</select>
 					</div>
-					<s:textfield style="width:93%; margin-left: 53%;margin-top: 10%;"  key="keyword" />
+					<s:textfield style="width:12em; margin-left: 7.5em;margin-top:0.6em;"  key="keyword" />
 					<div>
-						<s:submit class="btn btn-default" value="搜索"
-							style="margin-left: 154%;margin-top: -43%;" />
+						<s:submit class="btn btn-info" value="搜索"
+							style="margin-left:22em;margin-top: -5.1em;" />
 					</div>
 				</s:form>
 			</div>
@@ -64,8 +64,8 @@
 						<td>关键词</td>
 						<td>下载</td>
 					</tr>
-					<s:iterator value="#session.list" status="index">
 						<tr>
+						    <s:iterator value="#session.list" status="index">
 							<td><s:property value="#index.index+1" /></td>
 							<td><a
 								href="searchPaperID.action?keyword=<s:property value="paperID"/>"><s:property
@@ -85,20 +85,14 @@
 							<td><s:iterator value="keywords2" status="index">
 									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
-							<td><a
-								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
+							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
+						  </s:iterator>
 						</tr>
-					</s:iterator>
 				</table>
-				<nav aria-label="Page navigation">
-					<ul class="pagination" style="list-style-type:none;">
-						<li><%=request.getAttribute("s") %></li>
-					</ul>
-				</nav>      
-            
-					
-				
-				<a href="fileDownloads.action?tip=2">导出为excel表格</a>
+                 <div style="align:center;"> <%=request.getAttribute("s") %>  </div>
+
+                <br>
+				<a href="fileDownloads.action?tip=2" class="btn btn-info">导出为excel表格</a>
 
 			</div>
 		</div>
