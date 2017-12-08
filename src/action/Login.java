@@ -3,6 +3,7 @@ package action;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import model.User;
 import service.Dao;
@@ -10,11 +11,13 @@ import support.UserSupport;
 
 public class Login extends UserSupport {
 
-	private static final long serialVersionUID = 198L;
+	private static final long serialVersionUID = 1098L;
 
 	static private Logger logger = Logger.getLogger(Dao.class);
 	
-	public String index() throws SQLException {
+	@SkipValidation
+	public String mainMenu() throws SQLException {
+		logger.info("at index");
 		setUser(findUser(getUser().getUsername(), getUser().getPassword())); // 不加这一句，页面不刷新 :(
 		return SUCCESS;
 	}
