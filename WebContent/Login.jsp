@@ -10,21 +10,26 @@
 <link rel="stylesheet" href="css/login-reset.css"/>
 <link rel="stylesheet" href="css/login-supersized.css"/>
 <link rel="stylesheet" href="css/login-style.css"/>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.easydropdown.js"></script>
+<link rel="stylesheet" href="css/select-style.css"/>
 </head>
 
 <body>
 <div class="page-container">
  <h1>Sign in</h1>
 <s:form action="Login" validate="true" name="login" >
+
+    <select name="authority" class="dropdown" >
+       <option value="0" selected="selected">普通用户</option>
+       <option value="1">注册会员</option>
+       <option value="3">管理员</option>
+    </select>
+
     <s:textfield name="username" placeholder="账号" type="text" />
 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
     
-        <select name="authority">
-            <option value="0" selected="selected">普通用户</option>
-            <option value="1">注册会员</option>
-            <option value="3">管理员</option>
-        </select>
     
 	<span style="color:red;"><s:actionerror/></span>
 
