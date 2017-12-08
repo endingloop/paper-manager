@@ -24,7 +24,7 @@
 
 				<br>
 			</div>
-			<div id="SearchInput" style="margin-left: 32%;">
+			<div id="SearchInput" style="margin-left: 34%;">
 				<s:form name="form2" action="chooseSearch">
 					<div>
 						<select name="selectchoice"
@@ -37,7 +37,7 @@
 							<option value="6">论文分类</option>						
 						</select>
 					</div>
-					<s:textfield style="width:12em; margin-left: 7.5em;margin-top:0.6em;"  key="keyword" />
+					<s:textfield style="width:12em; margin-left: 8em;margin-top:0.6em;"  key="keyword" />
 					<div>
 						<s:submit class="btn btn-info" value="搜索"
 							style="margin-left:22em;margin-top: -5.1em;" />
@@ -110,9 +110,9 @@
 
 				</table>
 					
-				     
+				 	<a href="fileDownloads.action?tip=2">导出为excel表格</a>
                  <div style="align:center;"><%=request.getAttribute("s") %>  </div>
-				<a href="fileDownloads.action?tip=2">导出为excel表格</a>
+			
 
 			</div>
 		</div>
