@@ -16,14 +16,6 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
-
-<script language="JavaScript">
-function myrefresh()
-{
-       window.location.reload();
-}
-setTimeout('myrefresh()',1000); //指定1秒刷新一次
-</script>
 </head>
 <body>
 	<div class="container">
