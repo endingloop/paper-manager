@@ -63,7 +63,7 @@
   <a href="fileDownloads.action?tip=0&&authorname=null" style="float:right;"><button class="btn btn-default">下载工作量总表</button></a>
   <br>
   <br>
-<h4><s:property  value="authorname"/>总分<s:property value="scoretemp"/>分）   <s:property  value="startdate"/><s:property  value="enddate"/>的具体得分细化如下表：</h4>
+<h4><s:property  value="authorname"/>总分（<s:property value="scoretemp"/>分）   <s:property  value="startdate"/><s:property  value="enddate"/>的具体得分细化如下表：</h4>
 <table class="table table-hover">
 <tr><th>论文题目</th><th>第一作者</th><th>第二作者</th><th>发布时间</th><th>论文类型</th><th>论文等级</th><th>分值</th><th>所获分值</th></tr>
 <s:iterator  value="list1">

@@ -395,9 +395,8 @@ public class Dao {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
-			if(temp.getStatus() == 1)
-				list.add(temp);	
-		}
+				list.add(temp);	}
+		
 	
 		return list;
 	}
@@ -411,5 +410,16 @@ public class Dao {
 		pstmt.close();
 		conn.close();		
 	}
-	
+	//统计下载量
+	public void sumClickTime(int paperID) throws SQLException {
+		Connection conn = getConn();
+		String sql = "update  upload set clickTime=clickTime+1  WHERE paperID = "+ paperID+";";
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		int result = pstmt.executeUpdate();
+		logger.info("sumClickTime   successfully！");
+		pstmt.close();
+		conn.close();
+		
+	}
 }
