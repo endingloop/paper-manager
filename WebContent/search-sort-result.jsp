@@ -78,7 +78,7 @@
 						<td>关键词</td>
 						<td>下载</td>
 					</tr>
-					<s:iterator value="result" status="index">
+					<s:iterator value="#session.list" status="index">
 						<tr>
 							<td><s:property value="#index.index+1" /></td>
 							<td><a
@@ -104,7 +104,11 @@
 						</tr>
 						
 					</s:iterator>
-
+							<tr align="center" valign="middle">  
+    <td colspan="5">  
+        <%=request.getAttribute("s") %>      
+    </td>  
+  </tr> 
 				</table>
 					
 				

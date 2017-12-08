@@ -146,6 +146,7 @@ public class SearchPaper extends UserSupport {
             String sortid;
             logger.info(selectchoice);
             logger.info(keyword);
+            logger.info(page);
             if(selectchoice==0)//由一级分类进行查询
             {
                  sortid=findsortIDbysortname(1);
@@ -158,19 +159,22 @@ public class SearchPaper extends UserSupport {
                 sql="SELECT * FROM third WHERE upper='" + sortid + "'";
                 session.setAttribute("searchLevel",2);
             }
+            if(sql!=null)
+            {
+            	pstmt = (PreparedStatement) conn.prepareStatement(sql);
+                ResultSet rs ;
+                try {
+                    rs = pstmt.executeQuery();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return ERROR;
+                }
+                while (rs.next()) {
+                    list1.add(rs.getString(2));
+                }
+            }
             
-            pstmt = (PreparedStatement) conn.prepareStatement(sql);
-            ResultSet rs ;
-            try {
-                rs = pstmt.executeQuery();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return ERROR;
-            }
-            while (rs.next()) {
-                list1.add(rs.getString(2));
-            }
             session.setAttribute("sortlist",list1);
             
             selectchoice=6;
@@ -185,34 +189,41 @@ public class SearchPaper extends UserSupport {
 	
 	public String chooseSearch() {
 		String sql = null;
+		int index=0;
+		System.out.println(selectchoice+"dddddddddddddddddddddddddddddddddddddddddddd");
+		logger.info(selectchoice);
+        logger.info(keyword);
+        logger.info(page);
 		switch (selectchoice) {
 		case 1:
-			sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%'";
+			sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%' ";
 			break;
 		case 2:
-			sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%'";
+			sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%' ";
 			break;
 		case 3:
-			sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "'";
+			sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "' ";
 			break;
 		case 4:
 			sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";
 			break;
 		case 5:
-			sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "'";
+			sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "' ";
 			break;
 		case 6:
 			try {
+				index=1;
+				System.out.println(keyword);
 				int id = Dao.findSortID(keyword);
 				switch(Dao.findSortLevel(keyword)) {
 				case 1:
-					sql = "select * from paper,third,second where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID;";
+					sql = "select * from paper,third,second where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID ";
 					break;
 				case 2:
-					sql = "select * from paper,third where third.upper="+ id +" and paper.sortID=third.thirdID";
+					sql = "select * from paper,third where third.upper="+ id +" and paper.sortID=third.thirdID ";
 					break;
 				case 3:
-					sql = "select * from paper where sortID="+ id ;
+					sql = "select * from paper where sortID="+ id +" ";
 					break;
 				default:
 					logger.error("No this sort: " + keyword);
@@ -229,18 +240,19 @@ public class SearchPaper extends UserSupport {
 			} else {
 				papernum = querySql(sql);
 			}
-			logger.info(sql + " NUMBER: " + papernum);
+			logger.info(sql + " NUMBER: " + papernum+"sql fenlong-----------------");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return ERROR;
 		}
-		Padding(sql,getPage());
+		logger.info(sql);
+		Padding(sql,getPage(),index);
 		return SUCCESS;
 
 	}
 	
 	
-	public String Padding(String sql,int page) {
+	public String Padding(String sql,int page,int index) {
 		int current_page=getPage();
 		int pages=0;
 		try {
@@ -251,7 +263,7 @@ public class SearchPaper extends UserSupport {
 		}	
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
-        sql=sql+"order by paperID desc limit "+(page-1)*2+",2"; 
+        sql=sql+" order by paperID desc limit "+(page-1)*2+",2"; 
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
 		try {
@@ -266,9 +278,14 @@ public class SearchPaper extends UserSupport {
             if(i==current_page){  
                 s.append("["+i+"]");  
             }  
-            else{  
+            else{ 
+            	if(index==0) {
+            		 s.append("<a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
+            	}else {
+            		  s.append("<a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
+            	}
                 
-       s.append("<a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
+     
                 		 
             }  
         }  		
