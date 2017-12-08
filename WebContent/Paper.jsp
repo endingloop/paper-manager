@@ -252,7 +252,7 @@
 				   </s:if>	
 				
 				<input class="btn btn-default" type="submit" onclick="getsub()" style="margin-left:20%;"  value="提交"/>
-				<a href="<s:url action="Login"/>"><input class="btn btn-danger" type="button" value="取消" style="margin-left:3%;"/></a>
+				<a href="<s:url action="Login"/>"><input class="btn btn-warning" type="button" value="取消" style="margin-left:3%;"/></a>
 				</div>
 			</s:form>
 			</div>
