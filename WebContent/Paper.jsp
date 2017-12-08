@@ -87,11 +87,13 @@
 		<hr>
 		<div class="content2"  >
 			<div id="content2_top">
+			   <s:if test="task == 'Create'">
 				<ul class="nav nav-tabs nav-justified">
 					<li role="presentation"><a href="<s:url action="Login"/>">我的论文</a></li>
-					<li role="presentation"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
+					<li role="presentation"  class="active"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
 					<li role="presentation"><a href="workload.jsp">查看工作量</a></li>
 				</ul>
+				</s:if>
 	        <div id="content2_middle" style="margin-left:33%; font-size:1.2em;" >
 			<s:form name="form1" action="Paper_save" method="post" enctype="multipart/form-data" theme="simple"  >
 				<s:hidden name="task" />
@@ -249,7 +251,8 @@
                        <span>请保证您上传的论文已通过原作者的允许！<br></span>
 				   </s:if>	
 				
-				<input class="btn btn-default" type="submit" onclick="getsub()"  value="提交"/>
+				<input class="btn btn-default" type="submit" onclick="getsub()" style="margin-left:20%;"  value="提交"/>
+				<a href="<s:url action="Login"/>"><input class="btn btn-danger" type="button" value="取消" style="margin-left:3%;"/></a>
 				</div>
 			</s:form>
 			</div>
