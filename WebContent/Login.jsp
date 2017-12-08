@@ -10,22 +10,28 @@
 <link rel="stylesheet" href="css/login-reset.css"/>
 <link rel="stylesheet" href="css/login-supersized.css"/>
 <link rel="stylesheet" href="css/login-style.css"/>
+<title>用户登录</title>
+
 </head>
 
 <body>
 <div class="page-container">
  <h1>Sign in</h1>
-<s:form action="Login" validate="true" name="login" >
+<s:form action="Login" validate="true" name="login">
     <s:textfield name="username" placeholder="账号" type="text" />
-
+	<s:fielderror cssStyle="color: red">
+		<s:param>username</s:param>
+	</s:fielderror> 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
-    
+	<s:fielderror cssStyle="color: red">
+		<s:param>password</s:param>
+	</s:fielderror>  
         <select name="authority">
             <option value="0" selected="selected">普通用户</option>
             <option value="1">注册会员</option>
             <option value="3">管理员</option>
         </select>
-    
+        
 	<span style="color:red;"><s:actionerror/></span>
 
     <s:submit value="登陆"/>

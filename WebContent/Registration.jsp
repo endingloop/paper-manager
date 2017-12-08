@@ -18,9 +18,21 @@
 <h1>Sign up</h1>
 	<s:form action="Registration_save" validate="true">
     	<s:textfield name="username" placeholder="账号" type="text" />
+    	<s:fielderror cssStyle="color: red">
+			<s:param>username</s:param>
+		</s:fielderror> 
     	<s:password name="password" showPassword="true" placeholder="密码" type="password"/>
+    	<s:fielderror cssStyle="color: red">
+			<s:param>password</s:param>
+		</s:fielderror> 
 		<s:password name="password2" showPassword="true" placeholder="重复密码" type="password"/>
+		<s:fielderror cssStyle="color: red">
+			<s:param>password2</s:param>
+		</s:fielderror> 
 		<s:textfield name="email" placeholder="电子邮箱" type="text" />
+		<s:fielderror cssStyle="color: red">
+			<s:param>email</s:param>
+		</s:fielderror> 
 		<s:textfield name="realName" placeholder="真实姓名" type="text" />
 		<span style="color:red;"><s:actionerror/></span>
    		<s:submit value="点击注册"/>

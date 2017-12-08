@@ -96,7 +96,7 @@
 				</ul>
 				</s:if>
 	        <div id="content2_middle" style="margin-left:33%; font-size:1.2em;" >
-			<s:form name="form1" action="Paper_save" method="post" enctype="multipart/form-data" theme="simple"  >
+			<s:form name="form1" action="Paper_save" method="post" enctype="multipart/form-data" >
 				<s:hidden name="task" />
 				<s:hidden name="paperID" />
 				<div id="part1">
