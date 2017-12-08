@@ -15,9 +15,17 @@
 <body>
 	<div class="container">
 		<header>
+			<s:if test="user == null">
 			<a href="<s:url action="index" />" id="index">论文管理器</a> 
 			<a href="<s:url action="Login_input" />" id="right">登录</a>
 			<a href="<s:url action="Registration_input" />" id="left">注册</a>
+			</s:if>
+			<s:else>
+			<a href="<s:url action="index" />" id="index">论文管理器</a> 
+			<a href="<s:url action="Logout" />" id="right">注销</a> 
+			<a href="<s:url action='MainMenu' />" id="left">
+				<s:property	value="user.username" /></a> 
+			</s:else>
 		</header>
 		<div class="content1" style="background-image: url(images/11.jpg);">
 			<div>
@@ -28,7 +36,7 @@
 				<s:form name="form2" action="chooseSearch">
 					<div>
 						<select name="selectchoice"
-							style="width: 6.7em; margin-left: -2%; margin-bottom: -47%;"">
+							style="width: 7em; margin-left: 0px; margin-bottom: -4.5em;">
 							<option value="1">论文主题</option>
 							<option value="2">论文题目</option>
 							<option value="3">作者姓名</option>
@@ -37,10 +45,10 @@
 							<option value="6">论文分类</option>						
 						</select>
 					</div>
-					<s:textfield style="width:93%; margin-left: 53%;margin-top: 10%;"  key="keyword" />
+					<s:textfield style="width:12em; margin-left: 7.5em;margin-top:0.6em;"  key="keyword" />
 					<div>
-						<s:submit class="btn btn-default" value="搜索"
-							style="margin-left: 154%;margin-top: -43%;" />
+						<s:submit class="btn btn-info" value="搜索"
+							style="margin-left:22em;margin-top: -5.1em;" />
 					</div>
 				</s:form>
 			</div>
@@ -104,14 +112,14 @@
 						</tr>
 						
 					</s:iterator>
-							<tr align="center" valign="middle">  
-    <td colspan="5">  
-        <%=request.getAttribute("s") %>      
-    </td>  
-  </tr> 
+						
+   
+ 
+
 				</table>
 					
-				
+				     
+                 <div style="align:center;"><%=request.getAttribute("s") %>  </div>
 				<a href="fileDownloads.action?tip=2">导出为excel表格</a>
 
 			</div>

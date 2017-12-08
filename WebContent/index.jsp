@@ -191,44 +191,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <div id="owl-demo" class="owl-carousel">
 			  <div class="item text-center guide-sliders">
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index1.png">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=金融、银行"><img src="images/index1.png"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index2.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=中西医结合基础"><img src="images/index2.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index3.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=哲学理论"><img src="images/index3.jpg"></a>					 
 				 </div>		
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index4.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=战略、战役、战术"><img src="images/index4.jpg"></a>					 
 				 </div>			   
 			  </div>			  
 			  <div class="item text-center guide-sliders">
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index5.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=计算机网络理论"><img src="images/index5.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index6.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index6.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index7.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index7.jpg"></a>					 
 				 </div>	
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index8.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index8.jpg"></a>					 
 				 </div>						
 			  </div>
 			  <div class="item text-center guide-sliders">
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index9.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index9.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index10.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index10.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index11.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index11.jpg"></a>					 
 				 </div>		
 				 <div class="col-md-3 image-grid">
-					 <img src="images/index12.jpg">					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index12.jpg"></a>					 
 				 </div>					
 			  </div>
 			  

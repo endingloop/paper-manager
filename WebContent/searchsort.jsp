@@ -15,9 +15,17 @@
 <body>
 	<div class="container">
 		<header>
+			<s:if test="user == null">
 			<a href="<s:url action="index" />" id="index">论文管理器</a> 
 			<a href="<s:url action="Login_input" />" id="right">登录</a>
 			<a href="<s:url action="Registration_input" />" id="left">注册</a>
+			</s:if>
+			<s:else>
+			<a href="<s:url action="index" />" id="index">论文管理器</a> 
+			<a href="<s:url action="Logout" />" id="right">注销</a> 
+			<a href="<s:url action='MainMenu' />" id="left">
+				<s:property	value="user.username" /></a> 
+			</s:else>
 		</header>
 		<div class="content1" style="background-image: url(img/11.png);">
 			<div>

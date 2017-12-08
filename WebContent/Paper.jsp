@@ -80,16 +80,17 @@
 <body>
 	<div class="container">
 		<header>
-			<a href="index.jsp" id="index">论文管理器</a> <a
-				href="<s:url action="Logout" />" id="right">注销</a> <a href="#"
-				id="left">用户</a>
+			<a href="<s:url action="index" />" id="index">论文管理器</a> 
+			<a href="<s:url action="Logout" />" id="right">注销</a> 
+			<a href="<s:url action='MainMenu' />" id="left">
+				<s:property	value="user.username" /></a> 
 		</header>
 		<hr>
 		<div class="content2"  >
 			<div id="content2_top">
 			   <s:if test="task == 'Create'">
 				<ul class="nav nav-tabs nav-justified">
-					<li role="presentation"><a href="<s:url action="Login"/>">我的论文</a></li>
+					<li role="presentation"><a href="<s:url action="MainMenu"/>">我的论文</a></li>
 					<li role="presentation"  class="active"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
 					<li role="presentation"><a href="workload.jsp">查看工作量</a></li>
 				</ul>
@@ -105,12 +106,15 @@
 				 </s:if>
 				 <s:if test="task == 'Edit'"> 
 				   <h3 >请修改相应的论文信息：</h3>
-				   <span>已选择文件：</span><s:property value="paper.filename" />
+				   <span>已选择文件：</span><a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">
+				   <s:property value="paper.filename" /></a>
 				   <br />
 				   <span>选择新文件：</span><input type="file" name="file">
 				   </s:if>
 				   <s:if test="task == 'Delete'"> 
 				   <h3 >请确认要删除的文献信息：</h3>
+				   <span>已选择文件：</span><a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">
+				   <s:property value="paper.filename" /></a>
 				 </s:if>
 				</div>
 				<div id="part2">
@@ -121,18 +125,18 @@
 					<input name="button" type="button" class="btn btn-default" onclick='additem("tb")' value="点击添加第二作者"/>
 					<input id="Hidden1" name="Hidden1" type="hidden"  />
   					</s:if>
-  				<s:if test="task == 'Edit'"> 
+  				<s:else> 
 				   <span>第二作者：<s:textfield name="paper.secondAuthor"/></span>
-				   </s:if>
+				   </s:else>
 				   
 				   <s:if test="task == 'Create'"> 	 
       				<table id="tb1"></table>
 					<input name="button" class="btn btn-default" style="margin-top:1%;margin-bottom:1%;" type="button" onclick='additem1("tb1")' value="点击添加关键字"/>
 					<input id="Hidden2" name="Hidden2" type="hidden" />
   					</s:if>
-					<s:if test="task == 'Edit'"> 
+					<s:else> 
 				  <span>关键字词：<s:textfield name="paper.keyword"/></span>
-				   </s:if>
+				   </s:else>
 					
 					<span>内容简介：<s:textarea name="paper.description"/></span>
 					<span>出版机构：<s:textfield name="paper.publication"/></span>
@@ -186,7 +190,7 @@
 				</div>
 				<div id="part4" >
 				
-      				<span>请选择发表日期：</span> <input name="paper.date"
+      				<span>发表日期：</span> <input name="paper.date"
 						value="<s:property  value="paper.date"/>" style="width: 120px;"
 						onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
   					
@@ -204,7 +208,7 @@
 						<OPTION VALUE="10">普通论文</OPTION>
 					</select>
   					</s:if>
-  				<s:if test="task == 'Edit'"> 
+  				<s:else> 
 				   <select name="paper.level" class="select"  style="width:26%;">
 						<OPTION  value="<s:property  value="paper.level"/>"><s:property  value="levelname"/></OPTION>
 						<OPTION VALUE="60">SCI</OPTION>
@@ -213,17 +217,8 @@
 						<OPTION VALUE="15">公开发表</OPTION>
 						<OPTION VALUE="10">普通论文</OPTION>
 					</select>
-				 </s:if>
-				 <s:if test="task == 'Delete'"> 
-				   <select name="paper.level" class="select"  style="width:26%;">
-						<OPTION  value="<s:property  value="paper.level"/>"><s:property  value="levelname"/></OPTION>
-						<OPTION VALUE="60">SCI</OPTION>
-						<OPTION VALUE="45">EI，CSSCI,SSCI,一级刊物</OPTION>
-						<OPTION VALUE="30">核心期刊(国际会议)</OPTION>
-						<OPTION VALUE="15">公开发表</OPTION>
-						<OPTION VALUE="10">普通论文</OPTION>
-					</select>
-				 </s:if>
+				 </s:else>
+
 					
 		             <a id="example" class="btn btn-info" rel="popover" data-html="true"
 		             data-content="
@@ -250,9 +245,13 @@
 			       <s:if test="task == 'Create'"> 
                        <span>请保证您上传的论文已通过原作者的允许！<br></span>
 				   </s:if>	
-				
-				<input class="btn btn-default" type="submit" onclick="getsub()" style="margin-left:20%;"  value="提交"/>
-				<a href="<s:url action="Login"/>"><input class="btn btn-danger" type="button" value="取消" style="margin-left:3%;"/></a>
+				   <s:if test="task == 'Delete'"> 
+						<input class="btn btn-default" type="submit" onclick="getsub()" style="margin-left:20%;"  value="确认"/>
+				   </s:if>
+				<s:else>
+					<input class="btn btn-default" type="submit" onclick="getsub()" style="margin-left:20%;"  value="提交"/>
+				</s:else>
+				<a href="<s:url action="MainMenu"/>"><input class="btn btn-warning" type="button" value="取消" style="margin-left:3%;"/></a>
 				</div>
 			</s:form>
 			</div>
