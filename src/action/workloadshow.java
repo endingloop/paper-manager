@@ -102,7 +102,6 @@ public String workload() {
 	Connection conn=Dao.getConn();
 	PreparedStatement pstmt;
 	try {
-		
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
 		System.out.println(sql);
 	    pstmt.executeUpdate(sql);
@@ -125,12 +124,8 @@ public String showdetail() {
 	 list1=Dao.findSecondtAuthor(str);
 	 list1.addAll(list);
 	 sumscore();
-	
-		 ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getUsername());
-	
-		 
-	 
-	 
+     ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getUsername());
+
 	return "yes";
 }
 //计算总分得出总表
@@ -175,11 +170,7 @@ public  List<score>  sumscore() {
 	}
 		
 			 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
-		
-    	 
-   
- 	
-	return scoreresult;
+			 return scoreresult;
 }
 
 
@@ -250,9 +241,7 @@ public float findFirstAuthor(String str) {
 				
 				num=num+(int)(rs.getFloat(3)*0.5);
 				
-			}
-			
-				
+			}	
 		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

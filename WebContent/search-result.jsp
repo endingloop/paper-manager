@@ -2,6 +2,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+    <%@ taglib prefix="s" uri="/struts-tags"%>
+    <%@ page import="java.util.*,model.Paper.*,action.*" %> 
+ 
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.Map"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -62,7 +67,7 @@
 						<td>关键词</td>
 						<td>下载</td>
 					</tr>
-					<s:iterator value="result" status="index">
+					<s:iterator value="#session.list" status="index">
 						<tr>
 							<td><s:property value="#index.index+1" /></td>
 							<td><a
@@ -88,7 +93,11 @@
 						</tr>
 						
 					</s:iterator>
-
+					<tr align="center" valign="middle">  
+    <td colspan="5">  
+        <%=request.getAttribute("s") %>      
+    </td>  
+  </tr>  
 				</table>
 					
 				

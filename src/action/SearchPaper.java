@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import model.Paper;
@@ -30,14 +31,22 @@ public class SearchPaper extends UserSupport {
 	private String keyword;
 	private List<Paper> result;
 	private int papernum;
-	
+	private int page=1;  
+	  
+    public int getPage() {  
+        return page;  
+    }  
+  
+    public void setPage(int page) {  
+        this.page = page;  
+    }  
+  
 	HttpSession session = ServletActionContext.getRequest ().getSession();
     
 
     public String execute() {
         return SUCCESS;
     }
-
 
     private int querySql(String sql) throws SQLException {
         Connection conn = Dao.getConn();
@@ -46,7 +55,6 @@ public class SearchPaper extends UserSupport {
         pstmt = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         int count = 0;
-
 		while (rs.next()) {
 			Paper temp = new Paper();
 			temp.setPaperID(rs.getString(1));
@@ -75,48 +83,6 @@ public class SearchPaper extends UserSupport {
 		
 		
 		return count;
-	}
-	public  static int querySqlS(String sql) throws SQLException {
-		Connection conn = Dao.getConn();
-		
-		PreparedStatement pstmt;
-		pstmt = (PreparedStatement) conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		int count = 0;
-		while (rs.next()) {
-			count++;
-		}
-	
-		return count;
-	}
-	public List<Paper> querySqlsbychangfan(int page) throws SQLException {
-		Connection conn = Dao.getConn();
-		 String sql="select * from paper  order by paperID desc limit ?,?";
-		ArrayList results = new ArrayList<>();
-		PreparedStatement pstmt;
-		pstmt = (PreparedStatement) conn.prepareStatement(sql);
-		pstmt.setInt(1, (page-1)*3);
-		pstmt.setInt(2, 3);
-		ResultSet rs = pstmt.executeQuery();
-		int count = 0;
-		while (rs.next()) {
-			Paper temp = new Paper();
-			temp.setPaperID(rs.getString(1));
-			temp.setTitle(rs.getString(2));
-			temp.setAuthor(rs.getString(3));
-			temp.setSecondAuthor(rs.getString(4));
-			temp.setDate(rs.getString(5));
-			temp.setSort(rs.getInt(6));
-			temp.setPublication(rs.getString(7));
-			temp.setStatus(rs.getInt(8));
-			temp.setKeyword(rs.getString(9));
-			temp.setDescription(rs.getString(10));
-			temp.setFilename(rs.getString(11));
-			temp.setLevel(rs.getInt(12));
-			results.add(temp);
-			count++;
-		}	
-		return results;
 	}
     
     public String showDetail()
@@ -215,6 +181,8 @@ public class SearchPaper extends UserSupport {
     
 
 	
+
+	
 	public String chooseSearch() {
 		String sql = null;
 		switch (selectchoice) {
@@ -266,10 +234,52 @@ public class SearchPaper extends UserSupport {
 			e.printStackTrace();
 			return ERROR;
 		}
+		Padding(sql,getPage());
 		return SUCCESS;
 
 	}
-
+	
+	
+	public String Padding(String sql,int page) {
+		int current_page=getPage();
+		int pages=0;
+		try {
+			pages = querySql(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+        HttpSession session = ServletActionContext.getRequest ().getSession();
+        ActionContext context=ActionContext.getContext();  
+        sql=sql+"order by paperID desc limit "+(page-1)*2+",2"; 
+		System.out.println(sql);
+		List<Paper> list=new ArrayList<>();
+		try {
+			list= Dao.PadingResult(sql);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+         StringBuffer s=new StringBuffer();  
+        for(int i=1;i<=Math.ceil((double)pages/2);i++){  
+            if(i==current_page){  
+                s.append("["+i+"]");  
+            }  
+            else{  
+                
+       s.append("<a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
+                		 
+            }  
+        }  		
+        System.out.println(s);
+        session.setAttribute("list",list); 
+        session.setAttribute("s",s); 
+        context.put("list", list);  
+        context.put("s",s);  
+  
+		return null;
+	}
 	public String getKeyword() {
 		return keyword;
 	}

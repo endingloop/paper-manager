@@ -90,9 +90,7 @@
 		<action name="WorkGraph" class="action.WorkGraph" method="draw">
 			<result name="success">/chart.jsp</result>
 		</action>
-		 <action name="myaction" class="action.FenyeAction">  
-        <result>/show.jsp</result>  
-    </action>  
+  
 	</package>
 
 	<package name="wildcard" namespace="/" extends="default">

@@ -374,4 +374,31 @@ public class Dao {
 
 	 return  inforesult;
 	}
+	
+	public static List<Paper> PadingResult(String sql) throws SQLException{
+		Connection conn = getConn();
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		List<Paper> list=new ArrayList<>();
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()) {
+			Paper temp = new Paper();
+			temp.setPaperID(rs.getString(1));
+			temp.setTitle(rs.getString(2));
+			temp.setAuthor(rs.getString(3));
+			temp.setSecondAuthor(rs.getString(4));
+			temp.setDate(rs.getString(5));
+			temp.setSort(rs.getInt(6));
+			temp.setPublication(rs.getString(7));
+			temp.setStatus(rs.getInt(8));
+			temp.setKeyword(rs.getString(9));
+			temp.setDescription(rs.getString(10));
+			temp.setFilename(rs.getString(11));
+			temp.setLevel(rs.getInt(12));
+			list.add(temp);	
+		}
+	
+		return list;
+	}
+	
 }
