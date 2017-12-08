@@ -17,7 +17,7 @@
  <header>
 			<a href="<s:url action="index" />" id="index">论文管理器</a> 
 			<a href="<s:url action="Logout" />" id="right">注销</a> 
-			<a href="<s:url action='MainMenu' />" id="left">
+			<a href="<s:url action='admin-welcome' />" id="left">
 				<s:property	value="user.username" />(管理员)</a> 
  </header>
   <hr>

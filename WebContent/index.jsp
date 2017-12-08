@@ -68,8 +68,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <div class="top-menu">
 				 <span class="menu"></span> 
 				 <ul>
-                     <li><a href="<s:url action="Login_input" />">登录</a></li>
-                     <li><a href="<s:url action="Registration_input" />">注册</a></li>
+				 	<s:if test="user == null">
+						<li><a href="<s:url action="Login_input" />" id="right">登录</a>
+						<li><a href="<s:url action="Registration_input" />" id="left">注册</a>
+					</s:if>
+					<s:else>
+						<li><a href="<s:url action='MainMenu' />" id="left">
+							<s:property	value="user.username" /></a> 
+						<li><a href="<s:url action="Logout" />" id="right">注销</a> 
+					</s:else>
 				 </ul>
 			 </div>
 			 <div class="clearfix"></div>
