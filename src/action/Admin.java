@@ -26,7 +26,11 @@ public class Admin extends PaperSupport {
 	public void setResult(List<Paper> result) {
 		this.result = result;
 	}
-
+	
+	public String welcome() throws SQLException {
+		return "welcome";
+	}
+	
 	public String audit() throws SQLException {
 		findPapersByStatus();
 		return "audit";

@@ -42,13 +42,14 @@
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
 			<result name="success">/MainMenu.jsp</result>
-			<result name="admin">/admin-welcome.jsp</result>
+			<result name="admin" type="redirectAction">Admin_welcome</result>
 		</action>
 		<action name="MainMenu" method="mainMenu" class="action.Login">
 			<result name="success">/MainMenu.jsp</result>
 			<interceptor-ref name="user" />
 		</action>
 		<action name="Admin_*" method="{1}" class="action.Admin">
+			<result name="welcome">/admin-welcome.jsp</result>
 			<result name="audit">/admin-audit.jsp</result>
 		</action>
 		<action name="Logout" class="action.Logout">
