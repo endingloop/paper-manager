@@ -101,7 +101,7 @@
 							<td><a
 								href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property
 										value="author" /></a></td>
-							<td><s:iterator value="secondauthor" status="index">
+							<td><s:iterator value="secondAuthorList" status="index">
 									<a href="searchAuthor.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
@@ -110,11 +110,11 @@
 							<td><a
 								href="searchDate.action?keyword=<s:property value="date"/>"><s:property
 										value="date" /></a></td>
-							<td><s:iterator value="keywords2" status="index">
+							<td><s:iterator value="keywordList" status="index">
 									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
-								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
+								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载(<s:property value="clickTime"/>)</a></td>
 						</tr>
 						
 					</s:iterator>

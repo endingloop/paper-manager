@@ -13,6 +13,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.easydropdown.js"></script>
 <link rel="stylesheet" href="css/select-style.css"/>
+<title>用户登录</title>
 </head>
 
 <body>
@@ -25,12 +26,12 @@
        <option value="1">注册会员</option>
        <option value="3">管理员</option>
     </select>
-
     <s:textfield name="username" placeholder="账号" type="text" />
-
+	<s:fielderror cssStyle="color: red">
+		<s:param>username</s:param>
+	</s:fielderror> 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
-    
-    
+
 	<span style="color:red;"><s:actionerror/></span>
 
     <s:submit value="登陆"/>

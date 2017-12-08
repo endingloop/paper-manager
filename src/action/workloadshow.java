@@ -131,45 +131,47 @@ public String showdetail() {
 //计算总分得出总表
 public  List<score>  sumscore() {
 	String sql=null;
-	if(getAuthor().isEmpty()) {
-		 sql="select authorname from authorlist;";
-	}else {
+	System.out.println(getAuthor()+"dddddddddddddddddddddd");
+	if(!getAuthor().isEmpty()) {
 		sql="select authorname from authorlist where authorname='"+getAuthor()+"';";
-	}
-	Connection conn=Dao.getConn();
-	PreparedStatement pstmt;
-	scoreresult=new ArrayList<>();
-	if(getUser().getUsername()!=null) {
-		System.out.println(getUser().getUsername());
-	}else {
-		System.out.println("no user is online");
-	}
-	float grade=0;
-	try {
-		pstmt= (PreparedStatement)conn.prepareStatement(sql);
-		ResultSet result = pstmt.executeQuery(sql);
-		while(result.next()) {
-			score tempbean=new score();
-			tempbean.setName(result.getString(1));
-			float FirstAuthorScore=findFirstAuthor(result.getString(1));
-			float SecondAuthorScore=findSecondtAuthor(result.getString(1));
-			int Fnumber=findFAuthor(result.getString(1));
-			int Snumber=findSAuthor(result.getString(1));
-			tempbean.setFauthornum(Fnumber);
-			tempbean.setSauthornum(Snumber);
-			grade=FirstAuthorScore+SecondAuthorScore;//第一作者应该加的分数+第二作者应该加的分数
-			tempbean.setScore(grade);
-			scoreresult.add(tempbean);
+		Connection conn=Dao.getConn();
+		PreparedStatement pstmt;
+		scoreresult=new ArrayList<>();
+		if(getUser().getUsername()!=null) {
+			System.out.println(getUser().getUsername());
+		}else {
+			System.out.println("no user is online");
 		}
-		pstmt.close();
-		conn.close();
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		float grade=0;
+		try {
+			pstmt= (PreparedStatement)conn.prepareStatement(sql);
+			ResultSet result = pstmt.executeQuery(sql);
+			while(result.next()) {
+				score tempbean=new score();
+				tempbean.setName(result.getString(1));
+				float FirstAuthorScore=findFirstAuthor(result.getString(1));
+				float SecondAuthorScore=findSecondtAuthor(result.getString(1));
+				int Fnumber=findFAuthor(result.getString(1));
+				int Snumber=findSAuthor(result.getString(1));
+				tempbean.setFauthornum(Fnumber);
+				tempbean.setSauthornum(Snumber);
+				grade=FirstAuthorScore+SecondAuthorScore;//第一作者应该加的分数+第二作者应该加的分数
+				tempbean.setScore(grade);
+				scoreresult.add(tempbean);
+			}
+			pstmt.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+				 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
+	}else {
+		addActionError("请选择适当的用户组");
 	}
-		
-			 ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
+	
 			 return scoreresult;
 }
 

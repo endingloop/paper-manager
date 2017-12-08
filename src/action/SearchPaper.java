@@ -25,10 +25,19 @@ import support.UserSupport;
 
 public class SearchPaper extends UserSupport {
 	
-	private static final long serialVersionUID = 223L;
+	private static final long serialVersionUID = 23L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private String keyword;
+	public int sorttype;
+	public int getSorttype() {
+		return sorttype;
+	}
+
+	public void setSorttype(int sorttype) {
+		this.sorttype = sorttype;
+	}
+
 	private List<Paper> result;
 	private int papernum;
 	private int page=1;  
@@ -204,19 +213,19 @@ public class SearchPaper extends UserSupport {
         logger.info(page);
 		switch (selectchoice) {
 		case 1:
-			sql = "SELECT * FROM paper WHERE KeyWords LIKE '%" + keyword + "%' ";
+			sql = "SELECT * FROM paper,upload  WHERE KeyWords LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
 			break;
 		case 2:
-			sql = "SELECT * FROM paper WHERE Title LIKE '%" + keyword + "%' ";
+			sql = "SELECT * FROM paper ,upload WHERE Title LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
 			break;
 		case 3:
-			sql = "SELECT * FROM paper WHERE FirstAuthorID='" + keyword + "' ";
+			sql = "SELECT * FROM paper,upload WHERE FirstAuthorID='" + keyword + "' and upload.paperID=paper.PaperID";
 			break;
 		case 4:
-			sql = "SELECT * FROM paper WHERE Date ='" + keyword + "'";
+			sql = "SELECT * FROM paper,upload WHERE Date ='" + keyword + "' and upload.paperID=paper.PaperID";
 			break;
 		case 5:
-			sql = "SELECT * FROM paper WHERE JournalID='" + keyword + "' ";
+			sql = "SELECT * FROM paper,upload WHERE JournalID='" + keyword + "' and upload.paperID=paper.PaperID";
 			break;
 		case 6:
 			try {
@@ -225,13 +234,13 @@ public class SearchPaper extends UserSupport {
 				int id = Dao.findSortID(keyword);
 				switch(Dao.findSortLevel(keyword)) {
 				case 1:
-					sql = "select * from paper,third,second where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID ";
+					sql = "select * from paper,third,second ,upload where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID  and upload.paperID=paper.PaperID";
 					break;
 				case 2:
-					sql = "select * from paper,third where third.upper="+ id +" and paper.sortID=third.thirdID ";
+					sql = "select * from paper,third ,upload where third.upper="+ id +" and paper.sortID=third.thirdID  and upload.paperID=paper.PaperID";
 					break;
 				case 3:
-					sql = "select * from paper where sortID="+ id +" ";
+					sql = "select * from paper ,upload where sortID="+ id +"  and upload.paperID=paper.PaperID";
 					break;
 				default:
 					logger.error("No this sort: " + keyword);
@@ -259,8 +268,8 @@ public class SearchPaper extends UserSupport {
 
 	}
 	
-	
-	public String Padding(String sql,int page,int index) {
+	//实现分页
+	public String Padding(String sql,int page,int index ) {
 		int current_page=getPage();
 		int pages=0;
 		try {
@@ -271,7 +280,14 @@ public class SearchPaper extends UserSupport {
 		}	
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
-        sql=sql+" order by paperID desc limit "+(page-1)*25+",25"; 
+
+        if(getSorttype()==1) {
+        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+        }else {
+        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+        }
+         
+
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
 		try {
@@ -282,10 +298,12 @@ public class SearchPaper extends UserSupport {
 		}
 			
          StringBuffer s=new StringBuffer();  
+
         for(int i=1;i<=Math.ceil((double)pages/25);i++){  
             session.setAttribute("selectchoice",selectchoice); 
             session.setAttribute("keyword",keyword);
             session.setAttribute("pagenum",current_page);
+
             if(i==current_page){  
                 s.append("<li class='active' >"+i+"</li>");
             }  

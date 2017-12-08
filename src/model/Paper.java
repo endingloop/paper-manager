@@ -13,7 +13,14 @@ public class Paper {
 	private String description;
 	private String filename;
 	private int level;
+	private int clickTime;
 
+	public int getClickTime() {
+		return clickTime;
+	}
+	public void setClickTime(int clickTime) {
+		this.clickTime = clickTime;
+	}
 	@Override
 	public String toString() {
 		return paperID + ": " + title;
@@ -39,7 +46,7 @@ public class Paper {
 		return getSecondAuthor().split(",");
 	}
 	
-	public String[] getKeyWordList() {
+	public String[] getKeywordList() {
 		return getKeyword().split(",");
 	}
 	
