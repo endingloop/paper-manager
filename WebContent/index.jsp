@@ -218,24 +218,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index6.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index7.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=摄影艺术"><img src="images/index7.jpg"></a>					 
 				 </div>	
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index8.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=书法、篆刻"><img src="images/index8.jpg"></a>					 
 				 </div>						
 			  </div>
 			  <div class="item text-center guide-sliders">
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index9.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=心理学"><img src="images/index9.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index10.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=天文物理学"><img src="images/index10.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index11.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=古典数学"><img src="images/index11.jpg"></a>					 
 				 </div>		
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index12.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=理论力学"><img src="images/index12.jpg"></a>					 
 				 </div>					
 			  </div>
 			  
