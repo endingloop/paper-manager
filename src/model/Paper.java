@@ -46,7 +46,7 @@ public class Paper {
 		return getSecondAuthor().split(",");
 	}
 	
-	public String[] getKeyWordList() {
+	public String[] getKeywordList() {
 		return getKeyword().split(",");
 	}
 	
