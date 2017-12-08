@@ -25,7 +25,7 @@ import support.UserSupport;
 
 public class SearchPaper extends UserSupport {
 	
-	private static final long serialVersionUID = 223L;
+	private static final long serialVersionUID = 23L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private String keyword;
