@@ -16,6 +16,14 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
+
+<script language="JavaScript">
+function myrefresh()
+{
+       window.location.reload();
+}
+setTimeout('myrefresh()',1000); //指定1秒刷新一次
+</script>
 </head>
 <body>
 	<div class="container">
@@ -72,8 +80,9 @@
 						<td>关键词</td>
 						<td>下载</td>
 					</tr>
+					 <s:iterator value="#session.list" status="index">
 						<tr>
-						    <s:iterator value="#session.list" status="index">
+						   
 							<td><s:property value="#index.index+1" /></td>
 							<td><a
 								href="searchPaperID.action?keyword=<s:property value="paperID"/>"><s:property
@@ -93,9 +102,10 @@
 							<td><s:iterator value="keywordList" status="index">
 									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
-							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
-						  </s:iterator>
+							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载[<s:property value="clickTime"/>]</a></td>
+						 
 						</tr>
+				</s:iterator>
 				</table>
 				<a href="fileDownloads.action?tip=2" class="btn btn-info">导出为excel表格</a>
                  <div style="align:center;"> <%=request.getAttribute("s") %>  </div>
