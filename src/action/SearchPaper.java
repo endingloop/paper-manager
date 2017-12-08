@@ -38,6 +38,7 @@ public class SearchPaper extends UserSupport {
         return SUCCESS;
     }
 
+
     private int querySql(String sql) throws SQLException {
         Connection conn = Dao.getConn();
         result = new ArrayList<>();
@@ -45,6 +46,7 @@ public class SearchPaper extends UserSupport {
         pstmt = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         int count = 0;
+
 		while (rs.next()) {
 			Paper temp = new Paper();
 			temp.setPaperID(rs.getString(1));
@@ -73,6 +75,48 @@ public class SearchPaper extends UserSupport {
 		
 		
 		return count;
+	}
+	public  static int querySqlS(String sql) throws SQLException {
+		Connection conn = Dao.getConn();
+		
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		int count = 0;
+		while (rs.next()) {
+			count++;
+		}
+	
+		return count;
+	}
+	public List<Paper> querySqlsbychangfan(int page) throws SQLException {
+		Connection conn = Dao.getConn();
+		 String sql="select * from paper  order by paperID desc limit ?,?";
+		ArrayList results = new ArrayList<>();
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		pstmt.setInt(1, (page-1)*3);
+		pstmt.setInt(2, 3);
+		ResultSet rs = pstmt.executeQuery();
+		int count = 0;
+		while (rs.next()) {
+			Paper temp = new Paper();
+			temp.setPaperID(rs.getString(1));
+			temp.setTitle(rs.getString(2));
+			temp.setAuthor(rs.getString(3));
+			temp.setSecondAuthor(rs.getString(4));
+			temp.setDate(rs.getString(5));
+			temp.setSort(rs.getInt(6));
+			temp.setPublication(rs.getString(7));
+			temp.setStatus(rs.getInt(8));
+			temp.setKeyword(rs.getString(9));
+			temp.setDescription(rs.getString(10));
+			temp.setFilename(rs.getString(11));
+			temp.setLevel(rs.getInt(12));
+			results.add(temp);
+			count++;
+		}	
+		return results;
 	}
     
     public String showDetail()

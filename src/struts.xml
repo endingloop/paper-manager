@@ -6,7 +6,8 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
-
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />   
+ <constant name="struts.ui.theme" value="simple"/>
 	<package name="default" extends="struts-default">
 		<interceptors>
 
@@ -82,15 +83,6 @@
 				</result>
 			<interceptor-ref name="user" />
 		</action>
-		<action name="sort3" class="action.sort3th" method="findsort3th">
-			<result name="success">search-result.jsp</result>
-		</action>
-		<action name="sort2" class="action.sort3th" method="findsort2th">
-			<result name="success">search-result.jsp</result>
-		</action>
-		<action name="sort1" class="action.sort3th" method="findsort1th">
-			<result name="success">search-result.jsp</result>
-		</action>
 		<action name="workload" class="action.workloadshow" method="workload">
 			<result name="workload">/workload.jsp</result>
 			<interceptor-ref name="user" />
@@ -98,6 +90,9 @@
 		<action name="WorkGraph" class="action.WorkGraph" method="draw">
 			<result name="success">/chart.jsp</result>
 		</action>
+		 <action name="myaction" class="action.FenyeAction">  
+        <result>/show.jsp</result>  
+    </action>  
 	</package>
 
 	<package name="wildcard" namespace="/" extends="default">

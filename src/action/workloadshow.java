@@ -134,7 +134,7 @@ public String showdetail() {
 	return "yes";
 }
 //计算总分得出总表
-public List<score>  sumscore() {
+public  List<score>  sumscore() {
 	String sql=null;
 	if(getAuthor().isEmpty()) {
 		 sql="select authorname from authorlist;";
