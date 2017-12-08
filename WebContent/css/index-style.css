@@ -232,10 +232,11 @@ visibility:visible;
 margin-left:3%;
 width:20%;
 border:solid 1px #000;
-/*
+background: #EEEEEE url('images/arrow.png') no-repeat scroll right center ;
 appearance:none;
 -moz-appearance:none;
--webkit-appearance:none;*/
+-webkit-appearance:none;
+
 padding: 12px 43px ;
 border: 1px solid #308ab7;
 font-size: 1.2em;
@@ -254,11 +255,11 @@ transition:0.5s all;
 text-align:center;
 
 }
-/*
+
 .banner-form form select::-ms-expend
 {
 	display:none;
-}*/
+}
 
 .banner-form form option
 {
