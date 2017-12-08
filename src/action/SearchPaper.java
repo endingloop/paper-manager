@@ -29,6 +29,15 @@ public class SearchPaper extends UserSupport {
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private String keyword;
+	public int sorttype;
+	public int getSorttype() {
+		return sorttype;
+	}
+
+	public void setSorttype(int sorttype) {
+		this.sorttype = sorttype;
+	}
+
 	private List<Paper> result;
 	private int papernum;
 	private int page=1;  
@@ -252,8 +261,8 @@ public class SearchPaper extends UserSupport {
 
 	}
 	
-	
-	public String Padding(String sql,int page,int index) {
+	//实现分页
+	public String Padding(String sql,int page,int index ) {
 		int current_page=getPage();
 		int pages=0;
 		try {
@@ -264,7 +273,12 @@ public class SearchPaper extends UserSupport {
 		}	
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
-        sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10"; 
+        if(getSorttype()==1) {
+        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+        }else {
+        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+        }
+         
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
 		try {

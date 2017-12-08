@@ -108,7 +108,7 @@
 									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
-								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载</a></td>
+								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载(<s:property value="clickTime"/>)</a></td>
 						</tr>
 						
 					</s:iterator>

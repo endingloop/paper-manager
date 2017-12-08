@@ -89,7 +89,7 @@ public class Dao {
 	public static Paper findPaper(String paperID) throws SQLException {
 		Connection conn = Dao.getConn();
 		PreparedStatement pstmt;
-		String sql = "SELECT * FROM paper WHERE PaperID= '" + paperID + "'";
+		String sql = "SELECT * FROM paper,upload WHERE paper.PaperID=upload.paperID AND paper.PaperID= '" + paperID + "'";
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		Paper temp = null;
@@ -107,6 +107,7 @@ public class Dao {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
+			temp.setClickTime(rs.getInt(16));
 		}
 
 		logger.info("find papr by paperid successful --Dao");
@@ -395,6 +396,7 @@ public class Dao {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
+			temp.setClickTime(rs.getInt(16));
 				list.add(temp);	}
 		
 	
@@ -411,9 +413,9 @@ public class Dao {
 		conn.close();		
 	}
 	//统计下载量
-	public void sumClickTime(int paperID) throws SQLException {
+	public static void sumClickTime(String paperID) throws SQLException {
 		Connection conn = getConn();
-		String sql = "update  upload set clickTime=clickTime+1  WHERE paperID = "+ paperID+";";
+		String sql = "update  upload set clickTime=clickTime+1 where paperID='"+ paperID+"';";
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		int result = pstmt.executeUpdate();

@@ -114,7 +114,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	                         </ul>
 						  </li> <!-- info -->
 						</ul><!-- keleyi-com-nav end -->
-				
+				    <select name=sorttype>
+				    <option value="1">最新发布</option>
+						<option value="2">人气最高</option>
+						
+					</select>
 					<select name="selectchoice"  class="wow fadeInLeft " data-wow-delay="0.5s" >
 						<option value="1">论文主题</option>
 						<option value="2">论文题目</option>

@@ -39,7 +39,7 @@
 <form action="workload.action" method="post">
 <h4>工作量日期区间</h4>
 <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />&nbsp;——&nbsp; <input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
-<h4>查询作者的姓名：</h4><input name="author" value="">
+<input name="author" type="hidden"  value=<s:property	value="user.username" />/>
 <button type="submit">提交</button>
 </form>
 </div>

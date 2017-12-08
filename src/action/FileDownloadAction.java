@@ -30,6 +30,13 @@ public class FileDownloadAction extends ActionSupport
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+      try {
+		Dao.sumClickTime(paperID);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+      
         return ServletActionContext.getServletContext().getResourceAsStream("upload/" + paperID);
     }
     
