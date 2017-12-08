@@ -28,7 +28,7 @@
 				<s:form name="form2" action="chooseSearch">
 					<div>
 						<select name="selectchoice"
-							style="width: 6.7em; margin-left: -11%; margin-bottom: -24%;">
+							style="width: 6.7em; margin-left: -2%; margin-bottom: -47%;"">
 							<option value="1">论文主题</option>
 							<option value="2">论文题目</option>
 							<option value="3">作者姓名</option>
@@ -37,10 +37,10 @@
 							<option value="6">论文分类</option>						
 						</select>
 					</div>
-					<s:textfield key="keyword" />
+					<s:textfield style="width:93%; margin-left: 53%;margin-top: 10%;"  key="keyword" />
 					<div>
 						<s:submit class="btn btn-default" value="搜索"
-							style="margin-right: -27%;margin-top: -36%;" />
+							style="margin-left: 154%;margin-top: -43%;" />
 					</div>
 				</s:form>
 			</div>
