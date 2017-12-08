@@ -25,7 +25,7 @@ import support.UserSupport;
 
 public class SearchPaper extends UserSupport {
 	
-	private static final long serialVersionUID = 2323L;
+	private static final long serialVersionUID = 223L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private String keyword;
@@ -69,8 +69,10 @@ public class SearchPaper extends UserSupport {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
-			result.add(temp);
-			count++;
+			if (temp.getStatus() == 1) {
+				result.add(temp);
+				count++;
+			}
 		}
 			
 			try {

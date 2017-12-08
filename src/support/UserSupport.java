@@ -52,8 +52,17 @@ public class UserSupport extends ActionSupport implements SessionAware {
 
     public void setPassword(String value) {
         password = value;
-    }
+    }	
+    
+    private int authority;
 
+    public int getAuthority() {
+		return authority;
+	}
+	public void setAuthority(int authority) {
+		this.authority = authority;
+	}
+    
     private String password2 = null;
 
     public String getPassword2() {

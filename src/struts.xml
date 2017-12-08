@@ -41,7 +41,11 @@
 		</action>
 		<action name="Login_*" method="{1}" class="action.Login">
 			<result name="input">/Login.jsp</result>
-			<result>/MainMenu.jsp</result>
+			<result name="success">/MainMenu.jsp</result>
+			<result name="admin">/admin-welcome.jsp</result>
+		</action>
+		<action name="Admin_*" method="{1}" class="action.Admin">
+			<result name="audit">/admin-audit.jsp</result>
 		</action>
 		<action name="Logout" class="action.Logout">
 			<result type="redirectAction">index</result>
@@ -49,7 +53,7 @@
 		</action>
 		<action name="Registration_*" method="{1}" class="action.Registration">
 			<result name="input">/Registration.jsp</result>
-			<result type="redirectAction">Login</result>
+			<result type="redirectAction">Login_index</result>
 		</action>
 		<action name="workdetail" class="action.workloadshow" method="showdetail" >
 			<result name="yes">/workload.jsp</result>
@@ -57,7 +61,7 @@
 		</action>
 		<action name="Paper_*" method="{1}" class="action.PaperAction">
 			<result name="input">/Paper.jsp</result>
-			<result type="redirectAction">Login</result>
+			<result type="redirectAction">Login_index</result>
 			<interceptor-ref name="user" />
 		</action>
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">

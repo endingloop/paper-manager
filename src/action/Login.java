@@ -14,20 +14,28 @@ public class Login extends UserSupport {
 
 	static private Logger logger = Logger.getLogger(Dao.class);
 	
-	@org.apache.struts2.interceptor.validation.SkipValidation //关闭输入校验，因为我们已经启用了客户端校验
+	public String index() throws SQLException {
+		setUser(findUser(getUser().getUsername(), getUser().getPassword())); // 不加这一句，页面不刷新 :(
+		return SUCCESS;
+	}
+	
 	public String execute() throws SQLException {
-		if (getUser() != null) {
-			setUser(findUser(getUser().getUsername(), getUser().getPassword())); // 不加这一句，页面不刷新 :(
-			return SUCCESS;
-		}
-
 		User user = findUser(getUsername(), getPassword());
-		if (user != null) {
-			setUser(user);
-			return SUCCESS;
-		} else {
-			addActionError("用户名或密码错误，请检查您的输入");//添加actionerror 
+		if (user == null) {
+			addActionError("用户名或密码错误，请检查您的输入");// 添加actionerror 
 			return INPUT;
+		}
+		logger.info("user: " + user.getAuthority() + " choice: " + getAuthority());
+		if (user.getAuthority() < getAuthority()) {
+			addActionError("请选择适当的用户组");// 添加actionerror 
+			return INPUT;
+		}
+		setUser(user);
+		switch (getAuthority()) {
+		case 3:
+			return "admin";
+		default:
+			return SUCCESS;
 		}
 	}
 }

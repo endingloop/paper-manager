@@ -395,10 +395,21 @@ public class Dao {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
-			list.add(temp);	
+			if(temp.getStatus() == 1)
+				list.add(temp);	
 		}
 	
 		return list;
+	}
+
+	public static void setStatus(String paperID, int i) throws SQLException {
+		Connection conn = Dao.getConn();
+		String sql = "UPDATE paper SET Status=" + i + " WHERE PaperID = " + paperID;
+		PreparedStatement pstmt;
+		pstmt = (PreparedStatement) conn.prepareStatement(sql);
+		pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();		
 	}
 	
 }

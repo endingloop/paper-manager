@@ -20,6 +20,12 @@
 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
     
+        <select name="authority">
+            <option value="0" selected="selected">普通用户</option>
+            <option value="1">注册会员</option>
+            <option value="3">管理员</option>
+        </select>
+    
 	<span style="color:red;"><s:actionerror/></span>
 
     <s:submit value="登陆"/>
