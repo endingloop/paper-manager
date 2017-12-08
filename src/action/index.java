@@ -18,18 +18,19 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import service.Dao;
+import support.PaperSupport;
 
 
 /**
  * @author 31644
  *
  */
-public class index extends ActionSupport {
+public class index extends PaperSupport {
 
     /**
      * 
      */
-    private static final long serialVersionUID = 22424L;
+    private static final long serialVersionUID = 4L;
     static private Logger logger = Logger.getLogger(index.class);
     
 //Query function：just keep the title or sortname in a list 
