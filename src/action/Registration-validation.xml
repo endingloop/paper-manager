@@ -18,10 +18,15 @@
 	</field>
 	<field name="email">
 		<field-validator type="requiredstring">
-			<message>请重复输入电子邮箱!</message>
+			<message>请输入您的电子邮箱!</message>
 		</field-validator>
 		<field-validator type="email">
 			<message>邮箱格式错误!</message>
+		</field-validator>
+	</field>
+	<field name="realName">
+		<field-validator type="requiredstring">
+			<message>请输入真实姓名!</message>
 		</field-validator>
 	</field>
 </validators>

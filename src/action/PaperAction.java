@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import model.Paper;
 import service.Dao;
@@ -21,7 +22,7 @@ public class PaperAction extends PaperSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 213L;
+	private static final long serialVersionUID = 21423L;
 	static private Logger logger = Logger.getLogger(PaperAction.class);
 
 
@@ -32,6 +33,13 @@ public class PaperAction extends PaperSupport {
 			removePaper();
 		}
 		if (Constants.CREATE.equals(getTask())) {
+			//补充验证
+			logger.info("文件: " + getFile());
+			if(getFile() == null) {
+				logger.info("请选择文件!");
+				addFieldError("fileFileName", "请选择文件!");
+				return INPUT;
+			}
 			setupPaper();
 			savePapers();
 		}
@@ -58,12 +66,12 @@ public class PaperAction extends PaperSupport {
         levelname=Dao.matchlevel(paper.getLevel());
         return INPUT;
     }
-	
+	@SkipValidation
 	public String edit() throws SQLException {		
 		setTask(Constants.EDIT);
 		return find();
 	}
-	
+	@SkipValidation
 	public String delete() throws SQLException {
 		setTask(Constants.DELETE);
   		return find();

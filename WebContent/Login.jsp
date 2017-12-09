@@ -31,6 +31,9 @@
 		<s:param>username</s:param>
 	</s:fielderror> 
     <s:password name="password" showPassword="true" placeholder="密码" type="password"/>
+    <s:fielderror cssStyle="color: red">
+		<s:param>password</s:param>
+	</s:fielderror> 
 
 	<span style="color:red;"><s:actionerror/></span>
 

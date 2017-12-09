@@ -1,11 +1,6 @@
 <!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
 
 <validators>
-    <field name="fileFileName">
-        <field-validator type="requiredstring">
-            <message>请选择文件!</message>
-        </field-validator>
-    </field>
     <field name="paper.title">
         <field-validator type="requiredstring">
             <message>请输入标题!</message>
