@@ -133,7 +133,7 @@ public String showdetail(String str) {
 	 list1.addAll(list);
 	 System.out.println(list1.size());
 	 sumscore();
-     ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getUsername());
+     ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getEmail());
 
 	return "yes";
 }
@@ -159,7 +159,7 @@ public  List<score>  sumscore() {
 				setScoretemp(grade);
 				tempbean.setScore(grade);
 				scoreresult.add(tempbean);
-				ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getUsername());
+				ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getEmail());
 					System.out.println(tempbean.score+"fenshuuuuuuuuuuuuuuuuuuuuuuuuu");
 	
 			 return scoreresult;
