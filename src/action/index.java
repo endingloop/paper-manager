@@ -55,11 +55,11 @@ public class index extends PaperSupport {
         
         HttpSession session = ServletActionContext.getRequest ().getSession();
         try {
-            String sql="select * from paper order by Date desc";//挑选出来最新的论文
+            String sql="SELECT * FROM paper,upload where paper.PaperID=upload.paperID  order by upload.uploadDate desc";//挑选出来最新的论文
             List<String> list1 = query(sql);
             logger.info(sql);
             session.setAttribute("lastestpaper",list1);
-            sql="select * from paper";//没有实现根据浏览次数选择论文 
+            sql="SELECT * FROM paper,upload where paper.PaperID=upload.paperID  order by upload.clickTime desc";//没有实现根据浏览次数选择论文 
             List<String> list2 = query(sql);
             logger.info(sql);
             session.setAttribute("hotpaper",list2);

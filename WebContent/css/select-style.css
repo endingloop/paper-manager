@@ -27,8 +27,9 @@
 
 .dropdown{
 	position: relative;
-	width: 250px;
+	width: 300px;
 	cursor: pointer;
+	margin-top:10%;
 	font-weight: 200;
 	background: #29AF84;
 	padding: 8px 0px 8px;

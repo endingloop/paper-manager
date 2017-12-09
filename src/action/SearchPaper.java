@@ -57,7 +57,7 @@ public class SearchPaper extends UserSupport {
         return SUCCESS;
     }
 
-    private int querySql(String sql) throws SQLException {
+    public int querySql(String sql) throws SQLException {
         Connection conn = Dao.getConn();
         result = new ArrayList<>();
         PreparedStatement pstmt;
@@ -99,7 +99,14 @@ public class SearchPaper extends UserSupport {
     public String showDetail()
     {
         String sql = null;
+        if(selectchoice==1)
+        {
         sql = "SELECT * FROM paper WHERE Title='" + keyword + "'";
+        }
+        if(selectchoice==0)
+        {
+         sql = "SELECT * FROM paper WHERE PaperID='" + keyword + "'";   
+        }
         try {
             papernum = querySql(sql);
             logger.info(sql + " NUMBER: " + papernum);
@@ -200,7 +207,6 @@ public class SearchPaper extends UserSupport {
             return SUCCESS;           
 	}
 
-    
 
 	
 
