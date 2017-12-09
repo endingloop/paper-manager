@@ -103,6 +103,8 @@ public String cleartablenew() {
 public String workload() {
 	if(getStartdate()!=null&&getEnddate()!=null) {
 		cleartablenew();
+		System.out.println(getUser().getRealName()+"getuser.getrealname");
+		System.out.println(getAuthor()+"ddddddddddddddddddddddddd");
 		String sql="create table new as select PaperID, FirstAuthorID,level,SecondAuthorID from paper where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and Status=1;";
 		List<score> temp=null;
 		Connection conn=Dao.getConn();

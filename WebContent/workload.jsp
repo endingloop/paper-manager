@@ -41,11 +41,11 @@
 <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />&nbsp;——&nbsp; <input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 <br>
 <div style="margin-top:2%;">
-<s:if test="getUser().getAuthority()==0">
-		<h4>请输入作者姓名：</h4><input type ="hidden" name="author" value="输入作者" value="<s:property	value="user.realName" />">		
+<s:if test="getUser().getAuthority()==1">
+		<input type ="hidden" name="author" value="<s:property  value="user.realName" />">		
 </s:if>
 <s:if test="getUser().getAuthority()==3">
-		<input name="author">		
+		<h4>请输入作者姓名：</h4><input name="author">		
 </s:if>
 
 <button class="btn btn-default" type="submit">提交</button>
