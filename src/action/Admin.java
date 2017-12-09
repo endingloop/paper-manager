@@ -118,9 +118,7 @@ public class Admin extends PaperSupport {
 	}
 	public String deleteUser() throws SQLException {
 		Connection conn = Dao.getConn();
-		System.out.println(getUsername());
 		String sql = "UPDATE user SET authority=-authority WHERE username = '" + getUsername() + "'";
-		System.out.println(sql);
 		PreparedStatement pstmt;
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		pstmt.executeUpdate();

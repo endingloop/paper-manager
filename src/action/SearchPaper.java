@@ -306,7 +306,6 @@ public String PaddingSort(String sql,int page) {
 	//querySort();
         session.setAttribute("TypeSortadd",TypeSortadd); 
         context.put("TypeSortadd",TypeSortadd); 
-        System.out.println(s);
         session.setAttribute("list",list); 
         session.setAttribute("s",s); 
         context.put("list", list);  
@@ -364,7 +363,6 @@ public String PaddingSort(String sql,int page) {
 		case 6:
 			try {
 				index=1;
-				System.out.println(keyword);
 				int id = Dao.findSortID(keyword);
 				switch(Dao.findSortLevel(keyword)) {
 				case 1:

@@ -25,7 +25,7 @@ public class Login extends UserSupport {
 	public String execute() throws SQLException {
 		User user = findUser(getUsername(), getPassword());
 		if (user == null) {
-			addActionError("用户名或密码错误，请检查您的输入");// 添加actionerror 
+			addActionError("用户名或密码错误，请检查您的输入!");// 添加actionerror 
 			return INPUT;
 		}
 		logger.info("user: " + user.getAuthority() + " choice: " + getAuthority());
@@ -34,7 +34,7 @@ public class Login extends UserSupport {
 			return INPUT;
 		}
 		if (user.getAuthority() < getAuthority()) {
-			addActionError("请选择正确的分组");// 添加actionerror 
+			addActionError("请选择正确的分组!");// 添加actionerror 
 			return INPUT;
 		}
 		setUser(user);

@@ -103,8 +103,6 @@ public String cleartablenew() {
 public String workload() {
 	if(getStartdate()!=null&&getEnddate()!=null) {
 		cleartablenew();
-		System.out.println(getUser().getRealName()+"getuser.getrealname");
-		System.out.println(getAuthor()+"ddddddddddddddddddddddddd");
 		String sql="create table new as select PaperID, FirstAuthorID,level,SecondAuthorID from paper where date>='"+getStartdate()+"' and date<='"+getEnddate()+"' and Status=1;";
 		List<score> temp=null;
 		Connection conn=Dao.getConn();
@@ -133,7 +131,6 @@ public String showdetail(String str) {
 	 list1 =new ArrayList<>();
 	 list1=Dao.findSecondtAuthor(str);
 	 list1.addAll(list);
-	 System.out.println(list1.size());
 	 sumscore();
      ExcelGenerate.PersonalWorkloadQuery(list1,getAuthorname(),getStartdate(),getEnddate(),getUser().getEmail());
 
@@ -141,14 +138,9 @@ public String showdetail(String str) {
 }
 //计算总分得出总表
 public  List<score>  sumscore() {
-	String sql=null;
-	
-	
-		
-		scoreresult=new ArrayList<>();
-		
-		float grade=0;
-		
+				String sql=null;
+				scoreresult=new ArrayList<>();		
+				float grade=0;	
 				score tempbean=new score();
 				tempbean.setName(getAuthor());
 				float FirstAuthorScore=findFirstAuthor(getAuthor());
@@ -162,8 +154,6 @@ public  List<score>  sumscore() {
 				tempbean.setScore(grade);
 				scoreresult.add(tempbean);
 				ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getEmail());
-					
-	
 			 return scoreresult;
 }
 
@@ -195,7 +185,6 @@ public int findSAuthor(String str) {
 int num=0;
  String sql="select count(*) from new where SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'";
 	Connection conn=Dao.getConn();
-	System.out.println(sql);
 	PreparedStatement pstmt;
 	try {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);
