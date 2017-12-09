@@ -4,52 +4,47 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionSupport;
-
-import action.SearchPaper;
 import model.Paper;
 
 public class WorkGraph{
 
 	static private Logger logger = Logger.getLogger(WorkGraph.class);
 
-	public static String[] findAuthors(String name) throws SQLException {
+	public static Map<String, Integer> findAuthors(String name) throws SQLException {
 		Connection conn = Dao.getConn();
-		List<String> result = new ArrayList<>();
-		result.add(name);
+		Map<String, Integer> m1 = new LinkedHashMap<String, Integer>();
+		m1.put(name, 0);
 		PreparedStatement pstmt;
-		//1
-		String sql = "SELECT SecondAuthorID FROM paper WHERE FirstAuthorID='" + name + "'";
+		String sql = "SELECT FirstAuthorID,SecondAuthorID FROM paper WHERE FirstAuthorID='" + name 
+				+ "' OR SecondAuthorID REGEXP '[[:<:]]" + name + "[[:>:]]'";
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			Paper temp = new Paper();
-			temp.setSecondAuthor(rs.getString(1));
-
+			temp.setSecondAuthor(rs.getString(2));
 			for (String s : temp.getSecondAuthorList()) {
-				if (!result.contains(s))
-					result.add(s);
+				if (!m1.containsKey(s))
+					m1.put(s, 1);
+				else {
+					int t = m1.get(s);
+					m1.put(s, t+1);
+				}
+			}
+			String s = rs.getString(1);
+			if (!m1.containsKey(s))
+				m1.put(s, 1);
+			else {
+				int t = m1.get(s);
+				m1.put(s, t+1);
 			}
 		}
-		//2
-		sql = "SELECT FirstAuthorID FROM paper WHERE SecondAuthorID REGEXP '[[:<:]]" + name + "[[:>:]]'";
-		pstmt = (PreparedStatement) conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
-		while (rs.next()) {
-			String s = rs.getString(1);
-			if (!result.contains(s))
-				result.add(s);
-		}
-		logger.info(result);
-		return result.toArray(new String[0]); //数组不能强制类型转化，使用这种格式
+		logger.info(m1);
+		return m1;
 	}
 	
 }

@@ -160,7 +160,7 @@
 
 				{
 
-					name : '人物',
+					name : '自己',
 
 					itemStyle : {
 
@@ -176,23 +176,7 @@
 
 				{
 
-					name : '家人',
-
-					itemStyle : {
-
-						normal : {
-
-							color : '#ff7f50'
-
-						}
-
-					}
-
-				},
-
-				{
-
-					name : '朋友',
+					name : '共同创作者',
 
 					itemStyle : {
 
@@ -201,6 +185,22 @@
 							color : '#87cdfa'
 
 						}
+
+					}
+
+				},
+
+				{
+
+					name : '共同创作者',
+
+					itemStyle : {
+
+						normal : {
+
+							color : '#87cdfa'							
+
+						},				
 
 					}
 
@@ -230,7 +230,10 @@
 
 							strokeColor : 'rgba(255,215,0,0.4)',
 
-							lineWidth : 2
+							lineWidth : 2,
+							
+							shapeType:'ellipse'
+
 
 						}
 
@@ -256,9 +259,10 @@
 				nodes : [
 				<% 
 				String[] author = (String [])session.getAttribute("author");
+				int[] count = (int [])session.getAttribute("count");
 				for(int i = 0; i < author.length - 1; i++)
-					out.print("{category : 2, name : '" + author[i] + "', value : 1}, ");
-				out.print("{category : 2, name : '" + author[author.length - 1] + "', value : 1}");
+					out.print("{category : "+ (i==0?0:1) + ", name : '" + author[i] + "', value : 1, shapeType:'ellipse', itemStyle:{ normal:{a:40, b:20}}}, ");
+				out.print("{category : 1, name : '" + author[author.length - 1] + "', value : 1, shapeType:'ellipse', itemStyle:{ normal:{a:40, b:20}}}");
 				%>
 				],
 
@@ -266,8 +270,12 @@
 				<% 
 				int i;
 				for(i = 1; i < author.length - 1; i++)
-					out.print("{source : " + i + " , target : 0, weight : 1}, ");
-				out.print("{source : " + i + " , target : 0, weight : 1}");
+					out.print("{source : " + i + " , target : 0, weight : 1"
+							+ ", itemStyle:{normal:{text:'"+count[i]+
+					"',textColor:'#030303',textFont:'bold 15px verdana',textPosition:'inside'}}}, ");
+				out.print("{source : " + i + " , target : 0, weight : 1"
+						+ ", itemStyle:{normal:{text:'"+count[i]+
+						"',textColor:'#030303',textFont:'bold 15px verdana',textPosition:'inside'}}}");
 				%>
 				]
 

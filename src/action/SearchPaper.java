@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,13 +17,11 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
 import model.Paper;
 import service.Dao;
 import service.ExcelGenerate;
 import service.WorkGraph;
-import support.Constants;
 import support.UserSupport;
 
 
@@ -295,7 +296,19 @@ public String PaddingSort(String sql,int page) {
         setSelectchoice(3);
         String result = chooseSearch();
         HttpSession session = ServletActionContext.getRequest ().getSession();
-        session.setAttribute("author", WorkGraph.findAuthors(keyword));
+        Map<String, Integer> m1 = WorkGraph.findAuthors(keyword);
+		Iterator<Entry<String, Integer>> iter = m1.entrySet().iterator();
+		String [] author = new String[(m1.size())];
+		int [] count = new int[m1.size()];
+		int i = 0;
+		while (iter.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter.next();
+			author[i] = (String) entry.getKey();
+			count[i] = (int) entry.getValue();
+			i++;
+		}
+        session.setAttribute("author", author);
+        session.setAttribute("count", count);
         session.setAttribute("authorname", keyword);
         session.setAttribute("papernum", getPapernum());
 		return result;
