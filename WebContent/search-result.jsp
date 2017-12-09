@@ -16,14 +16,6 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="css/operation1.css">
 <title>Paper Manager System</title>
-
-<script language="JavaScript">
-function myrefresh()
-{
-       window.location.reload();
-}
-setTimeout('myrefresh()',1000); //指定1秒刷新一次
-</script>
 </head>
 <body>
 	<div class="container">
@@ -42,9 +34,9 @@ setTimeout('myrefresh()',1000); //指定1秒刷新一次
 		</header>
 		<div class="content1" style="background-image: url(images/11.jpg);">
 
-			<ul id="SearchInput" style="margin-left: 34%;">
+			<div id="SearchInput" style="margin-left: 34%;">
 				<s:form name="form2" action="chooseSearch">
-					<li>
+					<div>
 						<select name="selectchoice"
 							style="width: 7em; margin-left: 0px; margin-bottom: -4.5em;">
 							<option value="1">论文主题</option>
@@ -54,14 +46,14 @@ setTimeout('myrefresh()',1000); //指定1秒刷新一次
 							<option value="5">刊物名称</option>
 							<option value="6">论文分类</option>						
 						</select>
-					</li>
-					<li><s:textfield style="width:12em; margin-left: 8em;margin-top:0.6em;"  key="keyword" /></li>
-					<li>
+					</div>
+					<s:textfield style="width:12em; margin-left: 8em;margin-top:0.6em;"  key="keyword" />
+					<div>
 						<s:submit class="btn btn-info" value="搜索"
 							style="margin-left:22em;margin-top: -5.1em;" />
-					</li>
+					</div>
 				</s:form>
-			</ul>
+			</div>
 		</div>
 		<div class="content2">
 			<div id="content2_center">
@@ -80,7 +72,6 @@ setTimeout('myrefresh()',1000); //指定1秒刷新一次
 						<td>关键词</td>
 						<td>下载</td>
 					</tr>
-
 					 <s:iterator value="#session.list" status="index">
 						<tr>
 						   
@@ -103,17 +94,13 @@ setTimeout('myrefresh()',1000); //指定1秒刷新一次
 							<td><s:iterator value="keywordList" status="index">
 									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
-
 							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载[<s:property value="clickTime"/>]</a></td>
 						 
 						</tr>
 				</s:iterator>
-
 				</table>
-				<a href="fileDownloads.action?tip=2" class="btn btn-info" style="margin-bottom:1%;float:right;">导出为excel表格</a>
-                	<ul class="pagination">
-                      <%=request.getAttribute("s") %>
-	               </ul>
+				<a href="fileDownloads.action?tip=2" class="btn btn-info">导出为excel表格</a>
+                 <div style="align:center;"> <%=request.getAttribute("s") %>  </div>
 
 			</div>
 		</div>
