@@ -51,6 +51,7 @@
 		<action name="Admin_*" method="{1}" class="action.Admin">
 			<result name="welcome">/admin-welcome.jsp</result>
 			<result name="audit">/admin-audit.jsp</result>
+			<result name="user">/admin-user.jsp</result>
 		</action>
 		<action name="Logout" class="action.Logout">
 			<result type="redirectAction">index</result>

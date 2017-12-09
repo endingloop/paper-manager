@@ -21,7 +21,7 @@ public class PaperAction extends PaperSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 21L;
+	private static final long serialVersionUID = 213L;
 	static private Logger logger = Logger.getLogger(PaperAction.class);
 
 
