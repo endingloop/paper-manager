@@ -43,6 +43,8 @@
 					<th align="center" width="10%">作者</th>
 					<th align="center" width="10%">时间</th>
 					<th align="center" width="15%">操作</th>
+					<th align="center" width="10%">状态</th>
+					
 				</tr>
 
 				<s:iterator value="user.papers">
@@ -56,6 +58,18 @@
 								删除 </a> &nbsp; <a
 							href="<s:url action="Paper_edit"><s:param name="paperID" value="paperID"/></s:url>">编辑
 						</a></td>
+						<td><s:if test="Status==0">
+		                  <span>待审核</span>
+                        </s:if>
+						<s:if test="Status==1">
+		                  <span>已发布</span>
+                        </s:if>
+                        <s:if test="Status==2">
+		                  <span>不合格</span>
+                        </s:if>
+                        
+
+						</td>
 					</tr>
 				</s:iterator>
 

@@ -88,12 +88,14 @@ public class Dao {
 
 	public static Paper findPaper(String paperID) throws SQLException {
 		Connection conn = Dao.getConn();
+		
 		PreparedStatement pstmt;
 		String sql = "SELECT * FROM paper,upload WHERE paper.PaperID=upload.paperID AND paper.PaperID= '" + paperID + "'";
 		pstmt = (PreparedStatement) conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		Paper temp = null;
 		if (rs.next()) {
+			
 			temp = new Paper();
 			temp.setPaperID(rs.getString(1));
 			temp.setTitle(rs.getString(2));
@@ -108,13 +110,14 @@ public class Dao {
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
 			temp.setClickTime(rs.getInt(16));
+			logger.info("find papr by paperid successful --Dao"+temp.getTitle());
 		}
-
-		logger.info("find papr by paperid successful --Dao");
+      
+		
 
 		return temp;
 	}
-
+    
 	public static int insertPaper(Paper paper) throws SQLException {
 		Connection conn = getConn();
 		String sql = "REPLACE INTO paper VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";

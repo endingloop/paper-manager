@@ -61,10 +61,6 @@
 			<result name="input">/Registration.jsp</result>
 			<result type="redirectAction">MainMenu</result>
 		</action>
-		<action name="workdetail" class="action.workloadshow" method="showdetail" >
-			<result name="yes">/workload.jsp</result>
-			<result name="input">/Login.jsp</result>
-		</action>
 		<action name="Paper_*" method="{1}" class="action.PaperAction">
 			<result name="input">/Paper.jsp</result>
 			<result type="redirectAction">MainMenu</result>
