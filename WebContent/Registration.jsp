@@ -34,6 +34,9 @@
 			<s:param>email</s:param>
 		</s:fielderror> 
 		<s:textfield name="realName" placeholder="真实姓名" type="text" />
+		<s:fielderror cssStyle="color: red">
+			<s:param>realName</s:param>
+		</s:fielderror> 
 		<span style="color:red;"><s:actionerror/></span>
    		<s:submit value="点击注册"/>
     	<s:reset value="重置"/>

@@ -59,7 +59,7 @@
 <tr><th>姓名</th><th>成绩</th><th>作为第一作者发布文章数目</th><th>以第二作者参与发布文章数目</th><tr>
 <s:iterator  value="scoreresult">
 <tr>
-<td><a href="workdetail.action?authorname=<s:property value="Name"/>&&startdate=<s:property  value="startdate"/>&&enddate=<s:property  value="enddate"/>&&scoretemp=<s:property value="score"/>&&author=<s:property value="getAuthor()"/>"><s:property  value="Name"/></a></td>
+<td><s:property  value="Name"/></td>
 <td><s:property value="score"/></td>
 <td><s:property value="fauthornum"/></td>
 <td><s:property value="sauthornum"/></td>

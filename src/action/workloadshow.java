@@ -160,7 +160,7 @@ public  List<score>  sumscore() {
 				tempbean.setScore(grade);
 				scoreresult.add(tempbean);
 				ExcelGenerate.TaskQueryExcel(scoreresult,getStartdate(),getEnddate(),getUser().getEmail());
-					System.out.println(tempbean.score+"fenshuuuuuuuuuuuuuuuuuuuuuuuuu");
+					
 	
 			 return scoreresult;
 }

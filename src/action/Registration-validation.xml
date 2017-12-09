@@ -24,4 +24,9 @@
 			<message>邮箱格式错误!</message>
 		</field-validator>
 	</field>
+	<field name="realName">
+		<field-validator type="requiredstring">
+			<message>请输入真实姓名!</message>
+		</field-validator>
+	</field>
 </validators>
