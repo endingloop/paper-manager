@@ -123,7 +123,7 @@
 					<s:fielderror cssStyle="color: red" />
 					<s:if test="task == 'Create'"> 	 
       				<table id="tb"></table>
-					<input name="button" type="button" class="btn btn-default" onclick='additem("tb")' value="点击添加第二作者"/>
+					<input name="button" type="button" class="btn btn-default" style="width:25%;" onclick='additem("tb")' value="点击添加第二作者"/>
 					<input id="Hidden1" name="Hidden1" type="hidden"  />
   					</s:if>
   				<s:else> 
@@ -132,14 +132,14 @@
 				   
 				   <s:if test="task == 'Create'"> 	 
       				<table id="tb1"></table>
-					<input name="button" class="btn btn-default" style="margin-top:1%;margin-bottom:1%;" type="button" onclick='additem1("tb1")' value="点击添加关键字"/>
+					<input name="button" class="btn btn-default" style="margin-top:1%;margin-bottom:1%;width:25%;" type="button" onclick='additem1("tb1")' value="点击添加关键字"/>
 					<input id="Hidden2" name="Hidden2" type="hidden" />
   					</s:if>
 					<s:else> 
 				  <span>关键字词：<s:textfield name="paper.keyword"/></span>
 				   </s:else>
 					
-					<span>内容简介：<s:textarea name="paper.description"/></span>
+					<span>内容简介：<s:textarea name="paper.description"  rows="3" maxlength="2000" cols="20" wrap="hard"/></span>
 					<span>出版机构：<s:textfield name="paper.publication"/></span>
 				</div>
 				
