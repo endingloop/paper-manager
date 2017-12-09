@@ -193,6 +193,7 @@ public int findSAuthor(String str) {
 int num=0;
  String sql="select count(*) from new where SecondAuthorID REGEXP '[[:<:]]" + str + "[[:>:]]'";
 	Connection conn=Dao.getConn();
+	System.out.println(sql);
 	PreparedStatement pstmt;
 	try {
 		pstmt= (PreparedStatement)conn.prepareStatement(sql);

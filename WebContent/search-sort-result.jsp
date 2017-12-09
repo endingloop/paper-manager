@@ -93,8 +93,10 @@
 					</ul>
 					<br>
 				</div>
+
 			</s:if>
 			<div id="content2_center" style="margin-top:-2em;">
+
 				<table class="table table-hover">
 					<tr>
 						<td>编号</td>
