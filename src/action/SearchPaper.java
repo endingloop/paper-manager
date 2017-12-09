@@ -157,7 +157,7 @@ public class SearchPaper extends UserSupport {
             if(selectchoice==2)
             {
              session.setAttribute("level3", "/"+keyword);
-                
+             session.setAttribute("searchLevel",3);   
             }
             List<String> list1;
             list1=new ArrayList<>();

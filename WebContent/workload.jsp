@@ -37,17 +37,19 @@
   <br>
 <div  style="text-align:center;">
 <form action="workload.action" method="post">
-<h4>工作量日期区间</h4>
+<h4>请选择工作量日期区间：</h4>
 <input name="startdate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />&nbsp;——&nbsp; <input name="enddate" style="width: 120px;" onFocus="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd '})" />
 <br>
+<div style="margin-top:2%;">
 <s:if test="getUser().getAuthority()==0">
-		<input type ="hidden" name="author" label="输入作者" value="<s:property	value="user.realName" />">		
+		<h4>请输入作者姓名：</h4><input type ="hidden" name="author" value="输入作者" value="<s:property	value="user.realName" />">		
 </s:if>
 <s:if test="getUser().getAuthority()==3">
 		<input name="author">		
 </s:if>
 
-<button type="submit">提交</button>
+<button class="btn btn-default" type="submit">提交</button>
+</div>
 </form>
 </div>
 <br>
