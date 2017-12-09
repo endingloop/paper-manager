@@ -135,12 +135,6 @@ public class Dao {
 		int result = pstmt.executeUpdate();
 		pstmt.close();
 		conn.close();
-		collectauthor(paper.getAuthor());
-		String[] b=paper.getSecondAuthor().trim().split(",");
-		List<String> listA = Arrays.asList(b);
-		for(String item:listA) {
-			collectauthor(item);
-		}
 		return result;
 	}
 	
@@ -220,29 +214,7 @@ public class Dao {
 		conn.close();
 		return result;
 	}
-	//获取作者表
-	public static void collectauthor(String str) {
-		int len=str.length();
-		if(len!=0) {
-			String sql="replace into authorlist values('"+str+"');";
-			Connection conn = Dao.getConn();
-			PreparedStatement stm=null;
-			
-			try {
-				stm=(PreparedStatement) conn.prepareStatement(sql);
-				ResultSet rs= stm.executeQuery();
-				stm.close();
-				conn.close();
-				logger.info("add second author"+str);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return;
-		
-	}
+	
 	//获取类型
 	public static String findsortname(int num) throws SQLException {
 		String sql = "select sortname from third where thirdID=" + num+";";
