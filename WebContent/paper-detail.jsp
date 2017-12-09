@@ -37,11 +37,11 @@
       <a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a>
        <br>
       <span>第二作者：</span>
-      <s:iterator value="secondauthor" status="index">
+      <s:iterator value="secondAuthorList" status="index">
            <a href="searchAuthor.action?keyword=<s:property/>"><s:property/></a>
          </s:iterator>
        <div class="publication">
-      <a href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property value="publication"/></a>
+      <a href="chooseSearch.action?selectchoice=5&keyword=<s:property value="publication"/>"><s:property value="publication"/></a>
       </div>
         
       <div class="description text-left">
@@ -49,17 +49,18 @@
                   </span>
       </div>
       <div class="date">
-       <span style="color:grey;">发表时间：</span><a href="searchDate.action?keyword=<s:property value="date"/>"><s:property value="date"/></a>
+       <span style="color:grey;">发表时间：</span><a href="chooseSearch.action?selectchoice=4&keyword=<s:property value="date"/>/>"><s:property value="date"/></a>
       </div>
       
        <div class="keyword">
        <span>关键词：</span>
-       <s:iterator value="keywords2" status="index">
-           <a href="searchKeyword.action?keyword=<s:property/>"><s:property/></a>
+       <s:iterator value="keywordList" status="index">
+           <a href="chooseSearch.action?selectchoice=1&keyword=<s:property/>"><s:property/></a>
          </s:iterator>
       </div>
       <div class="download">
-        <a href="#"><button class="btn btn-default" type="submit">下载论文</button></a>
+        <a href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">
+        	<button class="btn btn-default" type="submit">下载论文</button></a>
         </div>
       
     
