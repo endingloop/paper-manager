@@ -28,6 +28,7 @@ public class SearchPaper extends UserSupport {
 	private static final long serialVersionUID = 23L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
+	private int seqencechoice ;
 	private String keyword;
 	public int sorttype;
 
@@ -44,13 +45,13 @@ public class SearchPaper extends UserSupport {
 	private int papernum;
 	private int page=1;  
 	  
-    public int getPage() {  
-        return page;  
-    }  
-  
-    public void setPage(int page) {  
-        this.page = page;  
-    }  
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
   
 	HttpSession session = ServletActionContext.getRequest ().getSession();
     
@@ -303,7 +304,8 @@ public String PaddingSort(String sql,int page) {
 			sql = "SELECT * FROM paper ,upload WHERE Title LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
 			break;
 		case 3:
-			sql = "SELECT * FROM paper,upload WHERE FirstAuthorID='" + keyword + "' and upload.paperID=paper.PaperID";
+		    sql = "SELECT * FROM paper,upload WHERE FirstAuthorID='" + keyword + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]' and upload.paperID=paper.PaperID";
+		    logger.info(sql);
 			break;
 		case 4:
 			sql = "SELECT * FROM paper,upload WHERE Date ='" + keyword + "' and upload.paperID=paper.PaperID";
@@ -318,6 +320,7 @@ public String PaddingSort(String sql,int page) {
 				int id = Dao.findSortID(keyword);
 				switch(Dao.findSortLevel(keyword)) {
 				case 1:
+
 					sql = "select * from paper,upload ,third,second where second.upper="+ id +"  and upload.paperID=paper.PaperID  and paper.sortID=third.thirdID and third.upper=second.secondID ";
 					break;
 				case 2:
@@ -329,6 +332,7 @@ public String PaddingSort(String sql,int page) {
 				default:
 					logger.error("No this sort: " + keyword);
 				}
+
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -352,6 +356,37 @@ public String PaddingSort(String sql,int page) {
 
 	}
 	
+	   public String seqencing(String seqencingsql,int seqencechoice) 
+	   {
+	     
+	        if(seqencechoice==2||seqencechoice==4) {
+	            seqencingsql=seqencingsql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+	        }
+	        else if ((seqencechoice==1||seqencechoice==5))
+	        {
+	            seqencingsql=seqencingsql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+	        }
+	        else if ((seqencechoice==3||seqencechoice==6))
+	        {
+	            seqencingsql=seqencingsql+" and paper.Status=1 order by paper.Date desc limit "+(page-1)*10+",10";
+	        }
+	        try {
+	                papernum = querySql(seqencingsql);
+	            logger.info(seqencingsql + " NUMBER: " + papernum+"sql fenlong-----------------");
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            return ERROR;
+	        }
+	        logger.info(seqencingsql);
+	        session.setAttribute("seqencingsql", seqencingsql);
+	        session.setAttribute("papernum", seqencingsql);
+	        Padding(seqencingsql,getPage(),1);
+	        if(seqencechoice>3)
+	            return "SEARCH";
+	        else return "SEARCHSORT";
+	   }
+	
+	
 	//实现分页
 	public String Padding(String sql,int page,int index) {
 		
@@ -366,11 +401,6 @@ public String PaddingSort(String sql,int page) {
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
 
-        if(getSorttype()==1) {
-        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*2+",2";
-        }else {
-        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*2+",2;";
-        }
          
 
 		System.out.println(sql);
@@ -439,5 +469,19 @@ public String PaddingSort(String sql,int page) {
 	public void setPapernum(int papernum) {
 		this.papernum = papernum;
 	}
+
+    /**
+     * @return the seqencechoice
+     */
+    public int getSeqencechoice() {
+        return seqencechoice;
+    }
+
+    /**
+     * @param seqencechoice the seqencechoice to set
+     */
+    public void setSeqencechoice(int seqencechoice) {
+        this.seqencechoice = seqencechoice;
+    }
 
 }
