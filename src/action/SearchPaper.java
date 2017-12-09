@@ -30,6 +30,8 @@ public class SearchPaper extends UserSupport {
 	private int selectchoice;
 	private String keyword;
 	public int sorttype;
+
+
 	public int getSorttype() {
 		return sorttype;
 	}
@@ -149,13 +151,11 @@ public class SearchPaper extends UserSupport {
     
     //由第一层分类名称查第二分类由第二层分类名称查第三类分类
 	public String querySort() throws SQLException
-	{
+	{       
             if(selectchoice==2)
             {
-                selectchoice=6;
-                chooseSearch();
-                session.setAttribute("level3", "/"+keyword);
-                return SUCCESS;
+             session.setAttribute("level3", "/"+keyword);
+                
             }
             List<String> list1;
             list1=new ArrayList<>();
@@ -202,16 +202,94 @@ public class SearchPaper extends UserSupport {
             
             session.setAttribute("sortlist",list1);
             
-            selectchoice=6;
-            chooseSearch();
+           
+            chooseSearchsort(selectchoice,keyword);
             return SUCCESS;           
 	}
 
+	public String chooseSearchsort(int selectchoice,String str) {
+		//querySort();
+		String sql = null;
+		logger.info(selectchoice);
+        logger.info(keyword);
+        logger.info(page);		
+				switch(selectchoice) {
+				case 0:
+					sql = "select * from paper,upload ,third,second,first where  first.sortname='"+ str +"' and upload.paperID=paper.PaperID  and paper.sortID=third.thirdID and third.upper=second.secondID and second.upper=first.firstID ";
+					break;
+				case 1:
+					sql = "select * from paper ,upload  ,third,second  where second.sortname='"+ str +"'  and upload.paperID=paper.PaperID and paper.sortID=third.thirdID and third.upper=second.secondID";
+					break;
+				case 2:
+					sql = "select * from paper ,upload ,third where third.sortname='"+ str +"'  and upload.paperID=paper.PaperID and paper.sortID=third.thirdID";
+					break;
+				}
+				
+				
+					try {
+						if (sql == null) {
+							result = new ArrayList<>();
+						} else {
+							papernum = querySql(sql);
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+				logger.info(sql + " NUMBER: " + papernum+"sql fenlong-----------------");
+				PaddingSort(sql,page);
+		return SUCCESS;
 
-	
+	}
+public String PaddingSort(String sql,int page) {
+		
+		int current_page=getPage();
+		int pages=0;
+		try {
+			pages = querySql(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+        HttpSession session = ServletActionContext.getRequest ().getSession();
+        ActionContext context=ActionContext.getContext();  
+        sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*2+",2";
+		System.out.println(sql);
+		List<Paper> list=new ArrayList<>();
+		try {
+			list= Dao.PadingResult(sql);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+         StringBuffer s=new StringBuffer();  
 
-	
+        for(int i=1;i<=Math.ceil((double)pages/2);i++){  
+            session.setAttribute("selectchoice",selectchoice); 
+            session.setAttribute("keyword",keyword);
+            session.setAttribute("pagenum",current_page);
+
+            if(i==current_page){  
+                s.append("<li class='active' >"+i+"</li>");
+            }  
+            else{ 
+            	
+            		 s.append("<li><a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a></li>");  
+            	
+            }  
+        }  		
+        System.out.println(s);
+        session.setAttribute("list",list); 
+        session.setAttribute("s",s); 
+        context.put("list", list);  
+        context.put("s",s);  
+  
+		return null;
+	}
 	public String chooseSearch() {
+		//querySort();
 		String sql = null;
 		int index=0;
 		logger.info(selectchoice);
@@ -240,10 +318,10 @@ public class SearchPaper extends UserSupport {
 				int id = Dao.findSortID(keyword);
 				switch(Dao.findSortLevel(keyword)) {
 				case 1:
-					sql = "select * from paper,third,second ,upload where second.upper="+ id +" and paper.sortID=third.thirdID and third.upper=second.secondID  and upload.paperID=paper.PaperID";
+					sql = "select * from paper,upload ,third,second where second.upper="+ id +"  and upload.paperID=paper.PaperID  and paper.sortID=third.thirdID and third.upper=second.secondID ";
 					break;
 				case 2:
-					sql = "select * from paper,third ,upload where third.upper="+ id +" and paper.sortID=third.thirdID  and upload.paperID=paper.PaperID";
+					sql = "select * from paper ,upload  ,third where third.upper="+ id +"  and upload.paperID=paper.PaperID and paper.sortID=third.thirdID ";
 					break;
 				case 3:
 					sql = "select * from paper ,upload where sortID="+ id +"  and upload.paperID=paper.PaperID";
@@ -275,7 +353,8 @@ public class SearchPaper extends UserSupport {
 	}
 	
 	//实现分页
-	public String Padding(String sql,int page,int index ) {
+	public String Padding(String sql,int page,int index) {
+		
 		int current_page=getPage();
 		int pages=0;
 		try {
@@ -288,9 +367,9 @@ public class SearchPaper extends UserSupport {
         ActionContext context=ActionContext.getContext();  
 
         if(getSorttype()==1) {
-        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*2+",2";
         }else {
-        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*2+",2;";
         }
          
 
@@ -305,7 +384,7 @@ public class SearchPaper extends UserSupport {
 			
          StringBuffer s=new StringBuffer();  
 
-        for(int i=1;i<=Math.ceil((double)pages/10);i++){  
+        for(int i=1;i<=Math.ceil((double)pages/2);i++){  
             session.setAttribute("selectchoice",selectchoice); 
             session.setAttribute("keyword",keyword);
             session.setAttribute("pagenum",current_page);

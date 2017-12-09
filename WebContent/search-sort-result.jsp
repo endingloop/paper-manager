@@ -62,7 +62,7 @@
 					&nbsp;共搜索出<s:property value="papernum" />篇论文
 					</span>
 				</div>
-		   <s:if test="#session.pagenum==1">
+		  
             <div id="findmore">
                <ul id="sort">
                  <li style="color:grey;">按分类查询：</li>
@@ -79,7 +79,7 @@
                  </ul>
                  <br>
             </div>
-            </s:if>
+            
 			<div id="content2_center">
 				<table class="table table-hover">
 					<tr>

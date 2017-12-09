@@ -371,7 +371,9 @@ public class Dao {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
+			logger.info("!"+rs.getString(16));
 			temp.setClickTime(rs.getInt(16));
+			logger.info("!"+rs.getString(16));
 				list.add(temp);	}
 		
 	
