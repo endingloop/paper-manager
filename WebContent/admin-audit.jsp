@@ -17,7 +17,7 @@
  <header>
 			<a href="<s:url action="index" />" id="index">论文管理器</a> 
 			<a href="<s:url action="Logout" />" id="right">注销</a> 
-			<a href="<s:url action='admin-welcome' />" id="left">
+			<a href="<s:url action='Admin_welcome' />" id="left">
 				<s:property	value="user.username" />(管理员)</a> 
  </header>
   <hr>
@@ -25,9 +25,9 @@
   
   <div id="content2_top" >
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation"><a href="<s:url action="admin-welcome" />">欢迎页面</a></li>
+  <li role="presentation"><a href="<s:url action="Admin_welcome" />">欢迎页面</a></li>
   <li role="presentation" class="active"><a href="<s:url action="Admin_audit" />">待审核文章</a></li>
-  <li role="presentation"><a href="#">用户管理</a></li>
+  <li role="presentation"><a href="Admin_user">用户管理</a></li>
   </ul>
   </div>
 <br>
@@ -40,7 +40,7 @@
 						<th align="center" width="10%">时间</th>
 						<th align="center" width="15%">操作</th>
 					</tr>
-					<s:iterator value="result">
+					<s:iterator value="paperList">
 						<tr>
 							<td align="left"><s:property value="paperID" /></td>
 							<td align="left"><s:property value="title" /></td>

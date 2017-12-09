@@ -120,6 +120,7 @@
 				<div id="part2">
 				    <span>论文标题：<s:textfield name="paper.title"/></span>
 					<span>第一作者：<s:textfield name="paper.author"/></span>
+					<s:fielderror cssStyle="color: red" />
 					<s:if test="task == 'Create'"> 	 
       				<table id="tb"></table>
 					<input name="button" type="button" class="btn btn-default" onclick='additem("tb")' value="点击添加第二作者"/>
