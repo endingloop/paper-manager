@@ -69,6 +69,9 @@
 		<action name="chooseSearch" class="action.SearchPaper" method="chooseSearch">
 			<result name="success">/search-result.jsp</result>
 		</action>
+		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
+			<result name="success">/search-author.jsp</result>
+		</action>
 		<action name="querySort" class="action.SearchPaper" method="querySort">
 			<result name="success">/search-sort-result.jsp</result>
 		</action>
@@ -96,9 +99,6 @@
 		<action name="workload" class="action.workloadshow" method="workload">
 			<result name="workload">/workload.jsp</result>
 			<interceptor-ref name="user" />
-		</action>
-		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
-			<result name="success">/search-author.jsp</result>
 		</action>
   
 	</package>
