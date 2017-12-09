@@ -29,8 +29,12 @@ public class Login extends UserSupport {
 			return INPUT;
 		}
 		logger.info("user: " + user.getAuthority() + " choice: " + getAuthority());
+		if (user.getAuthority() <0) {
+			addActionError("您的账户已被冻结，请联系管理员YST工作室：1234554321！");// 添加actionerror 
+			return INPUT;
+		}
 		if (user.getAuthority() < getAuthority()) {
-			addActionError("请选择适当的用户组");// 添加actionerror 
+			addActionError("请选择正确的分组");// 添加actionerror 
 			return INPUT;
 		}
 		setUser(user);

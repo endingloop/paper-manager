@@ -38,7 +38,8 @@
 						<th align="center" width="15%">密码</th>
 						<th align="center" width="20%">Email</th>
 						<th align="center" width="15%">真实姓名</th>
-						<th align="center" width="20%">操作</th>
+						<th align="center" width="5%">用户状态</th>
+						<th align="center" width="30%">操作</th>
 					</tr>
 					<s:iterator value="userList">
 						<tr>
@@ -52,6 +53,16 @@
 							<td align="center"><s:property value="email" /></td>
 							<td align="center"><s:property value="realName" /></td>
 							<td align="center">
+							<s:if test="authority<0">
+		                  <span>冻结</span>
+                        </s:if>
+						<s:if test="authority>0">
+		                  <span>正常</span>
+                        </s:if>
+                        
+							
+							</td>
+							<td align="center">
 							<s:if test="task=='seePassword'+username">
 								<a href="<s:url action="Admin_hidePass"><s:param name="username" value="username"/></s:url>">隐藏密码</a>
 							</s:if>
@@ -59,8 +70,9 @@
 								<a href="<s:url action="Admin_seePass"><s:param name="username" value="username"/></s:url>">查看密码</a>
 							</s:else>
 								&nbsp; 
-							<a href="<s:url action="Admin_deleteUser"><s:param name="username" value="username"/></s:url>">封禁用户</a>
+							<a href="<s:url action="Admin_deleteUser"><s:param name="username" value="username"/></s:url>">冻结用户</a>
 								&nbsp; 
+							
 							<a href="<s:url action="Admin_addAdmin"><s:param name="username" value="username"/></s:url>">设为管理员</a>
 							</td>
 						</tr>
