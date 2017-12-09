@@ -28,9 +28,21 @@ public class WorkGraph extends ActionSupport {
 
 	public String draw() throws Exception  
 	{
+	    SearchPaper sp = new SearchPaper();
 		String[] author = findAuthors();
         HttpSession session = ServletActionContext.getRequest ().getSession();
         session.setAttribute("author", author);
+        String sql="SELECT * FROM paper,upload WHERE FirstAuthorID='" + name + "' and upload.paperID=paper.PaperID";
+        session.setAttribute("authorname", name);
+        try {
+            int papernum =sp.querySql(sql);
+            session.setAttribute("papernum", papernum);
+            logger.info(sql + " NUMBER: " + papernum);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return ERROR;
+        }
         return SUCCESS;
 	}
 

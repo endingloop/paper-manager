@@ -77,30 +77,32 @@
 						   
 							<td><s:property value="#index.index+1" /></td>
 							<td><a
-								href="searchPaperID.action?keyword=<s:property value="paperID"/>"><s:property
+								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
 										value="title" /></a></td>
 							<td><a
-								href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property
+								href="searchAuthor.action?name=<s:property value="author"/>"><s:property
 										value="author" /></a></td>
 							<td><s:iterator value="secondAuthorList" status="index">
-									<a href="searchAuthor.action?keyword=<s:property/>"><s:property /></a>
+									<a href="searchAuthor.action?name=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
-								href="searchJournal.action?keyword=<s:property value="publication"/>"><s:property
+								href="chooseSearch.action?selectchoice=5&keyword=<s:property value="publication"/>"><s:property
 										value="publication" /> </a></td>
 							<td><a
-								href="searchDate.action?keyword=<s:property value="date"/>"><s:property
+								href="chooseSearch.action?selectchoice=4&keyword=<s:property value="date"/>"><s:property
 										value="date" /></a></td>
 							<td><s:iterator value="keywordList" status="index">
-									<a href="searchKeyword.action?keyword=<s:property/>"><s:property /></a>
+									<a href="chooseSearch.action?selectchoice=1&keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载[<s:property value="clickTime"/>]</a></td>
 						 
 						</tr>
 				</s:iterator>
 				</table>
-				<a href="fileDownloads.action?tip=2" class="btn btn-info">导出为excel表格</a>
-                 <div style="align:center;"> <%=request.getAttribute("s") %>  </div>
+				<a href="fileDownloads.action?tip=2" class="btn btn-info" style="margin-bottom:1%;float:right;">导出为excel表格</a>
+                               	<ul class="pagination">
+                      <%=request.getAttribute("s") %>
+	               </ul>
 
 			</div>
 		</div>
