@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  <li class="wow fadeInLeft" id="firstli">文献全部分类  
 	                         <ul>
 	                            <s:iterator value="#session.Level1"> 
-						            <li ><a href="querySort.action?selectchoice=0&keyword=<s:property/>&&page=<%=1 %>"><s:property/></a></li>
+						            <li ><a href="querySort.action?selectchoice=0&keyword=<s:property/>&page=1"><s:property/></a></li>
 						        </s:iterator>
 	                         </ul>
 						  </li> <!-- info -->
