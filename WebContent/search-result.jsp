@@ -61,6 +61,11 @@
 					<span>共搜索出<s:property value="papernum" />篇论文
 					</span>
 				</div>
+		    <ul class="nav nav-pills"  id="choose">
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=4">按照下载数量排序</a></li>
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=5">按照上传时间排序</a></li>
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=6">按照发表时间排序</a></li>
+			</ul>
 				<table class="table table-hover">
 					<tr>
 						<td>编号</td>
@@ -94,13 +99,13 @@
 							<td><s:iterator value="keywordList" status="index">
 									<a href="chooseSearch.action?selectchoice=1&keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
-							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载[<s:property value="clickTime"/>]</a></td>
+							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载<span style="color:grey;"><s:property value="clickTime"/></span></a></td>
 						 
 						</tr>
 				</s:iterator>
 				</table>
 				<a href="fileDownloads.action?tip=2" class="btn btn-info" style="margin-bottom:1%;float:right;">导出为excel表格</a>
-                               	<ul class="pagination">
+                   <ul class="pagination">
                       <%=request.getAttribute("s") %>
 	               </ul>
 
