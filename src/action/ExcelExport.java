@@ -52,10 +52,10 @@ public class ExcelExport extends UserSupport{
     {
 		switch(tip) {
 		case 0:
-			fileName = getUser().getUsername()+"WorkListQueryResult.xls";
+			fileName = getUser().getEmail()+"WorkListQueryResult.xls";
 			break;
 		case 1:
-			fileName=getUser().getUsername()+"PersonalworkloadQueryResult.xls";
+			fileName=getUser().getEmail()+"PersonalworkloadQueryResult.xls";
 			break;
 		case 2:
 			fileName="GenerateQueryResult.xls";
@@ -64,7 +64,8 @@ public class ExcelExport extends UserSupport{
 		
 		System.out.println(fileName);
         try {
-			fileName = new String(fileName.getBytes(), "ISO8859-1");
+			fileName = new String(fileName.getBytes(),"ISO8859-1");
+
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}

@@ -147,6 +147,7 @@ public class SearchPaper extends UserSupport {
             {
                 selectchoice=6;
                 chooseSearch();
+                session.setAttribute("level3", "/"+keyword);
                 return SUCCESS;
             }
             List<String> list1;
@@ -160,15 +161,21 @@ public class SearchPaper extends UserSupport {
             logger.info(page);
             if(selectchoice==0)//由一级分类进行查询
             {
+                 session.setAttribute("level2", null);
+                 session.setAttribute("level3", null);
                  sortid=findsortIDbysortname(1);
                  sql="SELECT * FROM second WHERE upper='" + sortid + "'";
                  session.setAttribute("searchLevel",1);
+                 session.setAttribute("level1", keyword);
             }
             if(selectchoice==1)
             {
+                session.setAttribute("level3", null);
                 sortid=findsortIDbysortname(2);
                 sql="SELECT * FROM third WHERE upper='" + sortid + "'";
                 session.setAttribute("searchLevel",2);
+                session.setAttribute("level2","/" +keyword);
+          
             }
             if(sql!=null)
             {
@@ -273,12 +280,14 @@ public class SearchPaper extends UserSupport {
 		}	
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
+
         if(getSorttype()==1) {
         	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
         }else {
         	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
         }
          
+
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
 		try {
@@ -289,19 +298,21 @@ public class SearchPaper extends UserSupport {
 		}
 			
          StringBuffer s=new StringBuffer();  
+
         for(int i=1;i<=Math.ceil((double)pages/10);i++){  
+            session.setAttribute("selectchoice",selectchoice); 
+            session.setAttribute("keyword",keyword);
+            session.setAttribute("pagenum",current_page);
+
             if(i==current_page){  
-                s.append("["+i+"]");  
+                s.append("<li class='active' >"+i+"</li>");
             }  
             else{ 
             	if(index==0) {
-            		 s.append("<a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
+            		 s.append("<li><a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a></li>");  
             	}else {
-            		  s.append("<a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a>");  
-            	}
-                
-     
-                		 
+            		  s.append("<li><a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a></li>");  
+            	}	 
             }  
         }  		
         System.out.println(s);

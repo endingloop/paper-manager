@@ -55,25 +55,31 @@
 		</div>
 		<div class="content2">
 				<div class="shownum">
-					<span style="color:grey;font-size:0.9em;" >搜索结果 >&nbsp;共搜索出<s:property value="papernum" />篇论文
+					<span style="color:grey;font-size:0.9em;" >
+					<a	href="querySort.action?selectchoice=0&keyword=<s:property value="#session.level1"/>&page=1 "><s:property value="#session.level1"/></a>
+					<a  href="querySort.action?selectchoice=1&keyword=<s:property value="#session.level2"/>&page=1>"><s:property value="#session.level2"/></a>
+				    <a href="querySort.action?selectchoice=2&keyword=<s:property value="#session.level3"/>&page=1"><s:property value="#session.level3"/></a>
+					&nbsp;共搜索出<s:property value="papernum" />篇论文
 					</span>
 				</div>
+		   <s:if test="#session.pagenum==1">
             <div id="findmore">
                <ul id="sort">
                  <li style="color:grey;">按分类查询：</li>
                  <s:if test="#session.searchLevel==1">
                       	 <s:iterator value="#session.sortlist"> 
-						     <li ><a href="querySort.action?selectchoice=1&keyword=<s:property/>"><s:property/></a></li>
+						     <li ><a href="querySort.action?selectchoice=1&keyword=<s:property/>&page=1"><s:property/></a></li>
 						 </s:iterator>
                  </s:if>
                  <s:if test="#session.searchLevel==2">
                       	 <s:iterator value="#session.sortlist"> 
-						     <li ><a href="querySort.action?selectchoice=2&keyword=<s:property/>"><s:property/></a></li>
+						     <li ><a href="querySort.action?selectchoice=2&keyword=<s:property/>&page=1"><s:property/></a></li>
 						 </s:iterator>
                  </s:if>
                  </ul>
                  <br>
             </div>
+            </s:if>
 			<div id="content2_center">
 				<table class="table table-hover">
 					<tr>
@@ -118,8 +124,11 @@
 
 				</table>
 					
-				 	<a href="fileDownloads.action?tip=2">导出为excel表格</a>
-                 <div style="align:center;"><%=request.getAttribute("s") %>  </div>
+				<a href="fileDownloads.action?tip=2" class="btn btn-info" style="margin-bottom:1%;float:right;">导出为excel表格</a>
+                	<ul class="pagination">
+                      <%=request.getAttribute("s") %>
+	               </ul>
+                 
 			
 
 			</div>

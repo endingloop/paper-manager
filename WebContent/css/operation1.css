@@ -290,3 +290,39 @@ table
 	font-size:1.1em;
 	margin-left:1em;
 }
+
+
+
+
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    text-align:center;
+}
+
+ul.pagination li {display: inline;}
+
+.pagination li {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+ul.pagination li.active {
+    background-color: rgba(153, 153, 153, 1);
+    color: black;
+}
+
+ul.pagination li:hover:not(.active) {background-color: #ddd;}
+
+.pagination li:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child  {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
