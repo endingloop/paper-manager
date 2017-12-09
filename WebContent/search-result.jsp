@@ -62,9 +62,8 @@
 					</span>
 				</div>
 		    <ul class="nav nav-pills"  id="choose">
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=4">按照下载数量排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=5">按照上传时间排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=6">按照发表时间排序</a></li>
+		     <%=request.getAttribute("TypeSortadd") %>
+			
 			</ul>
 				<table class="table table-hover">
 					<tr>

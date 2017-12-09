@@ -41,7 +41,7 @@ public class SearchPaper extends UserSupport {
 	public void setSorttype(int sorttype) {
 		this.sorttype = sorttype;
 	}
-
+ 
 	private List<Paper> result;
 	private int papernum;
 	private int page=1;  
@@ -302,7 +302,7 @@ public String PaddingSort(String sql,int page) {
 	}
 
 	public String chooseSearch() {
-		//querySort();
+		
 		String sql = null;
 		int index=0;
 		logger.info(selectchoice);
@@ -368,37 +368,7 @@ public String PaddingSort(String sql,int page) {
 
 	}
 	
-	   public String seqencing(String seqencingsql,int seqencechoice) 
-	   {
-	     
-	        if(seqencechoice==2||seqencechoice==4) {
-	            seqencingsql=seqencingsql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
-	        }
-	        else if ((seqencechoice==1||seqencechoice==5))
-	        {
-	            seqencingsql=seqencingsql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
-	        }
-	        else if ((seqencechoice==3||seqencechoice==6))
-	        {
-	            seqencingsql=seqencingsql+" and paper.Status=1 order by paper.Date desc limit "+(page-1)*10+",10";
-	        }
-	        try {
-	                papernum = querySql(seqencingsql);
-	            logger.info(seqencingsql + " NUMBER: " + papernum+"sql fenlong-----------------");
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	            return ERROR;
-	        }
-	        logger.info(seqencingsql);
-	        session.setAttribute("seqencingsql", seqencingsql);
-	        session.setAttribute("papernum", seqencingsql);
-	        Padding(seqencingsql,getPage(),1);
-	        if(seqencechoice>3)
-	            return "SEARCH";
-	        else return "SEARCHSORT";
-	   }
-	
-	
+	   
 	//实现分页
 	public String Padding(String sql,int page,int index) {
 		
@@ -412,8 +382,22 @@ public String PaddingSort(String sql,int page) {
 		}	
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
-
-        sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*2+",2";
+        switch(getSorttype()) {
+        case 1:
+        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+        	break;
+        case 2:
+        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+        	break;
+        case 3:
+        	sql=sql+" and paper.Status=1 order by paper.Date desc limit "+(page-1)*10+",10";
+        	break;
+        default:
+        	sql=sql+" and paper.Status=1  limit "+(page-1)*10+",10";
+        	break;
+        	
+        }
+        System.out.println(sql);
 
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
@@ -426,7 +410,7 @@ public String PaddingSort(String sql,int page) {
 			
          StringBuffer s=new StringBuffer();  
 
-        for(int i=1;i<=Math.ceil((double)pages/2);i++){  
+        for(int i=1;i<=Math.ceil((double)pages/10);i++){  
             session.setAttribute("selectchoice",selectchoice); 
             session.setAttribute("keyword",keyword);
             session.setAttribute("pagenum",current_page);
@@ -441,7 +425,15 @@ public String PaddingSort(String sql,int page) {
             		  s.append("<a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'><li>"+i+"</li></a>");  
             	}	 
             }  
-        }  		
+        }  
+        StringBuffer TypeSortadd=new StringBuffer();
+	        TypeSortadd.append("<li role='presentation'><a href='chooseSearch.action?page=1&&keyword="+keyword+"&&selectchoice="+selectchoice+"&&sorttype=2'>按照下载数量排序</a></li>");
+	        TypeSortadd.append("<li role='presentation'><a href='chooseSearch.action?page=1&&keyword="+keyword+"&&selectchoice="+selectchoice+"&&sorttype=1'>按照上传时间排序</a></li>");
+	        TypeSortadd.append("<li role='presentation'><a href='chooseSearch.action?page=1&&keyword="+keyword+"&&selectchoice="+selectchoice+"&&sorttype=3'>按照发表时间排序</a></li>");
+	        
+		//querySort();
+	        session.setAttribute("TypeSortadd",TypeSortadd); 
+	        context.put("TypeSortadd",TypeSortadd);  
         System.out.println(s);
         session.setAttribute("list",list); 
         session.setAttribute("s",s); 
