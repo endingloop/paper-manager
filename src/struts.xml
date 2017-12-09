@@ -97,7 +97,7 @@
 			<result name="workload">/workload.jsp</result>
 			<interceptor-ref name="user" />
 		</action>
-		<action name="searchAuthor" class="action.WorkGraph" method="draw">
+		<action name="searchAuthor" class="action.SearchPaper" method="searchAuthor">
 			<result name="success">/search-author.jsp</result>
 		</action>
   

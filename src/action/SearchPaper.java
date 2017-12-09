@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.Paper;
 import service.Dao;
 import service.ExcelGenerate;
+import service.WorkGraph;
 import support.Constants;
 import support.UserSupport;
 
@@ -289,6 +290,17 @@ public String PaddingSort(String sql,int page) {
   
 		return null;
 	}
+
+	public String searchAuthor() throws SQLException {
+        setSelectchoice(3);
+        String result = chooseSearch();
+        HttpSession session = ServletActionContext.getRequest ().getSession();
+        session.setAttribute("author", WorkGraph.findAuthors(keyword));
+        session.setAttribute("authorname", keyword);
+        session.setAttribute("papernum", getPapernum());
+		return result;
+	}
+
 	public String chooseSearch() {
 		//querySort();
 		String sql = null;
@@ -304,7 +316,7 @@ public String PaddingSort(String sql,int page) {
 			sql = "SELECT * FROM paper ,upload WHERE Title LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
 			break;
 		case 3:
-		    sql = "SELECT * FROM paper,upload WHERE FirstAuthorID='" + keyword + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]' and upload.paperID=paper.PaperID";
+		    sql = "SELECT * FROM paper,upload WHERE (FirstAuthorID='" + keyword + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]') and upload.paperID=paper.PaperID";
 		    logger.info(sql);
 			break;
 		case 4:
