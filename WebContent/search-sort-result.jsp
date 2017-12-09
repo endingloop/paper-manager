@@ -54,33 +54,47 @@
 			</div>
 		</div>
 		<div class="content2">
-				<div class="shownum">
-					<span style="color:grey;font-size:0.9em;" >
-					<s:property value="#session.level1"/>
-					<s:property value="#session.level2"/>
-				    <s:property value="#session.level3"/>
-					&nbsp;共搜索出<s:property value="papernum" />篇论文
-					</span>
+			<div class="shownum">
+				<span style="color: grey; font-size: 0.9em;"> <s:property
+						value="#session.level1" /> <s:property value="#session.level2" />
+					<s:property value="#session.level3" /> &nbsp;共搜索出<s:property
+						value="papernum" />篇论文
+				</span>
+			</div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$(".button1").click(function() {
+						$("#sort").toggle();
+					});
+				});
+			</script>
+			<ul class="nav nav-pills"  id="choose">
+			<li role="presentation" class="button1"><a>按照分类细化查询</a></li>
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=1">按照下载数量排序</a></li>
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=2">按照上传时间排序</a></li>
+			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=3">按照发表时间排序</a></li>
+			</ul>
+			<s:if test="#session.pagenum==1">
+				<div id="findmore">
+					<ul id="sort">
+						<li style="color: grey;">细化分类：</li>
+						<s:if test="#session.searchLevel==1">
+							<s:iterator value="#session.sortlist">
+								<li><a
+									href="querySort.action?selectchoice=1&keyword=<s:property/>&page=1"><s:property /></a></li>
+							</s:iterator>
+						</s:if>
+						<s:if test="#session.searchLevel==2">
+							<s:iterator value="#session.sortlist">
+								<li><a
+									href="querySort.action?selectchoice=2&keyword=<s:property/>&page=1"><s:property /></a></li>
+							</s:iterator>
+						</s:if>
+					</ul>
+					<br>
 				</div>
-		   <s:if test="#session.pagenum==1">
-            <div id="findmore">
-               <ul id="sort">
-                 <li style="color:grey;">按分类查询：</li>
-                 <s:if test="#session.searchLevel==1">
-                      	 <s:iterator value="#session.sortlist"> 
-						     <li ><a href="querySort.action?selectchoice=1&keyword=<s:property/>&page=1"><s:property/></a></li>
-						 </s:iterator>
-                 </s:if>
-                 <s:if test="#session.searchLevel==2">
-                      	 <s:iterator value="#session.sortlist"> 
-						     <li ><a href="querySort.action?selectchoice=2&keyword=<s:property/>&page=1"><s:property/></a></li>
-						 </s:iterator>
-                 </s:if>
-                 </ul>
-                 <br>
-            </div>
-            </s:if>
-			<div id="content2_center">
+			</s:if>
+			<div id="content2_center" style="margin-top:-2em;">
 				<table class="table table-hover">
 					<tr>
 						<td>编号</td>
@@ -113,8 +127,7 @@
 							<td><s:iterator value="keywordList" status="index">
 									<a href="chooseSearch.action?selectchoice=1&keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
-							<td><a
-								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载(<s:property value="clickTime"/>)</a></td>
+							<td><a	href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">下载<span style="color:grey;"><s:property value="clickTime"/></span></a></td>
 						</tr>
 						
 					</s:iterator>
