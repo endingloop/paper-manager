@@ -70,9 +70,8 @@
 			</script>
 			<ul class="nav nav-pills"  id="choose">
 			<li role="presentation" class="button1"><a>按照分类细化查询</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=1">按照下载数量排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=2">按照上传时间排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=3">按照发表时间排序</a></li>
+			  <%=request.getAttribute("TypeSortadd") %>
+			
 			</ul>
 			<s:if test="#session.pagenum==1">
 				<div id="findmore">
