@@ -413,7 +413,7 @@ public String PaddingSort(String sql,int page) {
         HttpSession session = ServletActionContext.getRequest ().getSession();
         ActionContext context=ActionContext.getContext();  
 
-         
+        sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*2+",2";
 
 		System.out.println(sql);
 		List<Paper> list=new ArrayList<>();
@@ -436,9 +436,9 @@ public String PaddingSort(String sql,int page) {
             }  
             else{ 
             	if(index==0) {
-            		 s.append("<li><a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a></li>");  
+            		 s.append("<a href='chooseSearch.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'><li>"+i+"</li></a>");  
             	}else {
-            		  s.append("<li><a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'>"+i+"</a></li>");  
+            		  s.append("<a href='querySort.action?page="+i+"&&keyword="+keyword+"&&selectchoice="+selectchoice+"'><li>"+i+"</li></a>");  
             	}	 
             }  
         }  		
