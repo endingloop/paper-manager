@@ -62,9 +62,8 @@
 					</span>
 				</div>
 		    <ul class="nav nav-pills"  id="choose">
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=4">按照下载数量排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=5">按照上传时间排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=6">按照发表时间排序</a></li>
+		     <%=request.getAttribute("TypeSortadd") %>
+			
 			</ul>
 				<table class="table table-hover">
 					<tr>
@@ -85,10 +84,10 @@
 								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
 										value="title" /></a></td>
 							<td><a
-								href="searchAuthor.action?name=<s:property value="author"/>"><s:property
+								href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property
 										value="author" /></a></td>
 							<td><s:iterator value="secondAuthorList" status="index">
-									<a href="searchAuthor.action?name=<s:property/>"><s:property /></a>
+									<a href="searchAuthor.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
 								href="chooseSearch.action?selectchoice=5&keyword=<s:property value="publication"/>"><s:property

@@ -70,21 +70,22 @@
 			</script>
 			<ul class="nav nav-pills"  id="choose">
 			<li role="presentation" class="button1"><a>按照分类细化查询</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=1">按照下载数量排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=2">按照上传时间排序</a></li>
-			<li role="presentation"><a href="seqencing.action?seqencingsql=<s:property value="seqencingsql"/>&seqencechoice=3">按照发表时间排序</a></li>
+			  <%=request.getAttribute("TypeSortadd") %>
+			
 			</ul>
 			<s:if test="#session.pagenum==1">
 				<div id="findmore">
 					<ul id="sort">
-						<li style="color: grey;">细化分类：</li>
+						
 						<s:if test="#session.searchLevel==1">
+						<li style="color: grey;">细化分类：</li>
 							<s:iterator value="#session.sortlist">
 								<li><a
 									href="querySort.action?selectchoice=1&keyword=<s:property/>&page=1"><s:property /></a></li>
 							</s:iterator>
 						</s:if>
 						<s:if test="#session.searchLevel==2">
+						<li style="color: grey;">细化分类：</li>
 							<s:iterator value="#session.sortlist">
 								<li><a
 									href="querySort.action?selectchoice=2&keyword=<s:property/>&page=1"><s:property /></a></li>
@@ -115,10 +116,10 @@
 								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
 										value="title" /></a></td>
 							<td><a
-								href="searchAuthor.action?name=<s:property value="author"/>"><s:property
+								href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property
 										value="author" /></a></td>
 							<td><s:iterator value="secondAuthorList" status="index">
-									<a href="searchAuthor.action?name=<s:property/>"><s:property /></a>
+									<a href="searchAuthor.action?keyword=<s:property/>"><s:property /></a>
 								</s:iterator></td>
 							<td><a
 								href="chooseSearch.action?selectchoice=5&keyword=<s:property value="publication"/>"><s:property
