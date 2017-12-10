@@ -27,7 +27,7 @@ import support.UserSupport;
 
 public class SearchPaper extends UserSupport {
 	
-	private static final long serialVersionUID = 23L;
+	private static final long serialVersionUID = 123L;
 	static private Logger logger = Logger.getLogger(SearchPaper.class);
 	private int selectchoice;
 	private int seqencechoice ;
@@ -317,7 +317,6 @@ public String PaddingSort(String sql,int page) {
 	public String searchAuthor() throws SQLException {
         setSelectchoice(3);
         String result = chooseSearch();
-        HttpSession session = ServletActionContext.getRequest ().getSession();
         Map<String, Integer> m1 = WorkGraph.findAuthors(keyword);
 		Iterator<Entry<String, Integer>> iter = m1.entrySet().iterator();
 		String [] author = new String[(m1.size())];

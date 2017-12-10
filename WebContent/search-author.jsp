@@ -269,7 +269,7 @@
 				links : [
 				<% 
 				int i;
-				for(i = 1; i < author.length - 1; i++)
+				for(i = 0; i < author.length - 1; i++)
 					out.print("{source : " + i + " , target : 0, weight : 1"
 							+ ", itemStyle:{normal:{text:'"+count[i]+
 					"',textColor:'#030303',textFont:'bold 15px verdana',textPosition:'inside'}}}, ");
