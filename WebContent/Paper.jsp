@@ -140,7 +140,7 @@
 				   </s:else>
 					
 					<span>内容简介：<s:textarea name="paper.description"  rows="3" maxlength="2000" cols="20" wrap="hard"/></span>
-					<span>出版机构：<s:textfield name="paper.publication"/></span>
+					<span>出版刊物：<s:textfield name="paper.publication"/></span>
 				</div>
 				
 			    <div id="part3" >

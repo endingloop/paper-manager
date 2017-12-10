@@ -65,7 +65,9 @@
       
     
    	</s:iterator>
-
+	<s:if test="result.size()==0">
+		<h3>您搜索的篇目不存在，可能是正在审核中。</h3>
+	</s:if>
    </div>
    </div>   <!--  for  content2 -->
 

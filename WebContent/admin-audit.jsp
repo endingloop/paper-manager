@@ -43,8 +43,10 @@
 					<s:iterator value="paperList">
 						<tr>
 							<td align="left"><s:property value="paperID" /></td>
-							<td align="left"><s:property value="title" /></td>
-							<td align="center"><s:property value="author" /></td>
+							<td align="left"><a
+								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property value="title" /></a></td>
+							<td align="center">
+								<a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a></td>
 							<td align="center"><s:property value="date" /></td>
 							<td align="center"><a
 								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">查看</a>

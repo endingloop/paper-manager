@@ -103,7 +103,10 @@ public class Paper {
 	}
 
 	public void setPublication(String publication) {
-		this.publication = publication;
+		if(publication == null || publication.isEmpty()) {
+			this.publication = "未知";
+		}
+		else this.publication = publication;
 	}
 
 	public int getStatus() {
