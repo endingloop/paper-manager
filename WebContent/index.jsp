@@ -142,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.hotpaper"> 
-						  <li class="whyt"><a href="showDetail.action?keyword=<s:property />&selectchoice=1"><s:property/></a></li>
+						  <li class="whyt"><a href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property value="title"/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>
@@ -154,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <div class="pricing-offer">
 					 <ul>
 						<s:iterator value="#session.lastestpaper"> 
-						<li class="whyt"><a href="showDetail.action?keyword=<s:property />&selectchoice=1"><s:property/></a></li>
+						<li class="whyt"><a href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property value="title"/></a></li>
 						</s:iterator>
 				     </ul>
 				 </div>
@@ -214,24 +214,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 <a href="chooseSearch.action?selectchoice=6&keyword=计算机网络理论"><img src="images/index5.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword="><img src="images/index6.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=书法、篆刻"><img src="images/index6.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
 					 <a href="chooseSearch.action?selectchoice=6&keyword=摄影艺术"><img src="images/index7.jpg"></a>					 
 				 </div>	
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword=书法、篆刻"><img src="images/index8.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=心理学"><img src="images/index8.jpg"></a>					 
 				 </div>						
 			  </div>
 			  <div class="item text-center guide-sliders">
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword=心理学"><img src="images/index9.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=天文物理学"><img src="images/index9.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword=天文物理学"><img src="images/index10.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=古典数学"><img src="images/index10.jpg"></a>					 
 				 </div>
 				 <div class="col-md-3 image-grid">
-					 <a href="chooseSearch.action?selectchoice=6&keyword=古典数学"><img src="images/index11.jpg"></a>					 
+					 <a href="chooseSearch.action?selectchoice=6&keyword=细胞学"><img src="images/index11.png"></a>					 
 				 </div>		
 				 <div class="col-md-3 image-grid">
 					 <a href="chooseSearch.action?selectchoice=6&keyword=理论力学"><img src="images/index12.jpg"></a>					 
