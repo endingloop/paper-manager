@@ -48,10 +48,6 @@ public class SearchPaper extends UserSupport {
     public String showDetail()
     {
         String sql = null;
-        if(selectchoice==1)
-        {
-        sql = "SELECT * FROM paper WHERE Title='" + keyword + "'";
-        }
         if(selectchoice==0)
         {
          sql = "SELECT * FROM paper WHERE PaperID='" + keyword + "'";   
@@ -359,8 +355,9 @@ public class SearchPaper extends UserSupport {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
-				result.add(temp);
-				count++;
+			result.add(temp);
+			count++;
+
 			
 		}
 	
