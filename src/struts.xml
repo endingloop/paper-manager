@@ -75,10 +75,6 @@
 		<action name="querySort" class="action.SearchPaper" method="querySort">
 			<result name="success">/search-sort-result.jsp</result>
 		</action>
-		<action name="seqencing" class="action.SearchPaper" method="seqencing">
-			<result name="SEARCHSORT">/search-sort-result.jsp</result>
-			<result name="SEARCH">/search-sort-result.jsp</result>
-		</action>
 	   <action name="showDetail" class="action.SearchPaper" method="showDetail">
 			<result name="success">/paper-detail.jsp</result>
 		</action>

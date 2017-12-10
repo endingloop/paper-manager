@@ -357,6 +357,7 @@ public class SearchPaper extends UserSupport {
 			temp.setLevel(rs.getInt(12));
 			result.add(temp);
 			count++;
+
 			
 		}
 	

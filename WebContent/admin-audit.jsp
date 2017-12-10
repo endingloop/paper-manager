@@ -28,6 +28,7 @@
   <li role="presentation"><a href="<s:url action="Admin_welcome" />">欢迎页面</a></li>
   <li role="presentation" class="active"><a href="<s:url action="Admin_audit" />">待审核文章</a></li>
   <li role="presentation"><a href="Admin_user">用户管理</a></li>
+  <li role="presentation" ><a href="<s:url action="workload"/>">查看工作量</a></li>
   </ul>
   </div>
 <br>
@@ -42,16 +43,16 @@
 					</tr>
 					<s:iterator value="paperList">
 						<tr>
-							<td><s:property value="paperID" /></td>
-							<td><a
-								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
+
+							<td align="left"><s:property value="paperID" /></td>
+							<td align="left"><a href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
 										value="title" /></a></td>
-							<td><a href="searchAuthor.action?keyword=<s:property/>"><s:property
+							<td align="center"><a
+								href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property
 										value="author" /></a></td>
-							<td><a
-								href="chooseSearch.action?selectchoice=4&keyword=<s:property value="date"/>"><s:property
-										value="date" /></a></td>
-							<td><a
+
+							<td align="center"><s:property value="date" /></td>
+							<td align="center"><a
 								href="<s:url action="fileDownload"><s:param name="paperID" value="paperID"/></s:url>">查看</a>
 								&nbsp; <a
 								href="<s:url action="Admin_pass"><s:param name="paperID" value="paperID"/></s:url>">通过</a>
