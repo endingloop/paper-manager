@@ -211,7 +211,7 @@ public class PaperSupport extends UserSupport {
 	
 	public void savePapers() throws IOException, SQLException {
 		Paper paper = getPaper();
-		paper.setStatus('0');
+		paper.setStatus(0);
 		paper.setSort(Dao.findSortID(getThird()));
 		paper.setPaperID(getPaperID());
 		if (file != null) {
