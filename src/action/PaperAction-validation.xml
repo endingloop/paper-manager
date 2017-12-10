@@ -11,4 +11,9 @@
             <message>请输入作者!</message>
         </field-validator>
     </field>
+    <field name="paper.date">
+        <field-validator type="requiredstring">
+            <message>请选择日期!</message>
+        </field-validator>
+    </field>
 </validators>

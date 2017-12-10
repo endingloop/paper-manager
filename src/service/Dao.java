@@ -185,17 +185,17 @@ public class Dao {
 		pstmt = (PreparedStatement) conn.prepareStatement("select * from first where sortname='" + sortstr +"'");
 		ResultSet rs = pstmt.executeQuery("select * from first where sortname='" + sortstr +"'");
 		if (rs.next()) {
-			return 1;
+			return 0;
 		}
 		pstmt = (PreparedStatement) conn.prepareStatement("select * from second where sortname='" + sortstr +"'");
 		rs = pstmt.executeQuery("select * from second where sortname='" + sortstr +"'");
 		if (rs.next()) {
-			return 2;
+			return 1;
 		}
 		pstmt = (PreparedStatement) conn.prepareStatement("select * from third where sortname='" + sortstr +"'");
 		rs = pstmt.executeQuery("select * from third where sortname='" + sortstr +"'");
 		if (rs.next()) {
-			return 3;
+			return 2;
 		}
 		return -1;
 	}
