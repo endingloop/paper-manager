@@ -31,10 +31,10 @@
 			<result name="login" type="redirectAction">Login_input</result>
 		</global-results>
 		
-<!-- 		<global-exception-mappings> -->
-<!-- 			<exception-mapping exception="java.lang.Exception" -->
-<!-- 				result="error" /> -->
-<!-- 		</global-exception-mappings> -->
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
 
 		<action name="index"  method="execute" class="action.index">
 			<result>/index.jsp</result>
