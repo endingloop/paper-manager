@@ -35,14 +35,15 @@
 			<div id="content2_center">
 				<table class="table table-hover">
 					<tr>
-						<th align="center" width="30%">编号</th>
-						<th align="center" width="25%">题目</th>
-						<th align="center" width="10%">作者</th>
-						<th align="center" width="10%">时间</th>
-						<th align="center" width="15%">操作</th>
+						<th>编号</th>
+						<th>题目</th>
+						<th>作者</th>
+						<th>时间</th>
+						<th>操作</th>
 					</tr>
 					<s:iterator value="paperList">
 						<tr>
+
 							<td align="left"><s:property value="paperID" /></td>
 							<td align="left"><a href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property
 										value="title" /></a></td>
