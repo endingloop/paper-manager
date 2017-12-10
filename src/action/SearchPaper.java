@@ -359,10 +359,9 @@ public class SearchPaper extends UserSupport {
 			temp.setDescription(rs.getString(10));
 			temp.setFilename(rs.getString(11));
 			temp.setLevel(rs.getInt(12));
-			if (temp.getStatus() == 1) {
 				result.add(temp);
 				count++;
-			}
+			
 		}
 	
 		try {

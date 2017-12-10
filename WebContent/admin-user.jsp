@@ -28,6 +28,7 @@
   <li role="presentation"><a href="<s:url action="Admin_welcome" />">欢迎页面</a></li>
   <li role="presentation"><a href="<s:url action="Admin_audit" />">待审核文章</a></li>
   <li role="presentation" class="active"><a href="Admin_user">用户管理</a></li>
+  <li role="presentation" ><a href="<s:url action="workload"/>">查看工作量</a></li>
   </ul>
   </div>
 <br>

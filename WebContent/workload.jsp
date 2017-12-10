@@ -29,8 +29,16 @@
 		<div  style="align: center; margin-left: 5%; margin-right: 5%;">
 		<div id="content2_top">
 			<ul class="nav nav-tabs nav-justified">
+			<s:if test="getUser().getAuthority()==1">
 				<li role="presentation" ><a href="<s:url action="MainMenu"/>">我的论文</a></li>
 				<li role="presentation"><a href="<s:url action="Paper_input"/>">上传论文</a></li>
+			</s:if>
+			<s:if test="getUser().getAuthority()==3">
+			<li role="presentation"><a href="<s:url action="Admin_welcome" />">欢迎页面</a></li>
+  <li role="presentation" ><a href="<s:url action="Admin_audit" />">待审核文章</a></li>
+  <li role="presentation"><a href="Admin_user">用户管理</a></li>
+			</s:if>
+				
 				<li role="presentation" class="active"><a href="<s:url action="workload"/>">查看工作量</a></li>
 			</ul>
 		</div>
