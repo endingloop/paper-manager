@@ -32,7 +32,7 @@
   </ul>
   </div>
 <br>
-<h2>欢迎您，管理员&nbsp; <s:property value="user.username" /></h2>
+<h2 style="margin-bottom:10%;margin-top:5%;">欢迎您，管理员&nbsp; <s:property value="user.username" /></h2>
    </div>   <!--  for  content2 -->
 
 <footer>
