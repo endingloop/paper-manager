@@ -130,20 +130,20 @@ public class SearchPaper extends UserSupport {
 		int index=0;
 		switch (selectchoice) {
 		case 1:
-			sql = "SELECT * FROM paper,upload  WHERE KeyWords LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
+			sql = "SELECT * FROM paper,upload  WHERE KeyWords LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID and paper.Status=1";
 			break;
 		case 2:
-			sql = "SELECT * FROM paper ,upload WHERE Title LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID";
+			sql = "SELECT * FROM paper ,upload WHERE Title LIKE '%" + keyword + "%' and upload.paperID=paper.PaperID and paper.Status=1";
 			break;
 		case 3:
-		    sql = "SELECT * FROM paper,upload WHERE (FirstAuthorID='" + keyword + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]') and upload.paperID=paper.PaperID";
+		    sql = "SELECT * FROM paper,upload WHERE (FirstAuthorID='" + keyword + "' " + "OR SecondAuthorID REGEXP '[[:<:]]" + keyword + "[[:>:]]') and upload.paperID=paper.PaperID and paper.Status=1";
 		    logger.info(sql);
 			break;
 		case 4:
-			sql = "SELECT * FROM paper,upload WHERE Date ='" + keyword + "' and upload.paperID=paper.PaperID";
+			sql = "SELECT * FROM paper,upload WHERE Date ='" + keyword + "' and upload.paperID=paper.PaperID and paper.Status=1";
 			break;
 		case 5:
-			sql = "SELECT * FROM paper,upload WHERE JournalID='" + keyword + "' and upload.paperID=paper.PaperID";
+			sql = "SELECT * FROM paper,upload WHERE JournalID='" + keyword + "' and upload.paperID=paper.PaperID and paper.Status=1";
 			break;
 		case 6:
 			index=1;
@@ -168,13 +168,13 @@ public class SearchPaper extends UserSupport {
 		switch(level) {
 		//这个数比分类级别少1
 		case 0:
-			sql = "select * from paper,upload ,third,second where second.upper="+ sortid +"  and upload.paperID=paper.PaperID  and paper.sortID=third.thirdID and third.upper=second.secondID ";
+			sql = "select * from paper,upload ,third,second where second.upper="+ sortid +"  and upload.paperID=paper.PaperID  and paper.sortID=third.thirdID and third.upper=second.secondID and paper.Status=1 ";
 			break;
 		case 1:
-			sql = "select * from paper ,upload  ,third where third.upper="+ sortid +"  and upload.paperID=paper.PaperID and paper.sortID=third.thirdID ";
+			sql = "select * from paper ,upload  ,third where third.upper="+ sortid +"  and upload.paperID=paper.PaperID and paper.sortID=third.thirdID and paper.Status=1 ";
 			break;
 		case 2:
-			sql = "select * from paper ,upload where sortID="+ sortid +"  and upload.paperID=paper.PaperID";
+			sql = "select * from paper ,upload where sortID="+ sortid +"  and upload.paperID=paper.PaperID and paper.Status=1 ";
 			break;
 		default:
 			logger.error("No this sort: " + keyword);
@@ -207,16 +207,16 @@ public class SearchPaper extends UserSupport {
         ActionContext context=ActionContext.getContext();  
         switch(getSorttype()) {
         case 1:
-        	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+        	sql=sql+"  order by upload.uploadDate desc limit "+(page-1)*10+",10";
         	break;
         case 2:
-        	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+        	sql=sql+"  order by upload.clickTime desc limit "+(page-1)*10+",10";
         	break;
         case 3:
-        	sql=sql+" and paper.Status=1 order by paper.Date desc limit "+(page-1)*10+",10";
+        	sql=sql+"  order by paper.Date desc limit "+(page-1)*10+",10";
         	break;
         default:
-        	sql=sql+" and paper.Status=1  limit "+(page-1)*10+",10";
+        	sql=sql+"   limit "+(page-1)*10+",10";
         	break;
         	
         }
@@ -279,16 +279,16 @@ public class SearchPaper extends UserSupport {
 	    ActionContext context=ActionContext.getContext();  
 	    switch(getSorttype()) {
 	    case 1:
-	    	sql=sql+" and paper.Status=1 order by upload.uploadDate desc limit "+(page-1)*10+",10";
+	    	sql=sql+"  order by upload.uploadDate desc limit "+(page-1)*10+",10";
 	    	break;
 	    case 2:
-	    	sql=sql+" and paper.Status=1 order by upload.clickTime desc limit "+(page-1)*10+",10";
+	    	sql=sql+"  order by upload.clickTime desc limit "+(page-1)*10+",10";
 	    	break;
 	    case 3:
-	    	sql=sql+" and paper.Status=1 order by paper.Date desc limit "+(page-1)*10+",10";
+	    	sql=sql+"  order by paper.Date desc limit "+(page-1)*10+",10";
 	    	break;
 	    default:
-	    	sql=sql+" and paper.Status=1  limit "+(page-1)*10+",10";
+	    	sql=sql+"   limit "+(page-1)*10+",10";
 	    	break;
 	    	
 	    }
