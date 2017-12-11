@@ -42,11 +42,13 @@ public class index extends PaperSupport {
         PreparedStatement pstmt;
         pstmt = (PreparedStatement) conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
-        while (rs.next()) {
+        int count=0;
+        while (rs.next()&&count<8) {
             Paper temp = new Paper();
             temp.setPaperID(rs.getString(1));
             temp.setTitle(rs.getString(2));
             result.add(temp);
+            count++;
         }
             return result;
     }
