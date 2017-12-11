@@ -85,10 +85,10 @@ public class ExcelGenerate {
 	       
 	    }  
 	  
-		String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
+		String destPath = "/app/webapps/ROOT/upload";
 		try {  
 		       
-			   FileOutputStream fout = new FileOutputStream(destPath+"\\GenerateQueryResult.xls");
+			   FileOutputStream fout = new FileOutputStream(destPath+"/GenerateQueryResult.xls");
 		       wb.write(fout);  
 		        fout.close();  
 	        
@@ -130,9 +130,9 @@ public class ExcelGenerate {
 	        cell = row.createCell((short) 4);  
 	       
 	    }  
-	    	String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
+	    	String destPath = "/app/webapps/ROOT/upload";
 		try {    
-			   FileOutputStream fout = new FileOutputStream(destPath+"\\"+username+"WorkListQueryResult.xls");
+			   FileOutputStream fout = new FileOutputStream(destPath+"/"+username+"WorkListQueryResult.xls");
 		       wb.write(fout);  
 		        fout.close();       
 	    }  
@@ -195,10 +195,10 @@ public class ExcelGenerate {
 	        row.createCell((short) 9).setCellValue(gradeinfobean.getGotscore());
 	        cell = row.createCell((short) 10);   
 	    } 
-	String destPath = ServletActionContext.getServletContext().getRealPath("/upload");
+	String destPath = "/app/webapps/ROOT/upload";
 	    try  
 	    {  
-	    	FileOutputStream fout = new FileOutputStream(destPath+"\\"+username+"PersonalworkloadQueryResult.xls");
+	    	FileOutputStream fout = new FileOutputStream(destPath+"/"+username+"PersonalworkloadQueryResult.xls");
 	        wb.write(fout);  
 	        fout.close();        
 	    }  

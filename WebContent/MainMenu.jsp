@@ -52,7 +52,7 @@
 						<td><s:property value="paperID" /></td>
 						<td><a
 								href="showDetail.action?keyword=<s:property value="paperID"/>&selectchoice=0"><s:property value="title" /></a></td>
-						<td><a href="searchAuthor.action?keyword=<s:property/>"><s:property value="author" /></a></td>
+						<td><a href="searchAuthor.action?keyword=<s:property value="author"/>"><s:property value="author" /></a></td>
 						<td><a
 								href="chooseSearch.action?selectchoice=4&keyword=<s:property value="date"/>"><s:property value="date" /></a></td>
 						<td><a

@@ -35,13 +35,14 @@ public class Dao {
 
 	public static Connection getConn() {
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/paper-manager";
-		String username = "root";
-		String password = "womende666"; // 不要改动此处！！修改你自己的密码
+		String username = System.getenv("ACCESSKEY");
+		String password = System.getenv("SECRETKEY");
+		//System.getenv("MYSQL_HOST_S"); 为从库，只读
+		String dbUrl = String.format("jdbc:mysql://%s:%s/%s", System.getenv("MYSQL_HOST"), System.getenv("MYSQL_PORT"), System.getenv("MYSQL_DB"));
 		Connection conn = null;
 		try {
 			Class.forName(driver); // classLoader,加载对应驱动
-			conn = (Connection) DriverManager.getConnection(url, username, password);
+			conn = DriverManager.getConnection(dbUrl, username, password);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
